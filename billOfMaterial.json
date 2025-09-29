@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Order BOM Schema",
+  "description": "JSON contract for Bill of Material for each order line, including timestamps.",
+  "type": "object",
+  "properties": {
+    "orderNO": {
+      "type": "string",
+      "maxLength": 25,
+      "description": "Production Order number (PRO No)."
+    },
+    "materialCode": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Material ItemCode."
+    },
+    "colorFinishGood": {
+      "type": "string",
+      "maxLength": 250,
+      "description": "Finish good color."
+    },
+    "sizeFinishGoodCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Finish good size code."
+    },
+    "orderQty": {
+      "type": "number",
+      "description": "Quantity ordered of the finished good."
+    },
+    "consumption": {
+      "type": "number",
+      "multipleOf": 0.00001,
+      "description": "Material consumption per unit (numeric(18,5))."
+    },
+    "unitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Unit code of the material."
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Creation timestamp."
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Last update timestamp."
+    },
+    "deletedAt": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Deletion timestamp (nullable)."
+    }
+  },
+  "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode", "createdAt", "updatedAt", "deletedAt"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "orderNO": "FG-RAK-001",
+      "materialCode": "RM-001",
+      "colorFinishGood": "Black",
+      "sizeFinishGoodCode": "M",
+      "orderQty": 100,
+      "consumption": 0.2,
+      "unitCode": "KGM",
+      "createdAt": "2025-09-29 10:00:00.000",
+      "updatedAt": "2025-09-29 10:00:00.000",
+      "deletedAt": null
+    },
+    {
+      "orderNO": "FG-RAK-001",
+      "materialCode": "HW-001",
+      "colorFinishGood": "Black",
+      "sizeFinishGoodCode": "L",
+      "orderQty": 32,
+      "consumption": 30,
+      "unitCode": "PCE",
+      "createdAt": "2025-09-29 10:05:00.000",
+      "updatedAt": "2025-09-29 10:05:00.000",
+      "deletedAt": null
+    }
+  ]
+}

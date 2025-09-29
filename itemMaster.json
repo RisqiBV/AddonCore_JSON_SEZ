@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Item Master Schema",
+  "description": "JSON contract for Item Master data, including timestamps. Timestamps follow SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+  "type": "object",
+  "properties": {
+    "itemCode": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Unique item code (Primary Key)."
+    },
+    "itemName": {
+      "type": "string",
+      "maxLength": 250,
+      "description": "Descriptive name of the item."
+    },
+    "categoryCodeBC": {
+      "type": "integer",
+      "description": "INSW goods category code. See ListOfCategoryBC.CategoryCode for reference."
+    },
+    "hsCode": {
+      "type": ["string", "null"],
+      "maxLength": 10,
+      "description": "HS Code (optional)."
+    },
+    "categoryInternal": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Internal classification or category."
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Creation timestamp (required)."
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Last update timestamp (required)."
+    },
+    "deletedAt": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Deletion timestamp (nullable)."
+    }
+  },
+  "required": ["itemCode", "itemName", "categoryCodeBC", "categoryInternal", "createdAt", "updatedAt", "deletedAt"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "itemCode": "RM-001",
+      "itemName": "Steel Plate 2 mm",
+      "categoryCodeBC": 1,
+      "hsCode": 58041011,
+      "categoryInternal": "RawMaterial",
+      "createdAt": "2025-09-29 10:00:00.000",
+      "updatedAt": "2025-09-29 10:00:00.000",
+      "deletedAt": null
+    },
+    {
+      "itemCode": "MSN-001",
+      "itemName": "Bending Machine",
+      "categoryCodeBC": 5,
+      "hsCode": 58031011,
+      "categoryInternal": "Mechine",
+      "createdAt": "2025-09-29 10:00:00.000",
+      "updatedAt": "2025-09-29 10:00:00.000",
+      "deletedAt": null
+    }
+  ]
+}

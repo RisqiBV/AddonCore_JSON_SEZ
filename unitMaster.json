@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Unit Master Schema",
+  "description": "JSON contract for Unit Master data, including timestamps. Includes internal unit code, description, and reference to INSW standard unit.",
+  "type": "object",
+  "properties": {
+    "internalUnitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Primary key for the internal unit."
+    },
+    "unitDescription": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Description of the unit."
+    },
+    "aliasUnitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Code referencing the standard INSW unit (see UnitINSW.code)."
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Creation timestamp."
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Last update timestamp."
+    },
+    "deletedAt": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Deletion timestamp (nullable)."
+    }
+  },
+  "required": ["internalUnitCode", "unitDescription", "aliasUnitCode", "createdAt", "updatedAt", "deletedAt"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "internalUnitCode": "Cm",
+      "unitDescription": "Centi Metre",
+      "aliasUnitCode": "CMT",
+      "createdAt": "2025-09-29 10:00:00.000",
+      "updatedAt": "2025-09-29 10:00:00.000",
+      "deletedAt": null
+    },
+    {
+      "internalUnitCode": "Roll",
+      "unitDescription": "Roll",
+      "aliasUnitCode": "RO",
+      "createdAt": "2025-09-29 10:05:00.000",
+      "updatedAt": "2025-09-29 10:05:00.000",
+      "deletedAt": null
+    }
+  ]
+}
