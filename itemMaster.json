@@ -16,7 +16,7 @@
     },
     "categoryCodeBC": {
       "type": "integer",
-      "description": "INSW goods category code. See ListOfCategoryBC.CategoryCode for reference."
+      "description": "INSW goods category code. See ListOfCategoryBC.CategoryCode for reference.  -> @readme.md"
     },
     "hsCode": {
       "type": ["string", "null"],

@@ -17,7 +17,7 @@
     "aliasUnitCode": {
       "type": "string",
       "maxLength": 10,
-      "description": "Code referencing the standard INSW unit (see UnitINSW.code)."
+      "description": "Code referencing the standard INSW unit (see UnitINSW.code). > @readme.md"
     },
     "createdAt": {
       "type": "string",
