@@ -9,14 +9,14 @@ This repository provides reference data and schema assets used by PT Addon Finan
 
 These category codes standardize how items are grouped across systems. Use them whenever you define an item in `itemMaster.json`.
 
-- CSV: `reff_insw_itemCategory.csv`
+- CSV: `insw_Reff_Source/reff_insw_itemCategory.csv`
 
 ---
 
-## 2) INSW Unit Catalogue
+## 2) INSW Unit Catalogue (for `unitMaster.json`)
 
 These category codes standardize how items are grouped across systems. Use them whenever you define an item in `unitMaster.json`.
 
-- CSV: `reff_insw_unitMaster.csv`
+- CSV: `insw_Reff_Source/reff_insw_unitMaster.csv`
 
 ---
