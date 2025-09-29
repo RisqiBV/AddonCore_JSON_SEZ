@@ -55,7 +55,15 @@
       "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["customerCode", "customerName", "address", "country", "createdAt", "updatedAt", "deletedAt"],
+  "required": [
+    "customerCode",
+    "customerName",
+    "address",
+    "country",
+    "createdAt",
+    "updatedAt",
+    "deletedAt"
+  ],
   "additionalProperties": false,
   "examples": [
     {
@@ -81,6 +89,26 @@
       "createdAt": "2025-09-29 10:05:00.000",
       "updatedAt": "2025-09-29 10:05:00.000",
       "deletedAt": null
+    }
+  ],
+  "response": [
+    {
+      "status": "success",
+      "message": "Data Master Customer successfully saved",
+      "data": [
+        {
+          "Uuid": "6c7fe693-0928-4d68-bbfb-473dc37a5a9b",
+          "CustomerCode": "AFI",
+          "CustomerName": "PT ADDON FINANCE INDONESIA",
+          "Address": "Gading Sari 1",
+          "City": null,
+          "Province": null,
+          "Country": "Indonesia",
+          "NPWP": null,
+          "LocationId": 31,
+          "SeqCode": 28
+        }
+      ]
     }
   ]
 }
