@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Routing Production (Header–Detail) Schema",
+  "description": "One object represents a single routing transaction: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Routing header section.",
+      "properties": {
+        "transactionNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary transaction number."
+        },
+        "transactionDate": {
+          "type": "string",
+          "description": "Transaction date (e.g., D/M/YYYY or DD/MM/YYYY)."
+        },
+        "process": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Production process name (e.g., Cutting, Assembling)."
+        }
+      },
+      "required": [
+        "transactionNo",
+        "transactionDate",
+        "process"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Detail lines for this routing transaction.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "orderNo": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Related order number."
+          },
+          "colorFinishGood": {
+            "type": "string",
+            "maxLength": 250,
+            "description": "Finished good color."
+          },
+          "sizeFinishGoodCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Finished good size code."
+          },
+          "qty": {
+            "type": "integer",
+            "description": "Quantity (integer)."
+          }
+        },
+        "required": [
+          "orderNo",
+          "colorFinishGood",
+          "sizeFinishGoodCode",
+          "qty"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "transactionNo": "GRWIP/001/2025",
+        "transactionDate": "9/8/2025",
+        "process": "Cutting"
+      },
+      "details": [
+        {
+          "orderNo": "FG-RAK-001",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "M",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "GRWIP/002/2025",
+        "transactionDate": "9/8/2025",
+        "process": "Assembling"
+      },
+      "details": [
+        {
+          "orderNo": "FG-RAK-002",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "L",
+          "qty": 12
+        }
+      ]
+    }
+  ]
+}

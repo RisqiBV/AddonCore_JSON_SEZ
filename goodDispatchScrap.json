@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Dispatch Scrap (Header–Detail) Schema",
+  "description": "One object represents a single scrap dispatch: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Dispatch header section.",
+      "properties": {
+        "transactionNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary transaction number."
+        },
+        "transactionDate": {
+          "type": "string",
+          "description": "Dispatch date (e.g., DD-MMM-YY or DD/MM/YYYY)."
+        },
+        "deliveryNoteNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Delivery note number."
+        },
+        "deliverTo": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Receiver name/address."
+        },
+        "vehicleId": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Vehicle plate/ID."
+        },
+        "bcCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "BC (customs) code."
+        },
+        "bcNo": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "BC document number."
+        },
+        "bcDate": {
+          "type": "string",
+          "description": "BC document date (e.g., D/M/YYYY)."
+        }
+      },
+      "required": [
+        "transactionNo",
+        "transactionDate",
+        "deliveryNoteNo",
+        "deliverTo",
+        "vehicleId",
+        "bcCode",
+        "bcNo",
+        "bcDate"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Scrap detail lines for this dispatch.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scrapCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Scrap code."
+          },
+          "qty": {
+            "type": "number",
+            "description": "Quantity (float)."
+          },
+          "unitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Unit of measure."
+          },
+          "nw": {
+            "type": "number",
+            "description": "Net weight in KGM."
+          },
+          "gw": {
+            "type": "number",
+            "description": "Gross weight in KGM."
+          }
+        },
+        "required": [
+          "scrapCode",
+          "qty",
+          "unitCode",
+          "nw",
+          "gw"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "transactionNo": "0009/IX/2025",
+        "transactionDate": "13-Sep-25",
+        "deliveryNoteNo": "SJ/004/2025",
+        "deliverTo": "CV. Mentari Pagi",
+        "vehicleId": "B 3451 BTS",
+        "bcCode": "632",
+        "bcNo": "000013",
+        "bcDate": "9/8/2025"
+      },
+      "details": [
+        {
+          "scrapCode": "SCRP-01",
+          "qty": 2,
+          "unitCode": "KGM",
+          "nw": 2,
+          "gw": 2.1
+        },
+        {
+          "scrapCode": "SCRP-01",
+          "qty": 1,
+          "unitCode": "KGM",
+          "nw": 1,
+          "gw": 1.05
+        }
+      ]
+    }
+  ]
+}

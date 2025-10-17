@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sales (Header–Detail) Schema",
+  "description": "One object represents a single sales invoice: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Invoice header section.",
+      "properties": {
+        "invoiceNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary invoice number."
+        },
+        "invoiceDate": {
+          "type": "string",
+          "description": "Invoice date (e.g., D/M/YYYY or DD/MM/YYYY)."
+        },
+        "vesselDate": {
+          "type": "string",
+          "description": "Vessel/Shipment date (e.g., D/M/YYYY)."
+        },
+        "customerCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Customer code."
+        },
+        "deliveryNoteNo": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Delivery note number."
+        },
+        "category": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Export / Local / Return."
+        }
+      },
+      "required": [
+        "invoiceNo",
+        "invoiceDate",
+        "vesselDate",
+        "customerCode",
+        "deliveryNoteNo",
+        "category"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Invoice detail lines.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "orderNo": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Related order number (optional)."
+          },
+          "colorFinishGood": {
+            "type": ["string", "null"],
+            "maxLength": 250,
+            "description": "Finished good color (optional)."
+          },
+          "sizeFinishGoodCode": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Finished good size code (optional)."
+          },
+          "qty": {
+            "type": "number",
+            "description": "Quantity in batch unit code."
+          },
+          "price": {
+            "type": "number",
+            "description": "Unit price."
+          },
+          "priceFob": {
+            "type": "number",
+            "description": "FOB price."
+          },
+          "rate": {
+            "type": "number",
+            "description": "Exchange rate to IDR."
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Currency code (e.g., USD, IDR)."
+          }
+        },
+        "required": [
+          "qty",
+          "price",
+          "priceFob",
+          "rate",
+          "currency"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "invoiceNo": "INV/001/2025",
+        "invoiceDate": "9/8/2025",
+        "vesselDate": "12/8/2025",
+        "customerCode": "CUST-ARMY01",
+        "deliveryNoteNo": "SJ/003/2025",
+        "category": "Lokal"
+      },
+      "details": [
+        {
+          "orderNo": "FG-RAK-001",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "M",
+          "qty": 10,
+          "price": 1000000,
+          "priceFob": 1000000,
+          "rate": 16230,
+          "currency": "IDR"
+        },
+        {
+          "orderNo": "FG-RAK-001",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "L",
+          "qty": 12,
+          "price": 750000,
+          "priceFob": 750000,
+          "rate": 16230,
+          "currency": "USD"
+        }
+      ]
+    }
+  ]
+}

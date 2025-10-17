@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Received Scrap (Header–Detail) Schema",
+  "description": "One object represents a single scrap receipt: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Scrap receipt header section.",
+      "properties": {
+        "transactionNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary transaction number."
+        },
+        "transactionDate": {
+          "type": "string",
+          "description": "Transaction date (e.g., DD-MMM-YY or DD/MM/YYYY)."
+        },
+        "department": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Department name."
+        }
+      },
+      "required": [
+        "transactionNo",
+        "transactionDate",
+        "department"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Scrap detail lines.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "scrapCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Scrap code."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Scrap description."
+          },
+          "qty": {
+            "type": "number",
+            "description": "Quantity."
+          },
+          "unitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Unit of measure."
+          },
+          "xBcCode": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Cross-BC code (optional)."
+          },
+          "xBcNo": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Cross-BC number (optional)."
+          },
+          "xBcDate": {
+            "type": ["string", "null"],
+            "description": "Cross-BC date (optional)."
+          }
+        },
+        "required": [
+          "scrapCode",
+          "description",
+          "qty",
+          "unitCode"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "transactionNo": "0009/IX/2025",
+        "transactionDate": "13-Sep-25",
+        "department": "Cutting"
+      },
+      "details": [
+        {
+          "scrapCode": "SCRP-01",
+          "description": "Scrap Iron Import",
+          "qty": 2,
+          "unitCode": "KGM",
+          "xBcCode": "611",
+          "xBcNo": "000012",
+          "xBcDate": "22/08/2025"
+        },
+        {
+          "scrapCode": "SCRP-01",
+          "description": "Scrap Iron Import",
+          "qty": 1,
+          "unitCode": "KGM",
+          "xBcCode": "611",
+          "xBcNo": "000012",
+          "xBcDate": "22/08/2025"
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "0010/IX/2025",
+        "transactionDate": "13-Sep-25",
+        "department": "Roll Foaming"
+      },
+      "details": [
+        {
+          "scrapCode": "SCRP-02",
+          "description": "Scrap Iron Local",
+          "qty": 1,
+          "unitCode": "KGM",
+          "xBcCode": "613",
+          "xBcNo": "000014",
+          "xBcDate": "22/08/2025"
+        }
+      ]
+    }
+  ]
+}
