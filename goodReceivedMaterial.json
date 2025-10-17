@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Received Material (Header–Detail) Schema",
+  "description": "One object represents a single GR transaction: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "GR header section.",
+      "properties": {
+        "transactionNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary transaction number."
+        },
+        "transactionDate": {
+          "type": "string",
+          "description": "Transaction date (e.g., DD/MM/YYYY)."
+        },
+        "poNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Linked Purchase Order number."
+        },
+        "bcCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "BC (customs) code."
+        },
+        "bcNo": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "BC document number."
+        },
+        "bcDate": {
+          "type": "string",
+          "description": "BC document date (e.g., DD/MM/YYYY)."
+        }
+      },
+      "required": [
+        "transactionNo",
+        "transactionDate",
+        "poNo",
+        "bcCode",
+        "bcNo",
+        "bcDate"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Detail item lines for this GR transaction.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "fc": {
+            "type": "string",
+            "maxLength": 15,
+            "enum": ["PO", "FOC"],
+            "description": "PO or FOC (Free Of Charge)."
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Related order number."
+          },
+          "itemCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Material item code."
+          },
+          "vendorQty": {
+            "type": "number",
+            "description": "Quantity by Order UOM (decimal(18,2))."
+          },
+          "vendorUnitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Order UOM."
+          },
+          "internalQty": {
+            "type": "number",
+            "description": "Quantity by Base UOM (float)."
+          },
+          "internalUnitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Base UOM."
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Unit price."
+          },
+          "rate": {
+            "type": "number",
+            "description": "Exchange rate to IDR."
+          }
+        },
+        "required": [
+          "fc",
+          "orderNo",
+          "itemCode",
+          "vendorQty",
+          "vendorUnitCode",
+          "internalQty",
+          "internalUnitCode",
+          "unitPrice",
+          "rate"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "transactionNo": "BBM/001/2025",
+        "transactionDate": "22/08/2025",
+        "poNo": "PO/KWL/001/2025",
+        "bcCode": "611",
+        "bcNo": "000012",
+        "bcDate": "22/08/2025"
+      },
+      "details": [
+        {
+          "fc": "PO",
+          "orderNo": "FG-RAK-001",
+          "itemCode": "RM-001",
+          "vendorQty": 10,
+          "vendorUnitCode": "KGM",
+          "internalQty": 10,
+          "internalUnitCode": "KGM",
+          "unitPrice": 10,
+          "rate": 16258
+        },
+        {
+          "fc": "PO",
+          "orderNo": "FG-RAK-001",
+          "itemCode": "RM-002",
+          "vendorQty": 150,
+          "vendorUnitCode": "YRD",
+          "internalQty": 13716,
+          "internalUnitCode": "CM",
+          "unitPrice": 3,
+          "rate": 16258
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "BBM/002/2025",
+        "transactionDate": "23/08/2025",
+        "poNo": "PO/KWL/002/2025",
+        "bcCode": "611",
+        "bcNo": "000013",
+        "bcDate": "23/08/2025"
+      },
+      "details": [
+        {
+          "fc": "PO",
+          "orderNo": "FG-RAK-002",
+          "itemCode": "HW-001",
+          "vendorQty": 3960,
+          "vendorUnitCode": "PCE",
+          "internalQty": 3960,
+          "internalUnitCode": "PCE",
+          "unitPrice": 1000,
+          "rate": 16412
+        }
+      ]
+    }
+  ]
+}

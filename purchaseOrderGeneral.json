@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "General Purchase Order (Header–Detail) Schema",
+  "description": "One object represents a single PO: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "PO header section.",
+      "properties": {
+        "supplierCode": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Supplier code."
+        },
+        "poDate": {
+          "type": "string",
+          "description": "PO date (e.g., DD/MM/YYYY)."
+        },
+        "poNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "PO number (Primary)."
+        },
+        "etdActual": {
+          "type": ["string", "null"],
+          "description": "ETD Actual (optional)."
+        },
+        "eta": {
+          "type": ["string", "null"],
+          "description": "ETA (optional)."
+        },
+        "fc": {
+          "type": "string",
+          "maxLength": 15,
+          "enum": ["PO", "FOC"],
+          "description": "PO type: PO or FOC (Free Of Charge)."
+        }
+      },
+      "required": [
+        "supplierCode",
+        "poDate",
+        "poNo",
+        "fc"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Detail item lines for this PO.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "additionalRemarks": {
+            "type": ["string", "null"],
+            "description": "Additional remarks (optional)."
+          },
+          "itemCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Material item code."
+          },
+          "vendorQty": {
+            "type": "number",
+            "description": "Vendor quantity (decimal(18,2))."
+          },
+          "vendorUnitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Vendor unit code."
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Unit price (decimal(20,5))."
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Currency code (e.g., USD, IDR)."
+          }
+        },
+        "required": [
+          "itemCode",
+          "vendorQty",
+          "vendorUnitCode",
+          "unitPrice",
+          "currency"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "supplierCode": "MSN-001",
+        "poDate": "20/08/2025",
+        "poNo": "PO/KWL/002/2025",
+        "etdActual": "20/09/2025",
+        "eta": "22/09/2025",
+        "fc": "PO"
+      },
+      "details": [
+        {
+          "additionalRemarks": null,
+          "itemCode": "RM-001",
+          "vendorQty": 26.4,
+          "vendorUnitCode": "KGM",
+          "unitPrice": 10,
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "header": {
+        "supplierCode": "SPR-001",
+        "poDate": "20/08/2025",
+        "poNo": "PO/KWL/002/2025",
+        "etdActual": "20/09/2025",
+        "eta": "22/09/2025",
+        "fc": "PO"
+      },
+      "details": [
+        {
+          "additionalRemarks": null,
+          "itemCode": "RM-002",
+          "vendorQty": 288.71,
+          "vendorUnitCode": "YRD",
+          "unitPrice": 3,
+          "currency": "USD"
+        }
+      ]
+    }
+  ]
+}

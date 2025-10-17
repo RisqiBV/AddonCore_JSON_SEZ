@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Dispatch General (Header–Detail) Schema",
+  "description": "One object represents a single general dispatch: header + detail lines.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Dispatch header section.",
+      "properties": {
+        "transactionNo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Primary transaction number."
+        },
+        "transactionDate": {
+          "type": "string",
+          "description": "Dispatch date (e.g., D/M/YYYY or DD/MM/YYYY)."
+        },
+        "dispatchTo": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Dispatch destination (defaults to 'Production')."
+        },
+        "deliveryNoteNo": {
+          "type": ["string", "null"],
+          "maxLength": 50,
+          "description": "Delivery note number (optional)."
+        },
+        "bcCode": {
+          "type": ["string", "null"],
+          "maxLength": 10,
+          "description": "BC (customs) code (optional)."
+        },
+        "bcNo": {
+          "type": ["string", "null"],
+          "maxLength": 10,
+          "description": "BC document number (optional)."
+        },
+        "bcDate": {
+          "type": ["string", "null"],
+          "description": "BC document date (optional, e.g., D/M/YYYY)."
+        },
+        "deliverTo": {
+          "type": ["string", "null"],
+          "maxLength": 200,
+          "description": "Receiver name/address (optional)."
+        },
+        "vehicleId": {
+          "type": ["string", "null"],
+          "maxLength": 50,
+          "description": "Vehicle plate/ID (optional)."
+        }
+      },
+      "required": [
+        "transactionNo",
+        "transactionDate",
+        "dispatchTo"
+      ],
+      "additionalProperties": false
+    },
+
+    "details": {
+      "type": "array",
+      "description": "Detail item lines for this dispatch.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "qty": {
+            "type": "number",
+            "description": "Quantity (decimal(18,4))."
+          },
+          "itemCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "General item code."
+          },
+          "unitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Unit of measure."
+          },
+          "nw": {
+            "type": ["number", "null"],
+            "description": "Net weight (optional)."
+          },
+          "gw": {
+            "type": ["number", "null"],
+            "description": "Gross weight (optional)."
+          }
+        },
+        "required": [
+          "qty",
+          "itemCode",
+          "unitCode"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "header": {
+        "transactionNo": "2025081000123",
+        "transactionDate": "9/8/2025",
+        "dispatchTo": "Production",
+        "deliveryNoteNo": null,
+        "bcCode": null,
+        "bcNo": null,
+        "bcDate": null,
+        "deliverTo": null,
+        "vehicleId": null
+      },
+      "details": [
+        {
+          "qty": 5,
+          "itemCode": "MSN-001",
+          "unitCode": "KGM",
+          "nw": null,
+          "gw": null
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "2025081000124",
+        "transactionDate": "9/8/2025",
+        "dispatchTo": "Production",
+        "deliveryNoteNo": "SJ/002/2025",
+        "bcCode": "632",
+        "bcNo": "000013",
+        "bcDate": "9/8/2025",
+        "deliverTo": "PT Indah Kemas",
+        "vehicleId": "B 3451 BTS"
+      },
+      "details": [
+        {
+          "qty": 10000,
+          "itemCode": "SPR-001",
+          "unitCode": "CM",
+          "nw": 2,
+          "gw": 2.2
+        }
+      ]
+    }
+  ]
+}
