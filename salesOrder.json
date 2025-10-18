@@ -21,8 +21,7 @@
     },
     "deliveryDate": {
       "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-      "description": "Requested delivery date (optional). Format: yyyy-MM-dd"
+      "description": "Requested delivery date (optional). Format: DD-MM-YYYY"
     },
     "productGroup": {
       "type": "string",
@@ -102,7 +101,7 @@
       "orderNO": "FG-RAK-001",
       "article": "Weapon Storage Rack",
       "brandCode": "SR",
-      "deliveryDate": "2025-09-10",
+      "deliveryDate": "09-10-2025",
       "productGroup": "weapons rack",
       "poCust": "OWP001",
       "colorFinishGood": "Black",
@@ -119,7 +118,7 @@
       "orderNO": "FG-RAK-001",
       "article": "Weapon Storage Rack",
       "brandCode": "SR",
-      "deliveryDate": "2025-09-10",
+      "deliveryDate": "09-10-2025",
       "productGroup": "weapons rack",
       "poCust": "OWP001_1",
       "colorFinishGood": "Black",

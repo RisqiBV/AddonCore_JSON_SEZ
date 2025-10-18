@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Dispatch date (e.g., D/M/YYYY or DD/MM/YYYY)."
+          "description": "Dispatch date (DD-MM-YYYY)."
         },
         "dispatchTo": {
           "type": "string",
@@ -39,7 +39,7 @@
         },
         "bcDate": {
           "type": ["string", "null"],
-          "description": "BC document date (optional, e.g., D/M/YYYY)."
+          "description": "BC document date (optional, e.g., DD-MM-YYYY)."
         },
         "deliverTo": {
           "type": ["string", "null"],
@@ -108,7 +108,7 @@
     {
       "header": {
         "transactionNo": "2025081000123",
-        "transactionDate": "9/8/2025",
+        "transactionDate": "09-08-2025",
         "dispatchTo": "Production",
         "deliveryNoteNo": null,
         "bcCode": null,
@@ -130,12 +130,12 @@
     {
       "header": {
         "transactionNo": "2025081000124",
-        "transactionDate": "9/8/2025",
+        "transactionDate": "09-08-2025",
         "dispatchTo": "Production",
         "deliveryNoteNo": "SJ/002/2025",
         "bcCode": "632",
         "bcNo": "000013",
-        "bcDate": "9/8/2025",
+        "bcDate": "09-08-2025",
         "deliverTo": "PT Indah Kemas",
         "vehicleId": "B 3451 BTS"
       },

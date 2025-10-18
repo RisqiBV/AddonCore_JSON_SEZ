@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (e.g., DD/MM/YYYY)."
+          "description": "Transaction date (DD-MM-YYYY)."
         },
         "poNo": {
           "type": "string",
@@ -34,7 +34,7 @@
         },
         "bcDate": {
           "type": "string",
-          "description": "BC document date (e.g., DD/MM/YYYY)."
+          "description": "BC document date (e.g., DD-MM-YYYY)."
         }
       },
       "required": [
@@ -116,11 +116,11 @@
     {
       "header": {
         "transactionNo": "BBM/001/2025",
-        "transactionDate": "22/08/2025",
+        "transactionDate": "09-08-2025",
         "poNo": "PO/KWL/002/2025",
         "bcCode": "611",
         "bcNo": "000012",
-        "bcDate": "22/08/2025"
+        "bcDate": "09-08-2025"
       },
       "details": [
         {

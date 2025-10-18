@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (e.g., D/M/YYYY or DD/MM/YYYY)."
+          "description": "Transaction date (e.g., DD-MM-YYYY)."
         },
         "process": {
           "type": "string",
@@ -77,7 +77,7 @@
     {
       "header": {
         "transactionNo": "GRWIP/001/2025",
-        "transactionDate": "9/8/2025",
+        "transactionDate": "09-08-2025",
         "process": "Cutting"
       },
       "details": [
@@ -92,7 +92,7 @@
     {
       "header": {
         "transactionNo": "GRWIP/002/2025",
-        "transactionDate": "9/8/2025",
+        "transactionDate": "09-08-2025",
         "process": "Assembling"
       },
       "details": [

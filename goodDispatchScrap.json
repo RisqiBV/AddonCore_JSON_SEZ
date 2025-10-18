@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Dispatch date (e.g., DD-MMM-YY or DD/MM/YYYY)."
+          "description": "Dispatch date (e.g., DD-MMM-YYYY)."
         },
         "deliveryNoteNo": {
           "type": "string",
@@ -44,7 +44,7 @@
         },
         "bcDate": {
           "type": "string",
-          "description": "BC document date (e.g., D/M/YYYY)."
+          "description": "BC document date (e.g., DD-MM-YYYY)."
         }
       },
       "required": [
@@ -110,13 +110,13 @@
     {
       "header": {
         "transactionNo": "0009/IX/2025",
-        "transactionDate": "13-Sep-25",
+        "transactionDate": "09-08-2025",
         "deliveryNoteNo": "SJ/004/2025",
         "deliverTo": "CV. Mentari Pagi",
         "vehicleId": "B 3451 BTS",
         "bcCode": "632",
         "bcNo": "000013",
-        "bcDate": "9/8/2025"
+        "bcDate": "09-08-2025"
       },
       "details": [
         {

@@ -15,11 +15,11 @@
         },
         "invoiceDate": {
           "type": "string",
-          "description": "Invoice date (e.g., D/M/YYYY or DD/MM/YYYY)."
+          "description": "Invoice date (DD-MM-YYYY)."
         },
         "vesselDate": {
           "type": "string",
-          "description": "Vessel/Shipment date (e.g., D/M/YYYY)."
+          "description": "Vessel/Shipment date (DD-MM-YYYY)."
         },
         "customerCode": {
           "type": "string",
@@ -112,8 +112,8 @@
     {
       "header": {
         "invoiceNo": "INV/001/2025",
-        "invoiceDate": "9/8/2025",
-        "vesselDate": "12/8/2025",
+        "invoiceDate": "12-08-2025",
+        "vesselDate": "12-08-2025",
         "customerCode": "CUST-ARMY01",
         "deliveryNoteNo": "SJ/003/2025",
         "category": "Lokal"

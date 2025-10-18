@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (e.g., DD-MMM-YY or DD/MM/YYYY)."
+          "description": "Transaction date (e.g., DD-MM-YYYY)."
         },
         "department": {
           "type": "string",
@@ -75,7 +75,7 @@
     {
       "header": {
         "transactionNo": "0009/IX/2025",
-        "transactionDate": "13-Sep-25",
+        "transactionDate": "09-08-2025",
         "department": "Cutting"
       },
       "details": [
@@ -100,7 +100,7 @@
     {
       "header": {
         "transactionNo": "0010/IX/2025",
-        "transactionDate": "13-Sep-25",
+        "transactionDate": "09-08-2025",
         "department": "Cutting"
       },
       "details": [

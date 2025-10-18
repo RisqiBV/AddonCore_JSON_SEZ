@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (e.g., D/M/YYYY or DD/MM/YYYY)."
+          "description": "Transaction date (DD-MM-YYYY)."
         }
       },
       "required": [
@@ -71,7 +71,7 @@
     {
       "header": {
         "transactionNo": "GRFG/001/2025",
-        "transactionDate": "9/8/2025"
+        "transactionDate": "09-08-2025"
       },
       "details": [
         {

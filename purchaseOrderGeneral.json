@@ -15,7 +15,7 @@
         },
         "poDate": {
           "type": "string",
-          "description": "PO date (e.g., DD/MM/YYYY)."
+          "description": "PO date (e.g., DD-MM-YYYY)."
         },
         "poNo": {
           "type": "string",
@@ -101,9 +101,9 @@
     {
       "header": {
         "supplierCode": "MSN-001",
-        "poDate": "20/08/2025",
+        "poDate": "09-08-2025",
         "poNo": "PO/KWL/002/2025",
-        "etdActual": "20/09/2025",
+        "etdActual": "09-08-2025",
         "eta": "22/09/2025",
         "fc": "PO"
       },
@@ -121,9 +121,9 @@
     {
       "header": {
         "supplierCode": "SPR-001",
-        "poDate": "20/08/2025",
+        "poDate": "09-08-2025",
         "poNo": "PO/KWL/002/2025",
-        "etdActual": "20/09/2025",
+        "etdActual": "09-08-2025",
         "eta": "22/09/2025",
         "fc": "PO"
       },
