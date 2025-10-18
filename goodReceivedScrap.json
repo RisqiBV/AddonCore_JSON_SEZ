@@ -62,30 +62,9 @@
             "type": "string",
             "maxLength": 50,
             "description": "Related material item code."
-          },
-          "xBcCode": {
-            "type": ["string", "null"],
-            "maxLength": 10,
-            "description": "Cross-BC code (optional)."
-          },
-          "xBcNo": {
-            "type": ["string", "null"],
-            "maxLength": 10,
-            "description": "Cross-BC number (optional)."
-          },
-          "xBcDate": {
-            "type": ["string", "null"],
-            "description": "Cross-BC date (optional)."
           }
         },
-        "required": [
-          "scrapCode",
-          "description",
-          "qty",
-          "unitCode",
-          "orderNo",
-          "itemCode"
-        ],
+        "required": ["scrapCode", "description", "qty", "unitCode", "orderNo", "itemCode"],
         "additionalProperties": false
       }
     }
@@ -106,10 +85,7 @@
           "qty": 2,
           "unitCode": "KGM",
           "orderNo": "FG-RAK-001",
-          "itemCode": "RM-001",
-          "xBcCode": "611",
-          "xBcNo": "000012",
-          "xBcDate": "22/08/2025"
+          "itemCode": "RM-001"
         },
         {
           "scrapCode": "SCRP-01",
@@ -117,10 +93,7 @@
           "qty": 1,
           "unitCode": "KGM",
           "orderNo": "FG-RAK-002",
-          "itemCode": "RM-001",
-          "xBcCode": "611",
-          "xBcNo": "000012",
-          "xBcDate": "22/08/2025"
+          "itemCode": "RM-001"
         }
       ]
     },
@@ -137,10 +110,7 @@
           "qty": 1,
           "unitCode": "KGM",
           "orderNo": "FG-RAK-001",
-          "itemCode": "RM-002",
-          "xBcCode": null,
-          "xBcNo": null,
-          "xBcDate": null
+          "itemCode": "RM-002"
         }
       ]
     }
