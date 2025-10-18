@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Good Received Scrap (Header–Detail) Schema",
+  "title": "Goods Received Scrap (Header–Detail) Schema",
   "description": "One object represents a single scrap receipt: header + detail lines.",
   "type": "object",
   "properties": {
@@ -23,17 +23,13 @@
           "description": "Department name."
         }
       },
-      "required": [
-        "transactionNo",
-        "transactionDate",
-        "department"
-      ],
+      "required": ["transactionNo", "transactionDate", "department"],
       "additionalProperties": false
     },
 
     "details": {
       "type": "array",
-      "description": "Scrap detail lines.",
+      "description": "Scrap receipt detail lines.",
       "minItems": 1,
       "items": {
         "type": "object",
@@ -50,12 +46,22 @@
           },
           "qty": {
             "type": "number",
-            "description": "Quantity."
+            "description": "Quantity (float)."
           },
           "unitCode": {
             "type": "string",
             "maxLength": 10,
             "description": "Unit of measure."
+          },
+          "orderNo": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Related order number."
+          },
+          "itemCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Related material item code."
           },
           "xBcCode": {
             "type": ["string", "null"],
@@ -76,16 +82,15 @@
           "scrapCode",
           "description",
           "qty",
-          "unitCode"
+          "unitCode",
+          "orderNo",
+          "itemCode"
         ],
         "additionalProperties": false
       }
     }
   },
-  "required": [
-    "header",
-    "details"
-  ],
+  "required": ["header", "details"],
   "additionalProperties": false,
   "examples": [
     {
@@ -100,6 +105,8 @@
           "description": "Scrap Iron Import",
           "qty": 2,
           "unitCode": "KGM",
+          "orderNo": "FG-RAK-001",
+          "itemCode": "RM-001",
           "xBcCode": "611",
           "xBcNo": "000012",
           "xBcDate": "22/08/2025"
@@ -109,6 +116,8 @@
           "description": "Scrap Iron Import",
           "qty": 1,
           "unitCode": "KGM",
+          "orderNo": "FG-RAK-002",
+          "itemCode": "RM-001",
           "xBcCode": "611",
           "xBcNo": "000012",
           "xBcDate": "22/08/2025"
@@ -119,7 +128,7 @@
       "header": {
         "transactionNo": "0010/IX/2025",
         "transactionDate": "13-Sep-25",
-        "department": "Roll Foaming"
+        "department": "Cutting"
       },
       "details": [
         {
@@ -127,9 +136,11 @@
           "description": "Scrap Iron Local",
           "qty": 1,
           "unitCode": "KGM",
-          "xBcCode": "613",
-          "xBcNo": "000014",
-          "xBcDate": "22/08/2025"
+          "orderNo": "FG-RAK-001",
+          "itemCode": "RM-002",
+          "xBcCode": null,
+          "xBcNo": null,
+          "xBcDate": null
         }
       ]
     }
