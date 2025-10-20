@@ -36,13 +36,15 @@
       "itemCode": "RM-001",
       "itemName": "Steel Plate 2 mm",
       "categoryCodeBC": 1,
-      "hsCode": "58041011"
+      "hsCode": "58041011",
+      "categoryInternal": "RawMaterial"
     },
     {
       "itemCode": "MSN-001",
       "itemName": "Bending Machine",
       "categoryCodeBC": 5,
-      "hsCode": "58031011"
+      "hsCode": "58031011",
+      "categoryInternal": "Mechine"
     }
   ]
 }
