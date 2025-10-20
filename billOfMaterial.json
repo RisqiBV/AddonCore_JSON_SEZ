@@ -37,24 +37,9 @@
       "type": "string",
       "maxLength": 10,
       "description": "Unit code of the material."
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode", "createdAt", "updatedAt", "deletedAt"],
+  "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode"],
   "additionalProperties": false,
   "examples": [
     {
@@ -64,10 +49,7 @@
       "sizeFinishGoodCode": "M",
       "orderQty": 100,
       "consumption": 0.2,
-      "unitCode": "KGM",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "unitCode": "KGM"
     },
     {
       "orderNO": "FG-RAK-001",
@@ -76,10 +58,7 @@
       "sizeFinishGoodCode": "L",
       "orderQty": 32,
       "consumption": 30,
-      "unitCode": "PCE",
-      "createdAt": "2025-09-29 10:05:00.000",
-      "updatedAt": "2025-09-29 10:05:00.000",
-      "deletedAt": null
+      "unitCode": "PCE"
     }
   ]
 }

@@ -18,41 +18,20 @@
       "type": "string",
       "maxLength": 50,
       "description": "Brand name."
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["customerCode", "brandCode", "brandName", "createdAt", "updatedAt", "deletedAt"],
+  "required": ["customerCode", "brandCode", "brandName"],
   "additionalProperties": false,
   "examples": [
     {
       "customerCode": "CUST-POL01",
       "brandCode": "SR",
-      "brandName": "SecureRack",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "brandName": "SecureRack"
     },
     {
       "customerCode": "CUST-ARMY01",
       "brandCode": "GR",
-      "brandName": "GardaRack",
-      "createdAt": "2025-09-29 10:05:00.000",
-      "updatedAt": "2025-09-29 10:05:00.000",
-      "deletedAt": null
+      "brandName": "GardaRack"
     }
   ]
 }

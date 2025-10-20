@@ -13,60 +13,30 @@
       "type": "string",
       "maxLength": 50,
       "description": "Description of the size."
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["sizeCode", "sizeDescription", "createdAt", "updatedAt", "deletedAt"],
+  "required": ["sizeCode", "sizeDescription"],
   "additionalProperties": false,
   "examples": [
     {
       "sizeCode": "42",
-      "sizeDescription": "42",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "sizeDescription": "42"
     },
     {
       "sizeCode": "42,5",
-      "sizeDescription": "42.5",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "sizeDescription": "42.5"
     },
     {
       "sizeCode": "L",
-      "sizeDescription": "Large",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "sizeDescription": "Large"
     },
     {
       "sizeCode": "All",
-      "sizeDescription": "All Size",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "sizeDescription": "All Size"
     },
     {
       "sizeCode": "M",
-      "sizeDescription": "Medium",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "sizeDescription": "Medium"
     }
   ]
 }

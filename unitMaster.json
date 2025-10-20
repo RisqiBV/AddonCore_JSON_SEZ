@@ -18,41 +18,20 @@
       "type": "string",
       "maxLength": 10,
       "description": "Code referencing the standard INSW unit (see UnitINSW.code). > @readme.md"
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["internalUnitCode", "unitDescription", "aliasUnitCode", "createdAt", "updatedAt", "deletedAt"],
+  "required": ["internalUnitCode", "unitDescription", "aliasUnitCode"],
   "additionalProperties": false,
   "examples": [
     {
       "internalUnitCode": "Cm",
       "unitDescription": "Centi Metre",
-      "aliasUnitCode": "CMT",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "aliasUnitCode": "CMT"
     },
     {
       "internalUnitCode": "Roll",
       "unitDescription": "Roll",
-      "aliasUnitCode": "RO",
-      "createdAt": "2025-09-29 10:05:00.000",
-      "updatedAt": "2025-09-29 10:05:00.000",
-      "deletedAt": null
+      "aliasUnitCode": "RO"
     }
   ]
 }

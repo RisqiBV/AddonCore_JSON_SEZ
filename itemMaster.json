@@ -27,45 +27,22 @@
       "type": "string",
       "maxLength": 50,
       "description": "Internal classification or category."
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp (required)."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp (required)."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
-  "required": ["itemCode", "itemName", "categoryCodeBC", "categoryInternal", "createdAt", "updatedAt", "deletedAt"],
+  "required": ["itemCode", "itemName", "categoryCodeBC", "categoryInternal"],
   "additionalProperties": false,
   "examples": [
     {
       "itemCode": "RM-001",
       "itemName": "Steel Plate 2 mm",
       "categoryCodeBC": 1,
-      "hsCode": 58041011,
-      "categoryInternal": "RawMaterial",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "hsCode": "58041011"
     },
     {
       "itemCode": "MSN-001",
       "itemName": "Bending Machine",
       "categoryCodeBC": 5,
-      "hsCode": 58031011,
-      "categoryInternal": "Mechine",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "hsCode": "58031011"
     }
   ]
 }

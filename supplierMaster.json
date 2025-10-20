@@ -59,31 +59,13 @@
       "type": ["string", "null"],
       "maxLength": 15,
       "description": "ZIP or postal code (optional)."
-    },
-    "createdAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Creation timestamp."
-    },
-    "updatedAt": {
-      "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Last update timestamp."
-    },
-    "deletedAt": {
-      "type": ["string", "null"],
-      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-      "description": "Deletion timestamp (nullable)."
     }
   },
   "required": [
     "supplierCode",
     "supplierName",
     "address",
-    "countryRegion",
-    "createdAt",
-    "updatedAt",
-    "deletedAt"
+    "countryRegion"
   ],
   "additionalProperties": false,
   "examples": [
@@ -98,10 +80,7 @@
       "emailAddress": "enquiry@nipponpaint-indonesia.com",
       "businessPhone": "021-6900546",
       "faxNo": "021-6900546",
-      "ziporPostalCode": "14430",
-      "createdAt": "2025-09-29 10:00:00.000",
-      "updatedAt": "2025-09-29 10:00:00.000",
-      "deletedAt": null
+      "ziporPostalCode": "14430"
     },
     {
       "supplierCode": "SUP-PACK05",
@@ -114,10 +93,7 @@
       "emailAddress": "isna.ardiyana@forisa.co.id",
       "businessPhone": "021-4608847",
       "faxNo": "021-4608847",
-      "ziporPostalCode": "13930",
-      "createdAt": "2025-09-29 10:05:00.000",
-      "updatedAt": "2025-09-29 10:05:00.000",
-      "deletedAt": null
+      "ziporPostalCode": "13930"
     }
   ]
 }
