@@ -75,10 +75,7 @@
     "qtyOrder",
     "orderType",
     "sku",
-    "unitCode",
-    "createdAt",
-    "updatedAt",
-    "deletedAt"
+    "unitCode"
   ],
   "additionalProperties": false,
   "examples": [
