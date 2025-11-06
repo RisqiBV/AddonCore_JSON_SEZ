@@ -1,111 +1,127 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Sales Order Schema",
-  "description": "JSON contract for Finish Good Orders including timestamps.",
+  "description": "JSON contract for Finish Good Orders including timestamps, separating header and detail.",
   "type": "object",
   "properties": {
-    "orderNO": {
-      "type": "string",
-      "maxLength": 25,
-      "description": "Primary key for the order."
+    "header": {
+      "type": "object",
+      "properties": {
+        "orderNO": {
+          "type": "string",
+          "maxLength": 25,
+          "description": "Primary key for the order."
+        },
+        "article": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Description of finished good."
+        },
+        "brandCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Brand code."
+        },
+        "deliveryDate": {
+          "type": ["string", "null"],
+          "description": "Requested delivery date (optional). Format: DD-MM-YYYY"
+        },
+        "productGroup": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Product group."
+        },
+        "poCust": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Customer PO reference."
+        },
+        "orderType": {
+          "type": "string",
+          "enum": ["FOB", "CMT"],
+          "maxLength": 10,
+          "description": "Order type."
+        },
+        "sku": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "SKU of the finished good."
+        },
+        "unitCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Unit of the finished good."
+        }
+      },
+      "required": [
+        "orderNO",
+        "article",
+        "brandCode",
+        "productGroup",
+        "poCust",
+        "orderType",
+        "sku",
+        "unitCode"
+      ]
     },
-    "article": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Description of finished good."
-    },
-    "brandCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Brand code."
-    },
-    "deliveryDate": {
-      "type": ["string", "null"],
-      "description": "Requested delivery date (optional). Format: DD-MM-YYYY"
-    },
-    "productGroup": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Product group."
-    },
-    "poCust": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Customer PO reference."
-    },
-    "colorFinishGood": {
-      "type": "string",
-      "maxLength": 250,
-      "description": "Finish good color."
-    },
-    "sizeFinishGoodCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Finish good size code."
-    },
-    "qtyOrder": {
-      "type": "number",
-      "description": "Quantity ordered."
-    },
-    "orderType": {
-      "type": "string",
-      "enum": ["FOB", "CMT"],
-      "maxLength": 10,
-      "description": "Order type."
-    },
-    "sku": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "SKU of the finished good."
-    },
-    "unitCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Unit of the finished good."
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "colorFinishGood": {
+            "type": "string",
+            "maxLength": 250,
+            "description": "Finish good color."
+          },
+          "sizeFinishGoodCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Finish good size code."
+          },
+          "qtyOrder": {
+            "type": "number",
+            "description": "Quantity ordered."
+          }
+        },
+        "required": [
+          "colorFinishGood",
+          "sizeFinishGoodCode",
+          "qtyOrder"
+        ]
+      }
     }
   },
   "required": [
-    "orderNO",
-    "article",
-    "brandCode",
-    "productGroup",
-    "poCust",
-    "colorFinishGood",
-    "sizeFinishGoodCode",
-    "qtyOrder",
-    "orderType",
-    "sku",
-    "unitCode"
+    "header",
+    "details"
   ],
   "additionalProperties": false,
   "examples": [
     {
-      "orderNO": "FG-RAK-001",
-      "article": "Weapon Storage Rack",
-      "brandCode": "SR",
-      "deliveryDate": "09-10-2025",
-      "productGroup": "weapons rack",
-      "poCust": "OWP001",
-      "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "M",
-      "qtyOrder": 100,
-      "orderType": "FOB",
-      "sku": "WR-S-ST-10-25",
-      "unitCode": "PCE"
-    },
-    {
-      "orderNO": "FG-RAK-001",
-      "article": "Weapon Storage Rack",
-      "brandCode": "SR",
-      "deliveryDate": "09-10-2025",
-      "productGroup": "weapons rack",
-      "poCust": "OWP001_1",
-      "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "L",
-      "qtyOrder": 32,
-      "orderType": "FOB",
-      "sku": "WR-S-ST-10-25",
-      "unitCode": "PCE"
+      "header": {
+        "orderNO": "ADIDAS/06/11/2025",
+        "article": "Adidas EVO SL",
+        "brandCode": "ENV",
+        "deliveryDate": "09-01-2026",
+        "productGroup": "SHOES",
+        "poCust": "ADIDAS/PO/0001",
+        "orderType": "FOB",
+        "sku": "EVO.1.2025",
+        "unitCode": "PAIRS"
+      },
+      "details": [
+        {
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "8",
+          "qtyOrder": 1000
+        },
+        {
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "8.5",
+          "qtyOrder": 1500
+        }
+      ]
     }
   ]
 }
