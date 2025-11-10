@@ -20,3 +20,11 @@ These category codes standardize how items are grouped across systems. Use them 
 - CSV: `insw_Reff_Source/reff_insw_unitMaster.csv`
 
 ---
+
+## 3) Ceisa 4.0 Item Category Code (for `itemMaster.json`)
+
+These category codes standardize how items are grouped across systems. Use them whenever you define an item in `unitMaster.json`.
+
+- CSV: `insw_Reff_Source/reff_ceisa40_itemCategory.csv`
+
+---
