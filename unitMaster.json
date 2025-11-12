@@ -22,7 +22,8 @@
   },
   "required": ["internalUnitCode", "unitDescription", "aliasUnitCode"],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "internalUnitCode": "Cm",
       "unitDescription": "Centi Metre",

@@ -95,7 +95,8 @@
   },
   "required": ["header", "details"],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "supplierCode": "SUP-STEEL01",

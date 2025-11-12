@@ -17,7 +17,8 @@
   },
   "required": ["sizeCode", "sizeDescription"],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "sizeCode": "42",
       "sizeDescription": "42"

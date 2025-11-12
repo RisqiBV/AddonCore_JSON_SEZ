@@ -31,7 +31,8 @@
   },
   "required": ["itemCode", "itemName", "categoryCodeBC", "categoryInternal"],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "itemCode": "RM-001",
       "itemName": "Steel Plate 2 mm",

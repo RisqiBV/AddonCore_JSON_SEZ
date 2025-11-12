@@ -41,7 +41,8 @@
   },
   "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode"],
   "additionalProperties": false,
-  "examples": [
+ 
+  "payload examples": [
     {
       "orderNO": "FG-RAK-001",
       "materialCode": "RM-001",

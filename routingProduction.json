@@ -73,7 +73,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "transactionNo": "GRWIP/001/2025",

@@ -97,7 +97,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "supplierCode": "MSN-001",

@@ -108,7 +108,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "invoiceNo": "INV/001/2025",

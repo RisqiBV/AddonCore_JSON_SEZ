@@ -22,7 +22,8 @@
   },
   "required": ["customerCode", "brandCode", "brandName"],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "customerCode": "CUST-POL01",
       "brandCode": "SR",

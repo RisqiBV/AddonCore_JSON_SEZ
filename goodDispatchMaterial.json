@@ -110,7 +110,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "transactionNo": "2025081000123",

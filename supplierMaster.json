@@ -68,7 +68,8 @@
     "countryRegion"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "supplierCode": "SUP-PAINT04",
       "supplierName": "Nippon Paint Co. Ltd",

@@ -112,7 +112,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "transactionNo": "BBM/001/2025",

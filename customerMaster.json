@@ -47,7 +47,8 @@
     "country"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "customerCode": "CUST-ARMY01",
       "customerName": "Indonesian Armed Forces",

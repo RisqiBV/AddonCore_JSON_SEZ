@@ -106,7 +106,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "transactionNo": "0009/IX/2025",

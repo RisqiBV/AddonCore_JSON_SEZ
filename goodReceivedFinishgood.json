@@ -67,7 +67,8 @@
     "details"
   ],
   "additionalProperties": false,
-  "examples": [
+  
+  "payload examples": [
     {
       "header": {
         "transactionNo": "GRFG/001/2025",
