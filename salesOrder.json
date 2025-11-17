@@ -106,18 +106,19 @@
         "brandCode": "ENV",
         "deliveryDate": "09-01-2026",
         "productGroup": "SHOES",
-        "poCust": "ADIDAS/PO/0001",
         "orderType": "FOB",
         "sku": "EVO.1.2025",
         "unitCode": "PAIRS"
       },
       "details": [
         {
+          "poCust": "ADIDAS/PO/0001",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "8",
           "qtyOrder": 1000
         },
         {
+          "poCust": "ADIDAS/PO/0002",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "8.5",
           "qtyOrder": 1500
