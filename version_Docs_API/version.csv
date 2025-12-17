@@ -1,3 +1,3 @@
 Version;Date;ChangeLog;Status_Version
 1.0.0;29/09/2025;Initial Docs;inActive
-1.0.1;17/12/2025;routingProduction.json -> Add poCust on payload;Active
+1.0.1;17/12/2025;routingProduction.json|goodReceivedFinishgood.json -> Add poCust on payload;Active
