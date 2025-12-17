@@ -65,6 +65,7 @@
         },
         "required": [
           "orderNo",
+          "poCust",
           "colorFinishGood",
           "sizeFinishGoodCode",
           "qty"
