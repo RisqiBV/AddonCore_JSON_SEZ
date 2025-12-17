@@ -43,6 +43,11 @@
             "maxLength": 25,
             "description": "Related order number."
           },
+          "poCust": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer PO reference related to Order Number."
+          },
           "colorFinishGood": {
             "type": "string",
             "maxLength": 250,
@@ -84,6 +89,7 @@
       "details": [
         {
           "orderNo": "FG-RAK-001",
+          "poCust": "ADIDAS/PO/0001",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "M",
           "qty": 10
@@ -99,6 +105,7 @@
       "details": [
         {
           "orderNo": "FG-RAK-002",
+          "poCust": "ADIDAS/PO/0002",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "L",
           "qty": 12
