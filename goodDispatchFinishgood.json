@@ -97,7 +97,9 @@
         },
         "required": [
           "orderNo",
-          "qty"
+          "qty",
+          "colorFinishGood",
+          "sizeFinishGoodCode"
         ],
         "additionalProperties": false
       }

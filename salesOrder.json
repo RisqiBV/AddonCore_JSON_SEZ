@@ -31,11 +31,6 @@
           "maxLength": 50,
           "description": "Product group."
         },
-        "poCust": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Customer PO reference."
-        },
         "orderType": {
           "type": "string",
           "enum": ["FOB", "CMT"],
@@ -59,6 +54,9 @@
         "brandCode",
         "productGroup",
         "poCust",
+        "colorFinishGood",
+        "sizeFinishGoodCode",
+        "qtyOrder",
         "orderType",
         "sku",
         "unitCode"
@@ -69,6 +67,13 @@
       "items": {
         "type": "object",
         "properties": {
+
+          "poCust": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer PO reference."
+          },
+
           "colorFinishGood": {
             "type": "string",
             "maxLength": 250,

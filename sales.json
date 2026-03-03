@@ -93,6 +93,9 @@
           }
         },
         "required": [
+          "orderNo",
+          "colorFinishGood",
+          "sizeFinishGoodCode",
           "qty",
           "price",
           "priceFob",
