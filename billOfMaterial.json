@@ -37,6 +37,10 @@
       "type": "string",
       "maxLength": 10,
       "description": "Unit code of the material."
+    },
+    "LineItemNo": {
+      "type": "number",
+      "description": "LineItemNo on SAP"
     }
   },
   "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode"],
@@ -50,7 +54,8 @@
       "sizeFinishGoodCode": "M",
       "orderQty": 100,
       "consumption": 0.2,
-      "unitCode": "KGM"
+      "unitCode": "KGM",
+      "LineItemNo": 100
     },
     {
       "orderNO": "FG-RAK-001",
@@ -59,7 +64,8 @@
       "sizeFinishGoodCode": "L",
       "orderQty": 32,
       "consumption": 30,
-      "unitCode": "PCE"
+      "unitCode": "PCE",
+      "LineItemNo": 101
     }
   ]
 }

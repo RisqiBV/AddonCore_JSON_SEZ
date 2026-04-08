@@ -91,6 +91,10 @@
           "rate": {
             "type": "number",
             "description": "Exchange rate to IDR."
+          },
+          "LineItemNo": {
+            "type": "number",
+            "description": "LineItemNo on SAP"
           }
         },
         "required": [
@@ -132,7 +136,8 @@
           "internalQty": 10,
           "internalUnitCode": "KGM",
           "unitPrice": 10,
-          "rate": 16258
+          "rate": 16258,
+          "LineItemNo": 100
         },
         {
           "fc": "PO",
@@ -142,7 +147,8 @@
           "internalQty": 13716,
           "internalUnitCode": "CM",
           "unitPrice": 3,
-          "rate": 16258
+          "rate": 16258,
+          "LineItemNo": 101
         }
       ]
     }
