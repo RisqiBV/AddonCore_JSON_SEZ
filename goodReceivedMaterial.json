@@ -99,7 +99,7 @@
           },
           "LineItemNo": {
             "type": "number",
-            "description": "LineItemNo on SAP"
+            "description": "LineItemNo from Purchase Order on SAP"
           }
         },
         "required": [
