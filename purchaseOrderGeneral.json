@@ -80,9 +80,9 @@
             "maxLength": 10,
             "description": "Currency code (e.g., USD, IDR)."
           },
-          "LineItemNo": {
+          "lineItemNo": {
           "type": "number",
-          "description": "LineItemNo on SAP"
+          "description": "lineItemNo on SAP"
           }
         },
         "required": [
@@ -120,7 +120,7 @@
           "vendorUnitCode": "KGM",
           "unitPrice": 10,
           "currency": "USD",
-          "LineItemNo": 100
+          "lineItemNo": 100
         }
       ]
     },
@@ -141,7 +141,7 @@
           "vendorUnitCode": "YRD",
           "unitPrice": 3,
           "currency": "USD",
-          "LineItemNo": 101
+          "lineItemNo": 101
         }
       ]
     }
