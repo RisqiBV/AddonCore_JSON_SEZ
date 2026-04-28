@@ -19,12 +19,12 @@
       "maxLength": 200,
       "description": "Address of the supplier."
     },
-    "stateorProvince": {
+    "stateOrProvince": {
       "type": ["string", "null"],
       "maxLength": 50,
       "description": "State or Province (optional)."
     },
-    "countryorRegion": {
+    "countryOrRegion": {
       "type": "string",
       "maxLength": 50,
       "description": "Country or region."
@@ -55,7 +55,7 @@
       "maxLength": 25,
       "description": "Fax number (optional)."
     },
-    "ziporPostalCode": {
+    "zipOrPostalCode": {
       "type": ["string", "null"],
       "maxLength": 15,
       "description": "ZIP or postal code (optional)."
@@ -74,27 +74,27 @@
       "supplierCode": "SUP-PAINT04",
       "supplierName": "Nippon Paint Co. Ltd",
       "address": "Jl. Ancol Barat I/A5/C No. 12, Jakarta",
-      "stateorProvince": "Jakarta Pusat",
-      "countryorRegion": "Indonesia",
+      "stateOrProvince": "Jakarta Pusat",
+      "countryOrRegion": "Indonesia",
       "city": "Jakarta",
       "npwp": null,
       "emailAddress": "enquiry@nipponpaint-indonesia.com",
       "businessPhone": "021-6900546",
       "faxNo": "021-6900546",
-      "ziporPostalCode": "14430"
+      "zipOrPostalCode": "14430"
     },
     {
       "supplierCode": "SUP-PACK05",
       "supplierName": "PT Indah Kemas",
       "address": "Kw. Industri Pulogadung, Jl. Rw. Terate II No.16, Jatinegara, Kec. Cakung, Kota Jakarta Timur",
-      "stateorProvince": "Jakarta Timur",
-      "countryorRegion": "Indonesia",
+      "stateOrProvince": "Jakarta Timur",
+      "countryOrRegion": "Indonesia",
       "city": "Jakarta",
       "npwp": null,
       "emailAddress": "isna.ardiyana@forisa.co.id",
       "businessPhone": "021-4608847",
       "faxNo": "021-4608847",
-      "ziporPostalCode": "13930"
+      "zipPrPostalCode": "13930"
     }
   ]
 }

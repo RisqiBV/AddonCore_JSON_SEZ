@@ -1,5 +1,0 @@
-Version;Date;ChangeLog;Status_Version
-1.0.0;29/09/2025;Initial Docs;inActive
-1.0.1;17/12/2025;routingProduction.json|goodReceivedFinishgood.json -> Add poCust on payload;inActive
-1.0.2;03/03/2025;Adjust SalesOrder.JSON Description, Set colorFinishGood, sizeFinishGoodCode as mandatory on goodDispatchFinishgood and Sales;Inactive
-1.0.3;08/04/2025;Adding 'LineItemNo' for BOM, PurchaseOrderMaterial,PurchaseOrderGeneral,GoodReceivedMaterial,GoodReceivedGeneral;Active
