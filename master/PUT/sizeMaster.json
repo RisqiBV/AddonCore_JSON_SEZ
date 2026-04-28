@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Size Master Schema",
+  "description": "JSON contract for Size Master data including timestamps.",
+  "type": "object",
+  "properties": {
+    "sizeCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Primary key for the size."
+    },
+    "sizeDescription": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Description of the size."
+    }
+  },
+  "required": ["sizeCode", "sizeDescription"],
+  "additionalProperties": false,
+  
+  "payload examples": [
+    {
+      "sizeCode": "42",
+      "sizeDescription": "42"
+    },
+    {
+      "sizeCode": "42,5",
+      "sizeDescription": "42.5"
+    },
+    {
+      "sizeCode": "L",
+      "sizeDescription": "Large"
+    },
+    {
+      "sizeCode": "All",
+      "sizeDescription": "All Size"
+    },
+    {
+      "sizeCode": "M",
+      "sizeDescription": "Medium"
+    }
+  ]
+}

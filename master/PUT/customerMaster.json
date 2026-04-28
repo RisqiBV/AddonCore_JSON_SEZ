@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Customer Master Schema",
+  "description": "JSON contract for Customer Master data including timestamps.",
+  "type": "object",
+  "properties": {
+    "customerCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Primary key for the customer."
+    },
+    "customerName": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Customer name."
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Customer address."
+    },
+    "city": {
+      "type": ["string", "null"],
+      "maxLength": 50,
+      "description": "City (optional)."
+    },
+    "province": {
+      "type": ["string", "null"],
+      "maxLength": 50,
+      "description": "Province or state (optional)."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Country."
+    },
+    "npwp": {
+      "type": ["string", "null"],
+      "maxLength": 50,
+      "description": "Tax ID (optional)."
+    }
+  },
+  "required": [
+    "customerCode",
+    "customerName",
+    "address",
+    "country"
+  ],
+  "additionalProperties": false,
+  
+  "payload examples": [
+    {
+      "customerCode": "CUST-ARMY01",
+      "customerName": "Indonesian Armed Forces",
+      "address": "Jl. Merdeka Barat No. 3",
+      "city": "Jakarta",
+      "province": "DKI Jakarta",
+      "country": "Indonesia",
+      "npwp": null
+    },
+    {
+      "customerCode": "CUST-POL01",
+      "customerName": "Indonesian National Police",
+      "address": "Jl. Asia Afrika No. 65",
+      "city": "Bandung",
+      "province": "Jawa Barat",
+      "country": "Indonesia",
+      "npwp": null
+    }
+  ],
+  "response": [
+    {
+      "status": "success",
+      "message": "Data Master Customer successfully saved",
+      "data": [
+        {
+          "Uuid": "6c7fe693-0928-4d68-bbfb-473dc37a5a9b",
+          "CustomerCode": "AFI",
+          "CustomerName": "PT ADDON FINANCE INDONESIA",
+          "Address": "Gading Sari 1",
+          "City": null,
+          "Province": null,
+          "Country": "Indonesia",
+          "NPWP": null,
+          "LocationId": 31,
+          "SeqCode": 28
+        }
+      ]
+    }
+  ]
+}

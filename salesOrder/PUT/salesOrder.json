@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sales Order Schema",
+  "description": "JSON contract for Finish Good Orders including timestamps, separating header and detail.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "orderNO": {
+          "type": "string",
+          "maxLength": 25,
+          "description": "Primary key for the order."
+        },
+        "article": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Description of finished good."
+        },
+        "brandCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Brand code."
+        },
+        "deliveryDate": {
+          "type": ["string", "null"],
+          "description": "Requested delivery date (optional). Format: DD-MM-YYYY"
+        },
+        "productGroup": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Product group."
+        },
+        "orderType": {
+          "type": "string",
+          "enum": ["FOB", "CMT"],
+          "maxLength": 10,
+          "description": "Order type."
+        },
+        "sku": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "SKU of the finished good."
+        },
+        "unitCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Unit of the finished good."
+        }
+      },
+      "required": [
+        "orderNO",
+        "article",
+        "brandCode",
+        "productGroup",
+        "poCust",
+        "colorFinishGood",
+        "sizeFinishGoodCode",
+        "qtyOrder",
+        "orderType",
+        "sku",
+        "unitCode"
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+
+          "poCust": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer PO reference."
+          },
+
+          "colorFinishGood": {
+            "type": "string",
+            "maxLength": 250,
+            "description": "Finish good color."
+          },
+          "sizeFinishGoodCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Finish good size code."
+          },
+          "qtyOrder": {
+            "type": "number",
+            "description": "Quantity ordered."
+          }
+        },
+        "required": [
+          "colorFinishGood",
+          "sizeFinishGoodCode",
+          "qtyOrder"
+        ]
+      }
+    }
+  },
+  "required": [
+    "header",
+    "details"
+  ],
+  "additionalProperties": false,
+  
+  "payload examples": [
+    {
+      "header": {
+        "orderNO": "ADIDAS/06/11/2025",
+        "article": "Adidas EVO SL",
+        "brandCode": "ENV",
+        "deliveryDate": "09-01-2026",
+        "productGroup": "SHOES",
+        "orderType": "FOB",
+        "sku": "EVO.1.2025",
+        "unitCode": "PAIRS"
+      },
+      "details": [
+        {
+          "poCust": "ADIDAS/PO/0001",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "8",
+          "qtyOrder": 1000
+        },
+        {
+          "poCust": "ADIDAS/PO/0002",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "8.5",
+          "qtyOrder": 1500
+        }
+      ]
+    }
+  ]
+}

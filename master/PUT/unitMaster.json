@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Unit Master Schema",
+  "description": "JSON contract for Unit Master data, including timestamps. Includes internal unit code, description, and reference to INSW standard unit.",
+  "type": "object",
+  "properties": {
+    "internalUnitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Primary key for the internal unit."
+    },
+    "unitDescription": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Description of the unit."
+    },
+    "aliasUnitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Code referencing the standard INSW unit (see UnitINSW.code). > @readme.md"
+    }
+  },
+  "required": ["internalUnitCode", "unitDescription", "aliasUnitCode"],
+  "additionalProperties": false,
+  
+  "payload examples": [
+    {
+      "internalUnitCode": "Cm",
+      "unitDescription": "Centi Metre",
+      "aliasUnitCode": "CMT"
+    },
+    {
+      "internalUnitCode": "Roll",
+      "unitDescription": "Roll",
+      "aliasUnitCode": "RO"
+    }
+  ]
+}

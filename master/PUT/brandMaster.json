@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Customer Brand Schema",
+  "description": "JSON contract for Customer Brand data including timestamps.",
+  "type": "object",
+  "properties": {
+    "customerCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Customer code (required)."
+    },
+    "brandCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Brand code (primary key)."
+    },
+    "brandName": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Brand name."
+    }
+  },
+  "required": ["customerCode", "brandCode", "brandName"],
+  "additionalProperties": false,
+  
+  "payload examples": [
+    {
+      "customerCode": "CUST-POL01",
+      "brandCode": "SR",
+      "brandName": "SecureRack"
+    },
+    {
+      "customerCode": "CUST-ARMY01",
+      "brandCode": "GR",
+      "brandName": "GardaRack"
+    }
+  ]
+}
