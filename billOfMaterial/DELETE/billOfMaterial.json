@@ -1,71 +1,42 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Order BOM Schema",
-  "description": "JSON contract for Bill of Material for each order line, including timestamps.",
+  "title": "Bill of Material DELETE Contract",
+  "description": "API contract for deleting Bill of Material data by uuid. This endpoint does not require a request body.",
   "type": "object",
-  "properties": {
-    "orderNO": {
-      "type": "string",
-      "maxLength": 25,
-      "description": "Production Order number (PRO No)."
-    },
-    "materialCode": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Material ItemCode."
-    },
-    "colorFinishGood": {
-      "type": "string",
-      "maxLength": 250,
-      "description": "Finish good color."
-    },
-    "sizeFinishGoodCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Finish good size code."
-    },
-    "orderQty": {
-      "type": "number",
-      "description": "Quantity ordered of the finished good."
-    },
-    "consumption": {
-      "type": "number",
-      "multipleOf": 0.00001,
-      "description": "Material consumption per unit (numeric(18,5))."
-    },
-    "unitCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Unit code of the material."
-    },
-    "lineItemNo": {
-      "type": "number",
-      "description": "lineItemNo on SAP"
-    }
+  "endpoint": {
+    "url": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid={uuid}",
+    "method": "DELETE",
+    "contentType": "application/json"
   },
-  "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode"],
-  "additionalProperties": false,
- 
-  "payload examples": [
-    {
-      "orderNO": "FG-RAK-001",
-      "materialCode": "RM-001",
-      "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "M",
-      "orderQty": 100,
-      "consumption": 0.2,
-      "unitCode": "KGM",
-      "lineItemNo": 100
+  "headers": {
+    "x-addon-key": "{key_anda}",
+    "x-addon-unique-key": "{unique_key_anda}"
+  },
+  "queryParams": {
+    "type": "object",
+    "properties": {
+      "uuid": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Required. UUID of the BOM header to be deleted."
+      }
     },
+    "required": [
+      "uuid"
+    ],
+    "additionalProperties": false
+  },
+  "requestBody": null,
+  "examples": [
     {
-      "orderNO": "FG-RAK-001",
-      "materialCode": "HW-001",
-      "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "L",
-      "orderQty": 32,
-      "consumption": 30,
-      "unitCode": "PCE",
-      "lineItemNo": 101
+      "description": "Delete Bill of Material by uuid",
+      "method": "DELETE",
+      "url": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid=18a91909-68c8-46d6-acc2-188d20d0d095",
+      "headers": {
+        "x-addon-key": "{your_key}",
+        "x-addon-unique-key": "{your_addon_unique_key}"
+      },
+      "body": null
     }
   ]
 }

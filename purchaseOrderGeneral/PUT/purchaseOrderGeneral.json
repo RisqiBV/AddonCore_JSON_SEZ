@@ -1,147 +1,168 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "General Purchase Order (Header–Detail) Schema",
-  "description": "One object represents a single PO: header + detail lines.",
+  "title": "Purchase Order General PUT Schema",
+  "description": "JSON contract for updating Purchase Order General data by uuidHeader. This endpoint supports header update, existing detail update by uuid, and new detail insertion when uuid is not provided.",
   "type": "object",
   "properties": {
-    "header": {
-      "type": "object",
-      "description": "PO header section.",
-      "properties": {
-        "supplierCode": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Supplier code."
-        },
-        "poDate": {
-          "type": "string",
-          "description": "PO date (e.g., DD-MM-YYYY)."
-        },
-        "poNo": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "PO number (Primary)."
-        },
-        "etdActual": {
-          "type": ["string", "null"],
-          "description": "ETD Actual (optional)."
-        },
-        "eta": {
-          "type": ["string", "null"],
-          "description": "ETA (optional)."
-        },
-        "fc": {
-          "type": "string",
-          "maxLength": 15,
-          "enum": ["PO", "FOC"],
-          "description": "PO type: PO or FOC (Free Of Charge)."
-        }
-      },
-      "required": [
-        "supplierCode",
-        "poDate",
-        "poNo",
-        "fc"
-      ],
-      "additionalProperties": false
-    },
-
-    "details": {
+    "data": {
       "type": "array",
-      "description": "Detail item lines for this PO.",
+      "description": "List of Purchase Order General records to be updated.",
       "minItems": 1,
       "items": {
         "type": "object",
         "properties": {
-          "additionalRemarks": {
-            "type": ["string", "null"],
-            "description": "Additional remarks (optional)."
+          "header": {
+            "type": "object",
+            "description": "PO header section. uuidHeader is required for update.",
+            "properties": {
+              "uuidHeader": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Primary key for header update. Required. System will update data only if uuidHeader exists in database."
+              },
+              "supplierCode": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Supplier code. Updateable."
+              },
+              "poDate": {
+                "type": "string",
+                "description": "PO date. Updateable. Expected format: DD-MM-YYYY."
+              },
+              "poNo": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "PO number. Not updateable, but must be sent with original value."
+              },
+              "etdActual": {
+                "type": ["string", "null"],
+                "description": "ETD Actual. Updateable. Can be null."
+              },
+              "eta": {
+                "type": ["string", "null"],
+                "description": "ETA. Updateable. Can be null."
+              },
+              "fc": {
+                "type": "string",
+                "maxLength": 15,
+                "enum": ["PO", "FOC"],
+                "description": "PO type. Updateable. Allowed values: PO or FOC."
+              }
+            },
+            "required": [
+              "uuidHeader",
+              "supplierCode",
+              "poDate",
+              "poNo",
+              "etdActual",
+              "eta",
+              "fc"
+            ],
+            "additionalProperties": false
           },
-          "itemCode": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Material item code."
-          },
-          "vendorQty": {
-            "type": "number",
-            "description": "Vendor quantity (decimal(18,2))."
-          },
-          "vendorUnitCode": {
-            "type": "string",
-            "maxLength": 10,
-            "description": "Vendor unit code."
-          },
-          "unitPrice": {
-            "type": "number",
-            "description": "Unit price (decimal(20,5))."
-          },
-          "currency": {
-            "type": "string",
-            "maxLength": 10,
-            "description": "Currency code (e.g., USD, IDR)."
-          },
-          "lineItemNo": {
-          "type": "number",
-          "description": "lineItemNo on SAP"
+          "details": {
+            "type": "array",
+            "description": "Detail item lines. If uuid is provided, the detail will be updated. If uuid is not provided or empty, the detail will be added as a new item.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": ["string", "null"],
+                  "format": "uuid",
+                  "description": "Detail row key. If provided, update existing detail. If not provided or null, add as new detail."
+                },
+                "additionalRemarks": {
+                  "type": ["string", "null"],
+                  "description": "Additional remarks. Updateable. Can be null."
+                },
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50,
+                  "description": "Material item code. Updateable."
+                },
+                "vendorQty": {
+                  "type": "number",
+                  "description": "Vendor quantity. Updateable. Decimal value."
+                },
+                "vendorUnitCode": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Vendor unit code. Updateable."
+                },
+                "unitPrice": {
+                  "type": "number",
+                  "description": "Unit price. Updateable. Decimal value."
+                },
+                "currency": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Currency code. Updateable. Example: USD, IDR."
+                },
+                "lineItemNo": {
+                  "type": "number",
+                  "description": "Line item number on SAP. Updateable."
+                }
+              },
+              "required": [
+                "additionalRemarks",
+                "itemCode",
+                "vendorQty",
+                "vendorUnitCode",
+                "unitPrice",
+                "currency",
+                "lineItemNo"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "required": [
-          "itemCode",
-          "vendorQty",
-          "vendorUnitCode",
-          "unitPrice",
-          "currency"
+          "header",
+          "details"
         ],
         "additionalProperties": false
       }
     }
   },
   "required": [
-    "header",
-    "details"
+    "data"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "header": {
-        "supplierCode": "MSN-001",
-        "poDate": "09-08-2025",
-        "poNo": "PO/KWL/002/2025",
-        "etdActual": "09-08-2025",
-        "eta": "22/09/2025",
-        "fc": "PO"
-      },
-      "details": [
+      "data": [
         {
-          "additionalRemarks": null,
-          "itemCode": "RM-001",
-          "vendorQty": 26.4,
-          "vendorUnitCode": "KGM",
-          "unitPrice": 10,
-          "currency": "USD",
-          "lineItemNo": 100
-        }
-      ]
-    },
-    {
-      "header": {
-        "supplierCode": "SPR-001",
-        "poDate": "09-08-2025",
-        "poNo": "PO/KWL/002/2025",
-        "etdActual": "09-08-2025",
-        "eta": "22/09/2025",
-        "fc": "PO"
-      },
-      "details": [
-        {
-          "additionalRemarks": null,
-          "itemCode": "RM-002",
-          "vendorQty": 288.71,
-          "vendorUnitCode": "YRD",
-          "unitPrice": 3,
-          "currency": "USD",
-          "lineItemNo": 101
+          "header": {
+            "uuidHeader": "d9610df4-b9e5-4bd5-96cc-2f6d6c6b4508",
+            "supplierCode": "MSN-0015",
+            "poDate": "10-08-2026",
+            "poNo": "PO/KWL/004/2026",
+            "etdActual": "10-08-2026",
+            "eta": "10/09/2026",
+            "fc": "PO"
+          },
+          "details": [
+            {
+              "uuid": "acd16dff-f938-4ab5-a1e6-51878dcede3a",
+              "additionalRemarks": null,
+              "itemCode": "RM-0011",
+              "vendorQty": 150.5,
+              "vendorUnitCode": "KGM",
+              "unitPrice": 110,
+              "currency": "USD",
+              "lineItemNo": 100
+            },
+            {
+              "additionalRemarks": null,
+              "itemCode": "RM-0099",
+              "vendorQty": 50,
+              "vendorUnitCode": "KGM",
+              "unitPrice": 200,
+              "currency": "USD",
+              "lineItemNo": 102
+            }
+          ]
         }
       ]
     }

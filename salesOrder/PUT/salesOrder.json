@@ -1,132 +1,162 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Sales Order Schema",
-  "description": "JSON contract for Finish Good Orders including timestamps, separating header and detail.",
+  "title": "Sales Order PUT Schema",
+  "description": "JSON contract for updating Sales Order data by uuidHeader. This endpoint supports header update, existing detail update by uuid, and new detail insertion when uuid is not provided.",
   "type": "object",
   "properties": {
-    "header": {
-      "type": "object",
-      "properties": {
-        "orderNO": {
-          "type": "string",
-          "maxLength": 25,
-          "description": "Primary key for the order."
-        },
-        "article": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Description of finished good."
-        },
-        "brandCode": {
-          "type": "string",
-          "maxLength": 10,
-          "description": "Brand code."
-        },
-        "deliveryDate": {
-          "type": ["string", "null"],
-          "description": "Requested delivery date (optional). Format: DD-MM-YYYY"
-        },
-        "productGroup": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "Product group."
-        },
-        "orderType": {
-          "type": "string",
-          "enum": ["FOB", "CMT"],
-          "maxLength": 10,
-          "description": "Order type."
-        },
-        "sku": {
-          "type": "string",
-          "maxLength": 50,
-          "description": "SKU of the finished good."
-        },
-        "unitCode": {
-          "type": "string",
-          "maxLength": 10,
-          "description": "Unit of the finished good."
-        }
-      },
-      "required": [
-        "orderNO",
-        "article",
-        "brandCode",
-        "productGroup",
-        "poCust",
-        "colorFinishGood",
-        "sizeFinishGoodCode",
-        "qtyOrder",
-        "orderType",
-        "sku",
-        "unitCode"
-      ]
-    },
-    "details": {
+    "data": {
       "type": "array",
+      "description": "List of Sales Order records to be updated.",
+      "minItems": 1,
       "items": {
         "type": "object",
         "properties": {
-
-          "poCust": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Customer PO reference."
+          "header": {
+            "type": "object",
+            "description": "Sales Order header section. uuidHeader is required for update.",
+            "properties": {
+              "uuidHeader": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Primary key for header update. Required. System will update data only if uuidHeader exists in database."
+              },
+              "orderNO": {
+                "type": "string",
+                "maxLength": 25,
+                "description": "Order number. Not updateable, but must be sent with original value."
+              },
+              "article": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Description of finished good. Updateable."
+              },
+              "brandCode": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Brand code. Updateable."
+              },
+              "deliveryDate": {
+                "type": ["string", "null"],
+                "description": "Requested delivery date. Updateable. Can be null. Expected format: DD-MM-YYYY."
+              },
+              "productGroup": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Product group. Updateable."
+              },
+              "orderType": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Order type. Updateable."
+              },
+              "sku": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "SKU of the finished good. Updateable."
+              },
+              "unitCode": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Unit of the finished good. Updateable."
+              }
+            },
+            "required": [
+              "uuidHeader",
+              "orderNO",
+              "article",
+              "brandCode",
+              "deliveryDate",
+              "productGroup",
+              "orderType",
+              "sku",
+              "unitCode"
+            ],
+            "additionalProperties": false
           },
-
-          "colorFinishGood": {
-            "type": "string",
-            "maxLength": 250,
-            "description": "Finish good color."
-          },
-          "sizeFinishGoodCode": {
-            "type": "string",
-            "maxLength": 10,
-            "description": "Finish good size code."
-          },
-          "qtyOrder": {
-            "type": "number",
-            "description": "Quantity ordered."
+          "details": {
+            "type": "array",
+            "description": "Sales Order detail lines. If uuid is provided, the detail will be updated. If uuid is not provided or empty, the detail will be added as a new item.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": ["string", "null"],
+                  "format": "uuid",
+                  "description": "Detail row key. If provided, update existing detail. If not provided or null, add as new detail."
+                },
+                "poCust": {
+                  "type": "string",
+                  "maxLength": 50,
+                  "description": "Customer PO reference. Updateable."
+                },
+                "colorFinishGood": {
+                  "type": "string",
+                  "maxLength": 250,
+                  "description": "Finish good color. Updateable."
+                },
+                "sizeFinishGoodCode": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Finish good size code. Updateable."
+                },
+                "qtyOrder": {
+                  "type": "number",
+                  "description": "Quantity ordered. Updateable."
+                }
+              },
+              "required": [
+                "poCust",
+                "colorFinishGood",
+                "sizeFinishGoodCode",
+                "qtyOrder"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "required": [
-          "colorFinishGood",
-          "sizeFinishGoodCode",
-          "qtyOrder"
-        ]
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
       }
     }
   },
   "required": [
-    "header",
-    "details"
+    "data"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "header": {
-        "orderNO": "ADIDAS/06/11/2025",
-        "article": "Adidas EVO SL",
-        "brandCode": "ENV",
-        "deliveryDate": "09-01-2026",
-        "productGroup": "SHOES",
-        "orderType": "FOB",
-        "sku": "EVO.1.2025",
-        "unitCode": "PAIRS"
-      },
-      "details": [
+      "data": [
         {
-          "poCust": "ADIDAS/PO/0001",
-          "colorFinishGood": "Black",
-          "sizeFinishGoodCode": "8",
-          "qtyOrder": 1000
-        },
-        {
-          "poCust": "ADIDAS/PO/0002",
-          "colorFinishGood": "Black",
-          "sizeFinishGoodCode": "8.5",
-          "qtyOrder": 1500
+          "header": {
+            "uuidHeader": "6056df8a-1aa8-45f3-91f7-2306f7d46e01",
+            "orderNO": "ANDIDEH/06/11/2026",
+            "article": "Andideh EVO SL XXL",
+            "brandCode": "ENV1",
+            "deliveryDate": "09-01-2026",
+            "productGroup": "SHOES2",
+            "orderType": "FOBY",
+            "sku": "EVO.1.2026",
+            "unitCode": "PAIRSS"
+          },
+          "details": [
+            {
+              "uuid": "b5ca3a83-6b3a-41d1-84d7-0330e2c5fcac",
+              "poCust": "Andideh/PO/0011",
+              "colorFinishGood": "Black blue",
+              "sizeFinishGoodCode": "18",
+              "qtyOrder": 12000
+            },
+            {
+              "poCust": "Andideh/PO/0013",
+              "colorFinishGood": "Orange",
+              "sizeFinishGoodCode": "18.5",
+              "qtyOrder": 25000
+            }
+          ]
         }
       ]
     }
