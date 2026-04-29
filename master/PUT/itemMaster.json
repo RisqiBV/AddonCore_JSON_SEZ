@@ -62,7 +62,7 @@
       "data": [
         {
           "uuid": "aa9b1bcd-7a39-41ff-8cf9-4a57f9282988",
-          "itemCode": "RAWMAT-01",
+          "itemCode": "MCH-01",
           "itemName": "Steel Plate 2 mm - Updated",
           "categoryCodeBC": 1,
           "hsCode": "58041011",
@@ -70,7 +70,7 @@
         },
         {
           "uuid": "0bc4ce79-7050-4d92-89ea-c3f151629715",
-          "itemCode": "RAWMAT-02",
+          "itemCode": "MCH-02",
           "itemName": "Bending Machine Type X",
           "categoryCodeBC": 5,
           "hsCode": "58031011",

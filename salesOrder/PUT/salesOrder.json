@@ -133,8 +133,8 @@
         {
           "header": {
             "uuidHeader": "6056df8a-1aa8-45f3-91f7-2306f7d46e01",
-            "orderNO": "ANDIDEH/06/11/2026",
-            "article": "Andideh EVO SL XXL",
+            "orderNO": "PRO-001",
+            "article": "ARTICLE",
             "brandCode": "ENV1",
             "deliveryDate": "09-01-2026",
             "productGroup": "SHOES2",
@@ -145,13 +145,13 @@
           "details": [
             {
               "uuid": "b5ca3a83-6b3a-41d1-84d7-0330e2c5fcac",
-              "poCust": "Andideh/PO/0011",
+              "poCust": "PO/0011",
               "colorFinishGood": "Black blue",
               "sizeFinishGoodCode": "18",
               "qtyOrder": 12000
             },
             {
-              "poCust": "Andideh/PO/0013",
+              "poCust": "PO/0013",
               "colorFinishGood": "Orange",
               "sizeFinishGoodCode": "18.5",
               "qtyOrder": 25000
