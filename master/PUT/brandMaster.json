@@ -18,13 +18,13 @@
           },
           "customerCode": {
             "type": "string",
-            "maxLength": 10,
-            "description": "Customer code. Not updateable, but must be sent with original value."
+            "maxLength": 20,
+            "description": "Customer code. Updateable"
           },
           "brandCode": {
             "type": "string",
-            "maxLength": 10,
-            "description": "Brand code. Updateable."
+            "maxLength": 20,
+            "description": "Brand code. Not updateable, but must be sent with original value.."
           },
           "brandName": {
             "type": "string",
