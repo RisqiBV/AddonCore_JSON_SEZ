@@ -1,100 +1,132 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Supplier Master Schema",
-  "description": "JSON contract for Supplier Master data including timestamps and all contact/location fields.",
+  "title": "Supplier Master PUT Schema",
+  "description": "JSON contract for updating Supplier Master data by uuid. All fields should be sent with their current or updated values to maintain data consistency.",
   "type": "object",
   "properties": {
-    "supplierCode": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Primary key for the supplier."
-    },
-    "supplierName": {
-      "type": "string",
-      "maxLength": 200,
-      "description": "Supplier name."
-    },
-    "address": {
-      "type": "string",
-      "maxLength": 200,
-      "description": "Address of the supplier."
-    },
-    "stateOrProvince": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "State or Province (optional)."
-    },
-    "countryOrRegion": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Country or region."
-    },
-    "city": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "City (optional)."
-    },
-    "npwp": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "Tax ID (optional)."
-    },
-    "emailAddress": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "format": "email",
-      "description": "Email address (optional)."
-    },
-    "businessPhone": {
-      "type": ["string", "null"],
-      "maxLength": 25,
-      "description": "Business phone number (optional)."
-    },
-    "faxNo": {
-      "type": ["string", "null"],
-      "maxLength": 25,
-      "description": "Fax number (optional)."
-    },
-    "zipOrPostalCode": {
-      "type": ["string", "null"],
-      "maxLength": 15,
-      "description": "ZIP or postal code (optional)."
+    "data": {
+      "type": "array",
+      "description": "List of supplier master records to be updated.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Primary key for update. Required. System will update data only if uuid exists in database."
+          },
+          "supplierCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Supplier code. Not updateable, but must be sent with original value."
+          },
+          "supplierName": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Supplier name. Updateable."
+          },
+          "address": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Address of the supplier. Updateable."
+          },
+          "stateOrProvince": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "State or Province. Updateable. Can be null."
+          },
+          "countryOrRegion": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Country or region. Updateable."
+          },
+          "city": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "City. Updateable. Can be null."
+          },
+          "npwp": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Tax ID / NPWP. Updateable. Can be null."
+          },
+          "emailAddress": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "format": "email",
+            "description": "Email address. Updateable. Can be null."
+          },
+          "businessPhone": {
+            "type": ["string", "null"],
+            "maxLength": 25,
+            "description": "Business phone number. Updateable. Can be null."
+          },
+          "faxNo": {
+            "type": ["string", "null"],
+            "maxLength": 25,
+            "description": "Fax number. Updateable. Can be null."
+          },
+          "zipOrPostalCode": {
+            "type": ["string", "null"],
+            "maxLength": 15,
+            "description": "ZIP or postal code. Updateable. Can be null."
+          }
+        },
+        "required": [
+          "uuid",
+          "supplierCode",
+          "supplierName",
+          "address",
+          "stateOrProvince",
+          "countryOrRegion",
+          "city",
+          "npwp",
+          "emailAddress",
+          "businessPhone",
+          "faxNo",
+          "zipOrPostalCode"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [
-    "supplierCode",
-    "supplierName",
-    "address",
-    "countryRegion"
+    "data"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "supplierCode": "SUP-PAINT04",
-      "supplierName": "Nippon Paint Co. Ltd",
-      "address": "Jl. Ancol Barat I/A5/C No. 12, Jakarta",
-      "stateOrProvince": "Jakarta Pusat",
-      "countryOrRegion": "Indonesia",
-      "city": "Jakarta",
-      "npwp": null,
-      "emailAddress": "enquiry@nipponpaint-indonesia.com",
-      "businessPhone": "021-6900546",
-      "faxNo": "021-6900546",
-      "zipOrPostalCode": "14430"
-    },
-    {
-      "supplierCode": "SUP-PACK05",
-      "supplierName": "PT Indah Kemas",
-      "address": "Kw. Industri Pulogadung, Jl. Rw. Terate II No.16, Jatinegara, Kec. Cakung, Kota Jakarta Timur",
-      "stateOrProvince": "Jakarta Timur",
-      "countryOrRegion": "Indonesia",
-      "city": "Jakarta",
-      "npwp": null,
-      "emailAddress": "isna.ardiyana@forisa.co.id",
-      "businessPhone": "021-4608847",
-      "faxNo": "021-4608847",
-      "zipPrPostalCode": "13930"
+      "data": [
+        {
+          "uuid": "3a215cfe-bdfb-4f3e-a7ac-a659428961ba",
+          "supplierCode": "SUP-PAINT04",
+          "supplierName": "Nippon Paint Co. Ltd - HQ",
+          "address": "Jl. Ancol Barat I/A5/C No. 12, Jakarta",
+          "stateOrProvince": "DKI Jakarta",
+          "countryOrRegion": "Indonesia",
+          "city": "Jakarta Utara",
+          "npwp": "01.234.567.8-901.000",
+          "emailAddress": "enquiry@nipponpaint-indonesia.com",
+          "businessPhone": "021-6900546",
+          "faxNo": "021-6900546",
+          "zipOrPostalCode": "14430"
+        },
+        {
+          "uuid": "1145b2b1-2999-496b-88d4-261d3a76263b",
+          "supplierCode": "SUP-PACK05",
+          "supplierName": "PT Indah Kemas (Revised)",
+          "address": "Kw. Industri Pulogadung, Jakarta Timur",
+          "stateOrProvince": "Jakarta Timur",
+          "countryOrRegion": "Indonesia",
+          "city": "Jakarta",
+          "npwp": null,
+          "emailAddress": "contact@indahkemas.co.id",
+          "businessPhone": "021-4608847",
+          "faxNo": "021-4608847",
+          "zipOrPostalCode": null
+        }
+      ]
     }
   ]
 }

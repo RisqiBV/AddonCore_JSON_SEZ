@@ -1,38 +1,67 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Unit Master Schema",
-  "description": "JSON contract for Unit Master data, including timestamps. Includes internal unit code, description, and reference to INSW standard unit.",
+  "title": "Unit Master PUT Schema",
+  "description": "JSON contract for updating Unit Master data by uuid. All fields should be sent with their current or updated values to maintain data consistency.",
   "type": "object",
   "properties": {
-    "internalUnitCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Primary key for the internal unit."
-    },
-    "unitDescription": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Description of the unit."
-    },
-    "aliasUnitCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Code referencing the standard INSW unit (see UnitINSW.code). > @readme.md"
+    "data": {
+      "type": "array",
+      "description": "List of unit master records to be updated.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Primary key for update. Required. System will update data only if uuid exists in database."
+          },
+          "internalUnitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Internal unit code. Not updateable, but must be sent with original value."
+          },
+          "unitDescription": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Description of the unit. Updateable."
+          },
+          "aliasUnitCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Code referencing the standard INSW unit. Updateable. See UnitINSW.code reference."
+          }
+        },
+        "required": [
+          "uuid",
+          "internalUnitCode",
+          "unitDescription",
+          "aliasUnitCode"
+        ],
+        "additionalProperties": false
+      }
     }
   },
-  "required": ["internalUnitCode", "unitDescription", "aliasUnitCode"],
+  "required": [
+    "data"
+  ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "internalUnitCode": "Cm",
-      "unitDescription": "Centi Metre",
-      "aliasUnitCode": "CMT"
-    },
-    {
-      "internalUnitCode": "Roll",
-      "unitDescription": "Roll",
-      "aliasUnitCode": "RO"
+      "data": [
+        {
+          "uuid": "e67a1f63-8d46-4ac2-84f6-27caa62dd56f",
+          "internalUnitCode": "Cm",
+          "unitDescription": "Centimeter (Updated)",
+          "aliasUnitCode": "CMT"
+        },
+        {
+          "uuid": "0157eda6-d9e8-46ce-a6c0-0ee31cbb3c8a",
+          "internalUnitCode": "Roll",
+          "unitDescription": "Roll / Gulungan",
+          "aliasUnitCode": "ROLL"
+        }
+      ]
     }
   ]
 }

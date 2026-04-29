@@ -1,89 +1,94 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Customer Master Schema",
-  "description": "JSON contract for Customer Master data including timestamps.",
+  "title": "Customer Master PUT Schema",
+  "description": "JSON contract for updating Customer Master data by uuid. This endpoint supports bulk update through data array.",
   "type": "object",
   "properties": {
-    "customerCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Primary key for the customer."
-    },
-    "customerName": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Customer name."
-    },
-    "address": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Customer address."
-    },
-    "city": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "City (optional)."
-    },
-    "province": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "Province or state (optional)."
-    },
-    "country": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Country."
-    },
-    "npwp": {
-      "type": ["string", "null"],
-      "maxLength": 50,
-      "description": "Tax ID (optional)."
+    "data": {
+      "type": "array",
+      "description": "List of customer master records to be updated.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Primary key for update. Required. System will update data only if uuid exists in database."
+          },
+          "customerCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Customer code. Not updateable, but must be sent with original value."
+          },
+          "customerName": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer name. Updateable."
+          },
+          "address": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer address. Updateable."
+          },
+          "city": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "City. Updateable."
+          },
+          "province": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Province or state. Updateable."
+          },
+          "country": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Country. Updateable."
+          },
+          "npwp": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Tax ID / NPWP. Updateable."
+          }
+        },
+        "required": [
+          "uuid",
+          "customerCode",
+          "customerName",
+          "address",
+          "country"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [
-    "customerCode",
-    "customerName",
-    "address",
-    "country"
+    "data"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "customerCode": "CUST-ARMY01",
-      "customerName": "Indonesian Armed Forces",
-      "address": "Jl. Merdeka Barat No. 3",
-      "city": "Jakarta",
-      "province": "DKI Jakarta",
-      "country": "Indonesia",
-      "npwp": null
-    },
-    {
-      "customerCode": "CUST-POL01",
-      "customerName": "Indonesian National Police",
-      "address": "Jl. Asia Afrika No. 65",
-      "city": "Bandung",
-      "province": "Jawa Barat",
-      "country": "Indonesia",
-      "npwp": null
-    }
-  ],
-  "response": [
-    {
-      "status": "success",
-      "message": "Data Master Customer successfully saved",
       "data": [
         {
-          "Uuid": "6c7fe693-0928-4d68-bbfb-473dc37a5a9b",
-          "CustomerCode": "AFI",
-          "CustomerName": "PT ADDON FINANCE INDONESIA",
-          "Address": "Gading Sari 1",
-          "City": null,
-          "Province": null,
-          "Country": "Indonesia",
-          "NPWP": null,
-          "LocationId": 31,
-          "SeqCode": 28
+          "uuid": "68078d50-24fb-4619-982b-c55e2b6c69e4",
+          "customerCode": "CST001",
+          "customerName": "Indonesian Armed Forces",
+          "address": "Jl. Merdeka Barat No. 3, Gambir",
+          "city": "Jakarta Pusat",
+          "province": "DKI Jakarta",
+          "country": "Indonesia",
+          "npwp": "01.234.567.8-901.000"
+        },
+        {
+          "uuid": "25586f08-785b-4901-9ef6-ac533072399e",
+          "customerCode": "CST002",
+          "customerName": "Indonesian National Police",
+          "address": "Jl. Trunojoyo No. 3",
+          "city": "Jakarta Selatan",
+          "province": "DKI Jakarta",
+          "country": "Indonesia",
+          "npwp": null
         }
       ]
     }

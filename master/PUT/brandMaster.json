@@ -1,38 +1,67 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Customer Brand Schema",
-  "description": "JSON contract for Customer Brand data including timestamps.",
+  "title": "Customer Brand PUT Schema",
+  "description": "JSON contract for updating Customer Brand data by uuid. This endpoint supports bulk update through data array.",
   "type": "object",
   "properties": {
-    "customerCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Customer code (required)."
-    },
-    "brandCode": {
-      "type": "string",
-      "maxLength": 10,
-      "description": "Brand code (primary key)."
-    },
-    "brandName": {
-      "type": "string",
-      "maxLength": 50,
-      "description": "Brand name."
+    "data": {
+      "type": "array",
+      "description": "List of brand master records to be updated.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Primary key for update. Required. System will update data only if uuid exists in database."
+          },
+          "customerCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Customer code. Not updateable, but must be sent with original value."
+          },
+          "brandCode": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Brand code. Updateable."
+          },
+          "brandName": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Brand name. Updateable."
+          }
+        },
+        "required": [
+          "uuid",
+          "customerCode",
+          "brandCode",
+          "brandName"
+        ],
+        "additionalProperties": false
+      }
     }
   },
-  "required": ["customerCode", "brandCode", "brandName"],
+  "required": [
+    "data"
+  ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "examples": [
     {
-      "customerCode": "CUST-POL01",
-      "brandCode": "SR",
-      "brandName": "SecureRack"
-    },
-    {
-      "customerCode": "CUST-ARMY01",
-      "brandCode": "GR",
-      "brandName": "GardaRack"
+      "data": [
+        {
+          "uuid": "e8f71ea5-2db8-44c6-8394-fcb673ab56de",
+          "customerCode": "CUST-POL01",
+          "brandCode": "SR1",
+          "brandName": "SecureRack Updated"
+        },
+        {
+          "uuid": "7cb0ebe8-9788-4bf8-b7ed-567d9e52e44a",
+          "customerCode": "CUST-ARMY01",
+          "brandCode": "GR",
+          "brandName": "GardaRack Updated"
+        }
+      ]
     }
   ]
 }
