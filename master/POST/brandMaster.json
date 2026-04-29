@@ -6,12 +6,12 @@
   "properties": {
     "customerCode": {
       "type": "string",
-      "maxLength": 10,
+      "maxLength": 20,
       "description": "Customer code (required)."
     },
     "brandCode": {
       "type": "string",
-      "maxLength": 10,
+      "maxLength": 20,
       "description": "Brand code (primary key)."
     },
     "brandName": {
