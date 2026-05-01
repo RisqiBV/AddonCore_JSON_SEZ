@@ -46,7 +46,7 @@
               },
               "orderType": {
                 "type": "string",
-                "maxLength": 10,
+                "maxLength": 50,
                 "description": "Order type. Updateable."
               },
               "sku": {
