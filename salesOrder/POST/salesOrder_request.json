@@ -106,27 +106,28 @@
   "payload examples": [
     {
       "header": {
-        "orderNO": "ADIDAS/06/11/2025",
-        "article": "Adidas EVO SL",
-        "brandCode": "ENV",
-        "deliveryDate": "09-01-2026",
-        "productGroup": "SHOES",
+        "orderNO": "ADDON/ORDER/0001/V/2026",
+        "article": "ERP",
+        "brandCode": "ERP",
+        "deliveryDate": "11-07-2026",
+        "productGroup": "ERP",
         "orderType": "FOB",
-        "sku": "EVO.1.2025",
-        "unitCode": "PAIRS"
+        "sku": "ERP IT INVENTORY",
+        "unitCode": "PCE"
       },
       "details": [
         {
-          "poCust": "ADIDAS/PO/0001",
-          "colorFinishGood": "Black",
-          "sizeFinishGoodCode": "8",
-          "qtyOrder": 1000
+            "poCust": "CUSTOMER/PO-1",
+            "colorFinishGood": "-",
+            "sizeFinishGoodCode": "ALL SIZE",
+            "qtyOrder": 1
         },
+
         {
-          "poCust": "ADIDAS/PO/0002",
-          "colorFinishGood": "Black",
-          "sizeFinishGoodCode": "8.5",
-          "qtyOrder": 1500
+            "poCust": "CUSTOMER/PO-2",
+            "colorFinishGood": "-",
+            "sizeFinishGoodCode": "ALL SIZE",
+            "qtyOrder": 1
         }
       ]
     }

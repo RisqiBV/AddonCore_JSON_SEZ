@@ -1,0 +1,297 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Sales Order Response Schema",
+  "description": "JSON response contract for updating Sales Order data. This response may include updated detail rows and newly inserted detail rows from the upsert process.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Sales Order data is successfully updated or processed through upsert.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "code": {
+          "type": "string",
+          "enum": ["SUCCESS"],
+          "description": "Response code."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Sales Order data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Updated Sales Order header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Unique identifier of the Sales Order header."
+                  },
+                  "orderNO": {
+                    "type": "string",
+                    "maxLength": 25,
+                    "description": "Sales Order number."
+                  },
+                  "article": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "Description of finished good."
+                  },
+                  "brandCode": {
+                    "type": "string",
+                    "maxLength": 10,
+                    "description": "Brand code."
+                  },
+                  "deliveryDate": {
+                    "type": ["string", "null"],
+                    "description": "Requested delivery date. Format: DD-MM-YYYY."
+                  },
+                  "productGroup": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "Product group."
+                  },
+                  "orderType": {
+                    "type": "string",
+                    "enum": ["FOB", "CMT"],
+                    "maxLength": 50,
+                    "description": "Order type."
+                  },
+                  "sku": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "SKU of the finished good."
+                  },
+                  "unitCode": {
+                    "type": "string",
+                    "maxLength": 10,
+                    "description": "Unit of the finished good."
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time when the header data was updated."
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "orderNO",
+                  "article",
+                  "brandCode",
+                  "deliveryDate",
+                  "productGroup",
+                  "orderType",
+                  "sku",
+                  "unitCode",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Updated and inserted Sales Order detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier of the Sales Order detail."
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier of the related Sales Order header."
+                    },
+                    "poCust": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "description": "Customer PO reference."
+                    },
+                    "colorFinishGood": {
+                      "type": "string",
+                      "maxLength": 250,
+                      "description": "Finish good color."
+                    },
+                    "sizeFinishGoodCode": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Finish good size code."
+                    },
+                    "qtyOrder": {
+                      "type": ["number", "string"],
+                      "description": "Quantity ordered."
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Date and time when the detail data was updated or inserted."
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "poCust",
+                    "colorFinishGood",
+                    "sizeFinishGoodCode",
+                    "qtyOrder",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "code", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, related data not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "code": {
+          "type": "string",
+          "description": "Error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "code": "SUCCESS",
+      "message": "Data Sales Order successfully updated",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "d664006c-b21a-45ba-9e6d-e91c27c986b4",
+            "orderNO": "ADDON/ORDER/0001/V/2026",
+            "article": "ERP",
+            "brandCode": "ERP",
+            "deliveryDate": "11-07-2026",
+            "productGroup": "ERP",
+            "orderType": "FOB",
+            "sku": "ERP IT INVENTORY",
+            "unitCode": "PCE       ",
+            "updatedAt": "2026-05-10 15:56:59.307"
+          },
+          "details": [
+            {
+              "uuid": "485c2c71-f09e-431e-bb51-b3593c20a998",
+              "uuidHeader": "d664006c-b21a-45ba-9e6d-e91c27c986b4",
+              "poCust": "CUSTOMER/PO-1 - Revision",
+              "colorFinishGood": "-",
+              "sizeFinishGoodCode": "ALL SIZE",
+              "qtyOrder": "1.0",
+              "updatedAt": "2026-05-10 15:56:59.307"
+            },
+            {
+              "uuid": "80036138-1f5d-4d86-b094-1de0ec82ef4f",
+              "uuidHeader": "d664006c-b21a-45ba-9e6d-e91c27c986b4",
+              "poCust": "CUSTOMER/PO-2 - Revision",
+              "colorFinishGood": "-",
+              "sizeFinishGoodCode": "ALL SIZE",
+              "qtyOrder": "1.0",
+              "updatedAt": "2026-05-10 15:56:59.307"
+            },
+            {
+              "uuid": "8ed4c4b0-eb19-490b-a330-bdfc442333a8",
+              "uuidHeader": "d664006c-b21a-45ba-9e6d-e91c27c986b4",
+              "poCust": "CUSTOMER/PO-3",
+              "colorFinishGood": "-",
+              "sizeFinishGoodCode": "ALL SIZE",
+              "qtyOrder": "1.0",
+              "updatedAt": "2026-05-10 15:56:59.307"
+            }
+          ]
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "code": "VALIDATION_ERROR",
+      "message": "Validation failed",
+      "errors": {
+        "data.0.header.uuidHeader": [
+          "The data.0.header.uuidHeader field is required.",
+          "The data.0.header.uuidHeader must be a valid UUID."
+        ],
+        "data.0.header.orderNO": [
+          "The data.0.header.orderNO field is required."
+        ],
+        "data.0.details": [
+          "The data.0.details field is required and must contain at least one item."
+        ],
+        "data.0.details.0.qtyOrder": [
+          "The data.0.details.0.qtyOrder must be a number."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "code": "NOT_FOUND",
+      "message": "Data Sales Order not found",
+      "errors": {
+        "uuidHeader": [
+          "Sales Order header data with the specified uuidHeader was not found."
+        ]
+      }
+    },
+    "relatedDataNotFoundError": {
+      "status": "error",
+      "code": "RELATED_DATA_NOT_FOUND",
+      "message": "Related data not found",
+      "errors": {
+        "brandCode": [
+          "Brand data with the specified brandCode was not found."
+        ],
+        "unitCode": [
+          "Unit data with the specified unitCode was not found."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "code": "SERVER_ERROR",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}

@@ -132,29 +132,28 @@
       "data": [
         {
           "header": {
-            "uuidHeader": "6056df8a-1aa8-45f3-91f7-2306f7d46e01",
-            "orderNO": "PRO-001",
-            "article": "ARTICLE",
-            "brandCode": "ENV1",
-            "deliveryDate": "09-01-2026",
-            "productGroup": "SHOES2",
-            "orderType": "FOBY",
-            "sku": "EVO.1.2026",
-            "unitCode": "PAIRSS"
+            "orderNO": "ADDON/ORDER/0001/V/2026",
+            "article": "ERP",
+            "brandCode": "ERP",
+            "deliveryDate": "11-07-2026",
+            "productGroup": "ERP",
+            "orderType": "FOB",
+            "sku": "ERP IT INVENTORY",
+            "unitCode": "PCE"
           },
           "details": [
             {
-              "uuid": "b5ca3a83-6b3a-41d1-84d7-0330e2c5fcac",
-              "poCust": "PO/0011",
-              "colorFinishGood": "Black blue",
-              "sizeFinishGoodCode": "18",
-              "qtyOrder": 12000
+                "poCust": "CUSTOMER/PO-1",
+                "colorFinishGood": "-",
+                "sizeFinishGoodCode": "ALL SIZE",
+                "qtyOrder": 1
             },
+
             {
-              "poCust": "PO/0013",
-              "colorFinishGood": "Orange",
-              "sizeFinishGoodCode": "18.5",
-              "qtyOrder": 25000
+                "poCust": "CUSTOMER/PO-2",
+                "colorFinishGood": "-",
+                "sizeFinishGoodCode": "ALL SIZE",
+                "qtyOrder": 1
             }
           ]
         }
