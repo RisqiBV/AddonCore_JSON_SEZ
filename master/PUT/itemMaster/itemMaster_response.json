@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Item Master Response Schema",
+  "description": "JSON response contract for updating Item Master data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Item Master data is successfully updated.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Item Master data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier of Item Master data."
+              },
+              "itemCode": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Item code."
+              },
+              "itemName": {
+                "type": "string",
+                "maxLength": 255,
+                "description": "Item name."
+              },
+              "categoryCodeBC": {
+                "type": "number",
+                "description": "Bea Cukai item category code."
+              },
+              "hsCode": {
+                "type": ["string", "null"],
+                "maxLength": 20,
+                "description": "HS Code."
+              },
+              "categoryInternal": {
+                "type": "string",
+                "maxLength": 100,
+                "description": "Internal item category."
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Date and time when the data was updated."
+              }
+            },
+            "required": [
+              "uuid",
+              "itemCode",
+              "itemName",
+              "categoryCodeBC",
+              "hsCode",
+              "categoryInternal",
+              "updatedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Data Master Item successfully updated",
+      "data": [
+        {
+          "uuid": "dc6f4f33-5bbf-4002-9c74-e74e7f76350f",
+          "itemCode": "0001.0001.0001.RM",
+          "itemName": "Raw Material - Revision",
+          "categoryCodeBC": 1,
+          "hsCode": "98979695",
+          "categoryInternal": "Raw Material",
+          "updatedAt": "2026-05-10 12:54:49.863"
+        },
+        {
+          "uuid": "eb81efe2-4a1a-4768-8204-150f9509940e",
+          "itemCode": "0002.0002.0002.RM",
+          "itemName": "Raw Material 02",
+          "categoryCodeBC": 2,
+          "hsCode": "11223344",
+          "categoryInternal": "Raw Material",
+          "updatedAt": "2026-05-10 12:54:50.057"
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field is required.",
+          "The uuid must be a valid UUID."
+        ],
+        "itemCode": [
+          "The itemCode field is required."
+        ],
+        "itemName": [
+          "The itemName field is required."
+        ],
+        "categoryCodeBC": [
+          "The categoryCodeBC field is required."
+        ],
+        "categoryInternal": [
+          "The categoryInternal field is required."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Data Master Item not found",
+      "errors": {
+        "uuid": [
+          "Item Master data with the specified uuid was not found."
+        ]
+      }
+    },
+    "duplicateError": {
+      "status": "error",
+      "message": "Duplicate data found",
+      "errors": {
+        "duplicate": [
+          "The submitted Item Master data already exists."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}

@@ -25,14 +25,14 @@
   
   "payload examples": [
     {
-      "customerCode": "CUST-POL01",
-      "brandCode": "SR",
-      "brandName": "SecureRack"
+      "customerCode": "ADDON",
+      "brandCode": "ERP",
+      "brandName": "AFI ERP"
     },
     {
-      "customerCode": "CUST-ARMY01",
-      "brandCode": "GR",
-      "brandName": "GardaRack"
+      "customerCode": "LDP",
+      "brandCode": "NETWORK",
+      "brandName": "Speed Up by LDP"
     }
   ]
 }

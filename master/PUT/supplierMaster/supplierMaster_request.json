@@ -99,32 +99,32 @@
     {
       "data": [
         {
-          "uuid": "3a215cfe-bdfb-4f3e-a7ac-a659428961ba",
-          "supplierCode": "SUP-PAINT04",
-          "supplierName": "Nippon Paint Co. Ltd - HQ",
-          "address": "Jl. Ancol Barat I/A5/C No. 12, Jakarta",
-          "stateOrProvince": "DKI Jakarta",
-          "countryOrRegion": "Indonesia",
-          "city": "Jakarta Utara",
-          "npwp": "01.234.567.8-901.000",
-          "emailAddress": "enquiry@nipponpaint-indonesia.com",
-          "businessPhone": "021-6900546",
-          "faxNo": "021-6900546",
-          "zipOrPostalCode": "14430"
+            "uuid": "8723b2a2-07fa-4fd3-a228-442ceab3b9e7",
+            "supplierCode": "AFI0001",
+            "supplierName": "PT Addon Finance Indonesia",
+            "address": "Sudirman - Revision",
+            "stateOrProvince": "Jakarta Pusat",
+            "countryOrRegion": "Indonesia",
+            "city": "Jakarta",
+            "npwp": null,
+            "emailAddress": "addonfinance@addonfinance.com",
+            "businessPhone": "021-6900546",
+            "faxNo": "021-6900546",
+            "zipOrPostalCode": "14430"
         },
         {
-          "uuid": "1145b2b1-2999-496b-88d4-261d3a76263b",
-          "supplierCode": "SUP-PACK05",
-          "supplierName": "PT Indah Kemas (Revised)",
-          "address": "Kw. Industri Pulogadung, Jakarta Timur",
-          "stateOrProvince": "Jakarta Timur",
-          "countryOrRegion": "Indonesia",
-          "city": "Jakarta",
-          "npwp": null,
-          "emailAddress": "contact@indahkemas.co.id",
-          "businessPhone": "021-4608847",
-          "faxNo": "021-4608847",
-          "zipOrPostalCode": null
+            "uuid": "5b1c3f03-c139-42f7-a3bf-16631b2e717d",
+            "supplierCode": "LDP00001",
+            "supplierName": "PT Lintas Data Prima",
+            "address": "Kuningan",
+            "stateOrProvince": "Jakarta Timur",
+            "countryOrRegion": "Indonesia",
+            "city": "Jakarta",
+            "npwp": "1231231231",
+            "emailAddress": "ldp@ldp.com",
+            "businessPhone": "021-4608847",
+            "faxNo": "021-4608847",
+            "zipOrPostalCode": "13930"
         }
       ]
     }

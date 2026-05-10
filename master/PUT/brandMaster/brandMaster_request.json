@@ -50,16 +50,16 @@
     {
       "data": [
         {
-          "uuid": "e8f71ea5-2db8-44c6-8394-fcb673ab56de",
-          "customerCode": "CUST-POL01",
-          "brandCode": "SR1",
-          "brandName": "SecureRack Updated"
+          "uuid": "0b6b0d8a-56a0-4d5b-ab7d-6c27723727c3",
+          "customerCode": "ADDON",
+          "brandCode": "ERP",
+          "brandName": "AFI ERP - 2029"
         },
         {
-          "uuid": "7cb0ebe8-9788-4bf8-b7ed-567d9e52e44a",
-          "customerCode": "CUST-ARMY01",
-          "brandCode": "GR",
-          "brandName": "GardaRack Updated"
+          "uuid": "df97d5dc-31e1-4226-8ca9-a9593b71e39b",
+          "customerCode": "LDP",
+          "brandCode": "NETWORK",
+          "brandName": "Speed Up by LDP V2"
         }
       ]
     }

@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Size Master Response Schema",
+  "description": "JSON response contract for updating Size Master data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Size Master data is successfully updated.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Size Master data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier of Size Master data."
+              },
+              "sizeCode": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Size code."
+              },
+              "sizeDescription": {
+                "type": "string",
+                "maxLength": 255,
+                "description": "Size description."
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Date and time when the data was updated."
+              }
+            },
+            "required": [
+              "uuid",
+              "sizeCode",
+              "sizeDescription",
+              "updatedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Data Master Size successfully updated",
+      "data": [
+        {
+          "uuid": "19c0e698-f7bb-4fe3-81ff-d55d74b4376c",
+          "sizeCode": "45",
+          "sizeDescription": "45 Revision",
+          "updatedAt": "2026-05-10 12:48:14.987"
+        },
+        {
+          "uuid": "d77cf676-a7cb-4c4e-912a-bc0d20f58f10",
+          "sizeCode": "47",
+          "sizeDescription": "47 Revision",
+          "updatedAt": "2026-05-10 12:48:15.514"
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field is required.",
+          "The uuid must be a valid UUID."
+        ],
+        "sizeCode": [
+          "The sizeCode field is required."
+        ],
+        "sizeDescription": [
+          "The sizeDescription field is required."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Data Master Size not found",
+      "errors": {
+        "uuid": [
+          "Size Master data with the specified uuid was not found."
+        ]
+      }
+    },
+    "duplicateError": {
+      "status": "error",
+      "message": "Duplicate data found",
+      "errors": {
+        "duplicate": [
+          "The submitted Size Master data already exists."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Supplier Master Response Schema",
+  "description": "JSON response contract for updating Supplier Master data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Supplier Master data is successfully updated.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Supplier Master data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier of Supplier Master data."
+              },
+              "supplierCode": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Primary key for the supplier."
+              },
+              "supplierName": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "Supplier name."
+              },
+              "address": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "Address of the supplier."
+              },
+              "stateOrProvince": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "State or Province."
+              },
+              "countryOrRegion": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Country or region."
+              },
+              "city": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "City."
+              },
+              "npwp": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "Tax ID."
+              },
+              "emailAddress": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "format": "email",
+                "description": "Email address."
+              },
+              "businessPhone": {
+                "type": ["string", "null"],
+                "maxLength": 25,
+                "description": "Business phone number."
+              },
+              "faxNo": {
+                "type": ["string", "null"],
+                "maxLength": 25,
+                "description": "Fax number."
+              },
+              "zipOrPostalCode": {
+                "type": ["string", "null"],
+                "maxLength": 15,
+                "description": "ZIP or postal code."
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Date and time when the data was updated."
+              }
+            },
+            "required": [
+              "uuid",
+              "supplierCode",
+              "supplierName",
+              "address",
+              "stateOrProvince",
+              "countryOrRegion",
+              "city",
+              "npwp",
+              "emailAddress",
+              "businessPhone",
+              "faxNo",
+              "zipOrPostalCode",
+              "updatedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Data Master Supplier successfully updated",
+      "data": [
+        {
+          "uuid": "8723b2a2-07fa-4fd3-a228-442ceab3b9e7",
+          "supplierCode": "AFI0001",
+          "supplierName": "PT Addon Finance Indonesia",
+          "address": "Sudirman - Revision",
+          "stateOrProvince": "Jakarta Pusat",
+          "countryOrRegion": "Indonesia",
+          "city": "Jakarta",
+          "npwp": null,
+          "emailAddress": "addonfinance@addonfinance.com",
+          "businessPhone": "021-6900546",
+          "faxNo": "021-6900546",
+          "zipOrPostalCode": "14430",
+          "updatedAt": "2026-05-10 12:42:03.698"
+        },
+        {
+          "uuid": "5b1c3f03-c139-42f7-a3bf-16631b2e717d",
+          "supplierCode": "LDP00001",
+          "supplierName": "PT Lintas Data Prima",
+          "address": "Kuningan",
+          "stateOrProvince": "Jakarta Timur",
+          "countryOrRegion": "Indonesia",
+          "city": "Jakarta",
+          "npwp": "1231231231",
+          "emailAddress": "ldp@ldp.com",
+          "businessPhone": "021-4608847",
+          "faxNo": "021-4608847",
+          "zipOrPostalCode": "13930",
+          "updatedAt": "2026-05-10 12:42:04.319"
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field is required.",
+          "The uuid must be a valid UUID."
+        ],
+        "supplierCode": [
+          "The supplierCode field is required."
+        ],
+        "supplierName": [
+          "The supplierName field is required."
+        ],
+        "countryOrRegion": [
+          "The countryOrRegion field is required."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Data Master Supplier not found",
+      "errors": {
+        "uuid": [
+          "Supplier Master data with the specified uuid was not found."
+        ]
+      }
+    },
+    "duplicateError": {
+      "status": "error",
+      "message": "Duplicate data found",
+      "errors": {
+        "duplicate": [
+          "The submitted Supplier Master data already exists."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}

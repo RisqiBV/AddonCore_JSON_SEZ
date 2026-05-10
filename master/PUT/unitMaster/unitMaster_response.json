@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Unit Master Response Schema",
+  "description": "JSON response contract for updating Unit Master data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Unit Master data is successfully updated.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Unit Master data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier of Unit Master data."
+              },
+              "internalUnitCode": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Internal unit code."
+              },
+              "unitDescription": {
+                "type": "string",
+                "maxLength": 255,
+                "description": "Unit description."
+              },
+              "aliasUnitCode": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Alias unit code."
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Date and time when the data was updated."
+              }
+            },
+            "required": [
+              "uuid",
+              "internalUnitCode",
+              "unitDescription",
+              "aliasUnitCode",
+              "updatedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Data Master Unit successfully updated",
+      "data": [
+        {
+          "uuid": "df94214c-579d-47a6-bb97-d30d4fa54ea0",
+          "internalUnitCode": "LTR       ",
+          "unitDescription": "Litre(Internal) - Revision",
+          "aliasUnitCode": "LTR",
+          "updatedAt": "2026-05-10 12:34:51.077"
+        },
+        {
+          "uuid": "db50cb54-4792-4aba-9c91-b233e6d0abd5",
+          "internalUnitCode": "M         ",
+          "unitDescription": "Meter(1) - Revision",
+          "aliasUnitCode": "MTR",
+          "updatedAt": "2026-05-10 12:34:51.324"
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field is required.",
+          "The uuid must be a valid UUID."
+        ],
+        "internalUnitCode": [
+          "The internalUnitCode field is required."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Data Master Unit not found",
+      "errors": {
+        "uuid": [
+          "Unit Master data with the specified uuid was not found."
+        ]
+      }
+    },
+    "duplicateError": {
+      "status": "error",
+      "message": "Duplicate data found",
+      "errors": {
+        "duplicate": [
+          "The submitted Unit Master data already exists."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}

@@ -71,30 +71,30 @@
   
   "payload examples": [
     {
-      "supplierCode": "SUP-PAINT04",
-      "supplierName": "Nippon Paint Co. Ltd",
-      "address": "Jl. Ancol Barat I/A5/C No. 12, Jakarta",
+      "supplierCode": "AFI0001",
+      "supplierName": "PT Addon Finance Indonesia",
+      "address": "Sudirman",
       "stateOrProvince": "Jakarta Pusat",
       "countryOrRegion": "Indonesia",
       "city": "Jakarta",
       "npwp": null,
-      "emailAddress": "enquiry@nipponpaint-indonesia.com",
+      "emailAddress": "addonfinance@addonfinance.com",
       "businessPhone": "021-6900546",
       "faxNo": "021-6900546",
       "zipOrPostalCode": "14430"
     },
     {
-      "supplierCode": "SUP-PACK05",
-      "supplierName": "PT Indah Kemas",
-      "address": "Kw. Industri Pulogadung, Jl. Rw. Terate II No.16, Jatinegara, Kec. Cakung, Kota Jakarta Timur",
+      "supplierCode": "LDP00001",
+      "supplierName": "PT Lintas Data Prima",
+      "address": "Kuningan",
       "stateOrProvince": "Jakarta Timur",
       "countryOrRegion": "Indonesia",
       "city": "Jakarta",
       "npwp": null,
-      "emailAddress": "isna.ardiyana@forisa.co.id",
+      "emailAddress": "ldp@ldp.com",
       "businessPhone": "021-4608847",
       "faxNo": "021-4608847",
-      "zipPrPostalCode": "13930"
+      "zipOrPostalCode": "13930"
     }
   ]
 }

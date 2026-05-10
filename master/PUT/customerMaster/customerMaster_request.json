@@ -71,24 +71,24 @@
     {
       "data": [
         {
-          "uuid": "68078d50-24fb-4619-982b-c55e2b6c69e4",
-          "customerCode": "CST001",
-          "customerName": "Indonesian Armed Forces",
-          "address": "Jl. Merdeka Barat No. 3, Gambir",
-          "city": "Jakarta Pusat",
-          "province": "DKI Jakarta",
-          "country": "Indonesia",
-          "npwp": "01.234.567.8-901.000"
+            "uuid": "37d172d2-8ad3-4c75-a878-28cd5bc7f45c",
+            "customerCode": "ADDON",
+            "customerName": "PT Addon Finance Indonesia",
+            "address": "Yogyakarta - Edit",
+            "city": "Yogyakarta",
+            "province": "DIY",
+            "country": "INDONESIA",
+            "npwp": null
         },
         {
-          "uuid": "25586f08-785b-4901-9ef6-ac533072399e",
-          "customerCode": "CST002",
-          "customerName": "Indonesian National Police",
-          "address": "Jl. Trunojoyo No. 3",
-          "city": "Jakarta Selatan",
-          "province": "DKI Jakarta",
-          "country": "Indonesia",
-          "npwp": null
+            "uuid": "f4de1728-a5f0-4273-acbd-d38b590f5024",
+            "customerCode": "LDP",
+            "customerName": "PT Lintas Data Prima",
+            "address": "Yogyakarta",
+            "city": "Yogyakarta",
+            "province": "DIY",
+            "country": "INDONESIA",
+            "npwp": "192.221.233.111"
         }
       ]
     }

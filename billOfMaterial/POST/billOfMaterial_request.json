@@ -47,25 +47,14 @@
   "additionalProperties": false,
  
   "payload examples": [
-    {
-      "orderNO": "FG-RAK-001",
+      {
+      "orderNO": "ADDON/SO/1",
       "materialCode": "RM-001",
       "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "M",
+      "sizeFinishGoodCode": "XL",
       "orderQty": 100,
       "consumption": 0.2,
-      "unitCode": "KGM",
-      "lineItemNo": 100
-    },
-    {
-      "orderNO": "FG-RAK-001",
-      "materialCode": "HW-001",
-      "colorFinishGood": "Black",
-      "sizeFinishGoodCode": "L",
-      "orderQty": 32,
-      "consumption": 30,
-      "unitCode": "PCE",
-      "lineItemNo": 101
-    }
+      "unitCode": "KGM"
+      }
   ]
 }

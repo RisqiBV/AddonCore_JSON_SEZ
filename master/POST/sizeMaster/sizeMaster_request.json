@@ -20,24 +20,12 @@
   
   "payload examples": [
     {
-      "sizeCode": "42",
-      "sizeDescription": "42"
+      "sizeCode": "45",
+      "sizeDescription": "45"
     },
     {
-      "sizeCode": "42,5",
-      "sizeDescription": "42.5"
-    },
-    {
-      "sizeCode": "L",
-      "sizeDescription": "Large"
-    },
-    {
-      "sizeCode": "All",
-      "sizeDescription": "All Size"
-    },
-    {
-      "sizeCode": "M",
-      "sizeDescription": "Medium"
+      "sizeCode": "47",
+      "sizeDescription": "47"
     }
   ]
 }

@@ -44,14 +44,14 @@
     {
       "data": [
         {
-          "uuid": "5f44ae17-cb26-4444-a398-3d12b8eb8f75",
-          "sizeCode": "3XL",
-          "sizeDescription": "Extra Extra Extra Large"
+          "uuid": "19c0e698-f7bb-4fe3-81ff-d55d74b4376c",
+          "sizeCode": "45",
+          "sizeDescription": "45 Revision"
         },
         {
-          "uuid": "bfe8e12b-5e09-4144-ac8c-535469789bda",
-          "sizeCode": "4XL",
-          "sizeDescription": "Super Jumbo Size"
+          "uuid": "d77cf676-a7cb-4c4e-912a-bc0d20f58f10",
+          "sizeCode": "47",
+          "sizeDescription": "47 Revision"
         }
       ]
     }

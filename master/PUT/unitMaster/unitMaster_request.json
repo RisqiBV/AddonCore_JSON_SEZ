@@ -50,16 +50,16 @@
     {
       "data": [
         {
-          "uuid": "e67a1f63-8d46-4ac2-84f6-27caa62dd56f",
-          "internalUnitCode": "Cm",
-          "unitDescription": "Centimeter (Updated)",
-          "aliasUnitCode": "CMT"
+            "uuid": "df94214c-579d-47a6-bb97-d30d4fa54ea0",
+            "internalUnitCode": "LTR",
+            "unitDescription": "Litre(Internal) - Revision",
+            "aliasUnitCode": "LTR"
         },
         {
-          "uuid": "0157eda6-d9e8-46ce-a6c0-0ee31cbb3c8a",
-          "internalUnitCode": "Roll",
-          "unitDescription": "Roll / Updated",
-          "aliasUnitCode": "ROLL"
+            "uuid": "db50cb54-4792-4aba-9c91-b233e6d0abd5",
+            "internalUnitCode": "M",
+            "unitDescription": "Meter(1) - Revision",
+            "aliasUnitCode": "MTR"
         }
       ]
     }

@@ -25,14 +25,14 @@
   
   "payload examples": [
     {
-      "internalUnitCode": "Cm",
-      "unitDescription": "Centi Metre",
-      "aliasUnitCode": "CMT"
+      "internalUnitCode": "LTR",
+      "unitDescription": "Litre(Internal)",
+      "aliasUnitCode": "LTR"
     },
     {
-      "internalUnitCode": "Roll",
-      "unitDescription": "Roll",
-      "aliasUnitCode": "RO"
+      "internalUnitCode": "M",
+      "unitDescription": "Meter(1)",
+      "aliasUnitCode": "MTR"
     }
   ]
 }

@@ -34,18 +34,18 @@
   
   "payload examples": [
     {
-      "itemCode": "RM-001",
-      "itemName": "Steel Plate 2 mm",
+      "itemCode": "0001.0001.0001.RM",
+      "itemName": "Raw Material",
       "categoryCodeBC": 1,
-      "hsCode": "58041011",
-      "categoryInternal": "RawMaterial"
+      "hsCode": "98979695",
+      "categoryInternal": "Raw Material"
     },
     {
-      "itemCode": "MSN-001",
-      "itemName": "Bending Machine",
-      "categoryCodeBC": 5,
-      "hsCode": "58031011",
-      "categoryInternal": "Mechine"
+      "itemCode": "0002.0002.0002.RM",
+      "itemName": "Raw Material 02",
+      "categoryCodeBC": 1,
+      "hsCode": "11223344",
+      "categoryInternal": "Raw Material"
     }
   ]
 }

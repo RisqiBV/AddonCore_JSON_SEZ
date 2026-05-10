@@ -1,0 +1,192 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Customer Master Response Schema",
+  "description": "JSON response contract for updating Customer Master data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Customer Master data is successfully updated.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Customer Master data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuid",
+                "description": "Unique identifier of Customer Master data."
+              },
+              "customerCode": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Customer code."
+              },
+              "customerName": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "Customer name."
+              },
+              "address": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "Customer address."
+              },
+              "city": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "Customer city."
+              },
+              "province": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "Customer province."
+              },
+              "country": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Customer country."
+              },
+              "npwp": {
+                "type": ["string", "null"],
+                "maxLength": 50,
+                "description": "Tax ID."
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Date and time when the data was updated."
+              }
+            },
+            "required": [
+              "uuid",
+              "customerCode",
+              "customerName",
+              "address",
+              "city",
+              "province",
+              "country",
+              "npwp",
+              "updatedAt"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Data Master Customer successfully updated",
+      "data": [
+        {
+          "uuid": "37d172d2-8ad3-4c75-a878-28cd5bc7f45c",
+          "customerCode": "ADDON               ",
+          "customerName": "PT Addon Finance Indonesia",
+          "address": "Yogyakarta - Edit",
+          "city": "Yogyakarta",
+          "province": "DIY",
+          "country": "INDONESIA",
+          "npwp": null,
+          "updatedAt": "2026-05-10 13:06:45.816"
+        },
+        {
+          "uuid": "f4de1728-a5f0-4273-acbd-d38b590f5024",
+          "customerCode": "LDP                 ",
+          "customerName": "PT Lintas Data Prima",
+          "address": "Yogyakarta",
+          "city": "Yogyakarta",
+          "province": "DIY",
+          "country": "INDONESIA",
+          "npwp": "192.221.233.111",
+          "updatedAt": "2026-05-10 13:06:46.065"
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field must be a valid UUID."
+        ],
+        "customerCode": [
+          "The customerCode field is required."
+        ],
+        "customerName": [
+          "The customerName field is required."
+        ],
+        "address": [
+          "The address field is required."
+        ],
+        "country": [
+          "The country field is required."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Data Master Customer not found",
+      "errors": {
+        "uuid": [
+          "Customer Master data with the specified uuid was not found."
+        ]
+      }
+    },
+    "duplicateError": {
+      "status": "error",
+      "message": "Duplicate data found",
+      "errors": {
+        "duplicate": [
+          "The submitted Customer Master data already exists."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}
