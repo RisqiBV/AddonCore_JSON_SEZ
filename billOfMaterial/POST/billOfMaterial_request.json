@@ -49,7 +49,7 @@
   "payload examples": [
       {
       "orderNO": "ADDON/SO/1",
-      "materialCode": "RM-001",
+      "materialCode": "Rawmaterial001",
       "colorFinishGood": "Black",
       "sizeFinishGoodCode": "XL",
       "orderQty": 100,

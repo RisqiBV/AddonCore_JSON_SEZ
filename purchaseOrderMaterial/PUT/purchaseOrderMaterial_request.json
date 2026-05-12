@@ -138,38 +138,38 @@
     {
       "data": [
         {
-          "header": {
-            "uuidHeader": "5e7b9981-ea4e-40fd-b133-498bc0af80c0",
-            "supplierCode": "SUP-PIPE028",
-            "poDate": "10-08-2026",
-            "poNo": "PO/AND/003/2026",
-            "etdActual": "10-08-2026",
-            "eta": "25-09-2026",
-            "fc": "POI"
-          },
-          "details": [
-            {
-              "uuid": "5a6515d6-4e45-4968-a13c-41a7c637c1cc",
-              "additionalRemarks": "Update qty",
-              "orderNo": "FG-RAK-0028",
-              "itemCode": "HW-0018",
-              "vendorQty": 400,
-              "vendorUnitCode": "PCS",
-              "unitPrice": 12000,
-              "currency": "IDR",
-              "lineItemNo": 102
+            "header": {
+                "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
+                "supplierCode": "ADDON",
+                "poDate": "05-05-2026",
+                "poNo": "PO/ADDON/I/IV",
+                "etdActual": "25-05-2026",
+                "eta": "20-05-2026",
+                "fc": "PO"
             },
-            {
-              "additionalRemarks": "New Item (without uuid)",
-              "orderNo": "FG-RAK-0038ADD",
-              "itemCode": "HW-0030",
-              "vendorQty": 1120,
-              "vendorUnitCode": "PCE",
-              "unitPrice": 5000,
-              "currency": "IDR",
-              "lineItemNo": 104
-            }
-          ]
+            "details": [
+                {
+                    "uuid": "0ee777cb-358a-471b-b677-7b3f3a864668",
+                    "additionalRemarks": "Edit Remarks",
+                    "orderNo": "ADDON/ORDER/0001/V/2026",
+                    "itemCode": "Rawmaterial001",
+                    "vendorQty": "20.00",
+                    "vendorUnitCode": "KGM",
+                    "unitPrice": "1.00000",
+                    "currency": "USD",
+                    "lineItemNo": 1
+                },
+                {
+                    "additionalRemarks": "Addint Item",
+                    "orderNo": "ADDON/ORDER/0001/V/2026",
+                    "itemCode": "Rawmaterial002",
+                    "vendorQty": "10.00",
+                    "vendorUnitCode": "KGM",
+                    "unitPrice": "6.00000",
+                    "currency": "USD",
+                    "lineItemNo": 1
+                }               
+            ]
         }
       ]
     }

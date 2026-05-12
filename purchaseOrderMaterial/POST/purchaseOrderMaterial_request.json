@@ -102,58 +102,26 @@
   "additionalProperties": false,
   
   "payload examples": [
-    {
+  {
       "header": {
-        "supplierCode": "SUP-STEEL01",
-        "poDate": "20/08/2025",
-        "poNo": "PO/KWL/001/2025",
-        "etdActual": "09-08-2025",
-        "eta": "22/09/2025",
+        "supplierCode": "ADDON",
+        "poDate": "05/05/2026",
+        "poNo": "PO/ADDON/I/IV",
+        "etdActual": "25/05/2026",
+        "eta": "20/05/2026",
         "fc": "PO"
       },
       "details": [
         {
-          "additionalRemarks": null,
-          "orderNo": "FG-RAK-001",
-          "itemCode": "RM-001",
-          "vendorQty": 26.4,
+          "additionalRemarks": "Remarks",
+          "orderNo": "ADDON/ORDER/0001/V/2026",
+          "itemCode": "Rawmaterial001",
+          "vendorQty": 20,
           "vendorUnitCode": "KGM",
-          "unitPrice": 10,
+          "unitPrice": 1,
           "currency": "USD",
-          "lineItemNo": 100
-        },
-        {
-          "additionalRemarks": null,
-          "orderNo": "FG-RAK-001",
-          "itemCode": "RM-002",
-          "vendorQty": 288.71,
-          "vendorUnitCode": "YRD",
-          "unitPrice": 3,
-          "currency": "USD",
-          "lineItemNo": 101
-        }
-      ]
-    },
-    {
-      "header": {
-        "supplierCode": "SUP-PIPE02",
-        "poDate": "09-08-2025",
-        "poNo": "PO/KWL/002/2025",
-        "etdActual": "09-08-2025",
-        "eta": "24/09/2025",
-        "fc": "PO"
-      },
-      "details": [
-        {
-          "additionalRemarks": null,
-          "orderNo": "FG-RAK-002",
-          "itemCode": "HW-001",
-          "vendorQty": 30,
-          "vendorUnitCode": "PCE",
-          "unitPrice": 1000,
-          "currency": "IDR",
-          "lineItemNo": 102
-        }
+          "lineItemNo": 1
+        }              
       ]
     }
   ]

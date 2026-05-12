@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Order BOM Response Schema",
+  "title": "BOM Response Schema",
   "description": "JSON response contract for Bill of Material API.",
   "oneOf": [
     {
       "title": "Success Response",
-      "description": "Response returned when Bill of Material data is successfully saved.",
+      "description": "Response returned when BOM data is successfully saved.",
       "type": "object",
       "properties": {
         "status": {
@@ -19,7 +19,7 @@
         },
         "data": {
           "type": "array",
-          "description": "Saved Bill of Material data.",
+          "description": "Saved BOM data.",
           "items": {
             "type": "object",
             "properties": {
@@ -31,12 +31,12 @@
               "orderNO": {
                 "type": "string",
                 "maxLength": 25,
-                "description": "Production Order number (PRO No)."
+                "description": "Production Order number."
               },
               "materialCode": {
                 "type": "string",
                 "maxLength": 50,
-                "description": "Material ItemCode."
+                "description": "Material item code."
               },
               "colorFinishGood": {
                 "type": "string",
@@ -87,7 +87,7 @@
     },
     {
       "title": "General Error Response",
-      "description": "Response returned when validation, duplicate data, not found, or server error occurs.",
+      "description": "Response returned when validation, duplicate data, related data not found, or server error occurs.",
       "type": "object",
       "properties": {
         "status": {
@@ -120,9 +120,9 @@
       "message": "Data BOM successfully saved",
       "data": [
         {
-          "uuid": "5a094b32-5009-43f6-a44d-f50b9713c4ed",
+          "uuid": "6bad93a8-2a9b-463f-9ba1-b0acc5ad7d66",
           "orderNO": "ADDON/SO/1",
-          "materialCode": "RM-001",
+          "materialCode": "Rawmaterial001",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "XL",
           "orderQty": 100,
@@ -136,11 +136,20 @@
       "status": "error",
       "message": "Validation failed",
       "errors": {
+        "orderNO": [
+          "The orderNO field is required."
+        ],
         "materialCode": [
           "The materialCode field is required."
         ],
         "orderQty": [
           "The orderQty must be a number."
+        ],
+        "consumption": [
+          "The consumption must be a number."
+        ],
+        "unitCode": [
+          "The unitCode field is required."
         ]
       }
     },
@@ -153,12 +162,18 @@
         ]
       }
     },
-    "notFoundError": {
+    "relatedDataNotFoundError": {
       "status": "error",
       "message": "Related data not found",
       "errors": {
         "orderNO": [
-          "Order number was not found."
+          "Sales Order data with the specified orderNO was not found."
+        ],
+        "materialCode": [
+          "Item Master data with the specified materialCode was not found."
+        ],
+        "unitCode": [
+          "Unit Master data with the specified unitCode was not found."
         ]
       }
     },

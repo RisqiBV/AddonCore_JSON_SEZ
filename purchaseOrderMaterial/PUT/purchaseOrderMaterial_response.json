@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Purchase Order Material Response Schema",
+  "description": "JSON response contract for updating Purchase Order Material data. This response may include updated detail rows and newly inserted detail rows from the upsert process.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Purchase Order Material data is successfully updated or processed through upsert.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "code": {
+          "type": "string",
+          "enum": ["SUCCESS"],
+          "description": "Response code."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Updated Purchase Order Material data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Updated Purchase Order Material header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Unique identifier of the Purchase Order Material header."
+                  },
+                  "supplierCode": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "Supplier code."
+                  },
+                  "poDate": {
+                    "type": "string",
+                    "description": "PO date. Format: DD-MM-YYYY."
+                  },
+                  "poNo": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "PO number."
+                  },
+                  "etdActual": {
+                    "type": ["string", "null"],
+                    "description": "ETD Actual."
+                  },
+                  "eta": {
+                    "type": ["string", "null"],
+                    "description": "ETA."
+                  },
+                  "fc": {
+                    "type": "string",
+                    "maxLength": 15,
+                    "description": "PO type."
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time when the header data was updated."
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "supplierCode",
+                  "poDate",
+                  "poNo",
+                  "etdActual",
+                  "eta",
+                  "fc",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Updated and inserted Purchase Order Material detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier of the Purchase Order Material detail."
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier of the related Purchase Order Material header."
+                    },
+                    "additionalRemarks": {
+                      "type": ["string", "null"],
+                      "description": "Additional remarks."
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25,
+                      "description": "Sales or production order number."
+                    },
+                    "itemCode": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "description": "Material item code."
+                    },
+                    "vendorQty": {
+                      "type": ["number", "string"],
+                      "description": "Vendor quantity."
+                    },
+                    "vendorUnitCode": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Vendor unit code."
+                    },
+                    "unitPrice": {
+                      "type": ["number", "string"],
+                      "description": "Unit price."
+                    },
+                    "currency": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Currency code."
+                    },
+                    "lineItemNo": {
+                      "type": ["number", "string", "null"],
+                      "description": "Line item number from SAP."
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Date and time when the detail data was updated or inserted."
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "additionalRemarks",
+                    "orderNo",
+                    "itemCode",
+                    "vendorQty",
+                    "vendorUnitCode",
+                    "unitPrice",
+                    "currency",
+                    "lineItemNo",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "code", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, duplicate data, related data not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "code": {
+          "type": "string",
+          "description": "Error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "code": "SUCCESS",
+      "message": "Data Purchase Order Material successfully updated",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
+            "supplierCode": "ADDON",
+            "poDate": "05-05-2026",
+            "poNo": "PO/ADDON/I/IV",
+            "etdActual": "25-05-2026",
+            "eta": "20-05-2026",
+            "fc": "PO",
+            "updatedAt": "2026-05-12 06:21:10.630"
+          },
+          "details": [
+            {
+              "uuid": "0ee777cb-358a-471b-b677-7b3f3a864668",
+              "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
+              "additionalRemarks": "Edit Remarks",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "itemCode": "Rawmaterial001",
+              "vendorQty": "20.00",
+              "vendorUnitCode": "KGM       ",
+              "unitPrice": "1.00000",
+              "currency": "USD",
+              "lineItemNo": "1",
+              "updatedAt": "2026-05-12 06:21:10.630"
+            },
+            {
+              "uuid": "e7d44048-ed49-48d6-ad33-5a9b7b5c124e",
+              "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
+              "additionalRemarks": "Addint Item",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "itemCode": "Rawmaterial002",
+              "vendorQty": "10.00",
+              "vendorUnitCode": "KGM       ",
+              "unitPrice": "6.00000",
+              "currency": "USD",
+              "lineItemNo": "1",
+              "updatedAt": "2026-05-12 06:21:10.630"
+            }
+          ]
+        }
+      ]
+    },
+    "validationError": {
+      "status": "error",
+      "code": "VALIDATION_ERROR",
+      "message": "Validation failed",
+      "errors": {
+        "data.0.header.uuidHeader": [
+          "The data.0.header.uuidHeader field is required.",
+          "The data.0.header.uuidHeader must be a valid UUID."
+        ],
+        "data.0.header.supplierCode": [
+          "The data.0.header.supplierCode field is required."
+        ],
+        "data.0.header.poNo": [
+          "The data.0.header.poNo field is required."
+        ],
+        "data.0.details": [
+          "The data.0.details field is required and must contain at least one item."
+        ],
+        "data.0.details.0.itemCode": [
+          "The data.0.details.0.itemCode field is required."
+        ],
+        "data.0.details.0.vendorQty": [
+          "The data.0.details.0.vendorQty must be a number."
+        ],
+        "data.0.details.0.unitPrice": [
+          "The data.0.details.0.unitPrice must be a number."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "code": "NOT_FOUND",
+      "message": "Data Purchase Order Material not found",
+      "errors": {
+        "uuidHeader": [
+          "Purchase Order Material header data with the specified uuidHeader was not found."
+        ]
+      }
+    },
+    "relatedDataNotFoundError": {
+      "status": "error",
+      "code": "RELATED_DATA_NOT_FOUND",
+      "message": "Related data not found",
+      "errors": {
+        "supplierCode": [
+          "Supplier Master data with the specified supplierCode was not found."
+        ],
+        "orderNo": [
+          "Sales Order data with the specified orderNo was not found."
+        ],
+        "itemCode": [
+          "Item Master data with the specified itemCode was not found."
+        ],
+        "vendorUnitCode": [
+          "Unit Master data with the specified vendorUnitCode was not found."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "code": "SERVER_ERROR",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}
