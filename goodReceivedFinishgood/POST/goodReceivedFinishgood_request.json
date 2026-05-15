@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Good Received Finished Good (Header–Detail) Schema",
-  "description": "One object represents a single GR-FG transaction: header + detail lines.",
+  "title": "Good Received Finished Good Request Schema",
+  "description": "JSON contract for Good Received Finished Good data. One object represents a single GR-FG transaction with header and detail lines.",
   "type": "object",
   "properties": {
     "header": {
       "type": "object",
-      "description": "GR-FG header section.",
+      "description": "Good Received Finished Good header section.",
       "properties": {
         "transactionNo": {
           "type": "string",
@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (DD-MM-YYYY)."
+          "description": "Transaction date. Expected format: DD-MM-YYYY."
         }
       },
       "required": [
@@ -24,10 +24,9 @@
       ],
       "additionalProperties": false
     },
-
     "details": {
       "type": "array",
-      "description": "Detail lines for this GR-FG transaction.",
+      "description": "Good Received Finished Good detail lines.",
       "minItems": 1,
       "items": {
         "type": "object",
@@ -40,8 +39,8 @@
           "poCust": {
             "type": "string",
             "maxLength": 50,
-            "description": "Customer PO reference related to Order Number."
-          },          
+            "description": "Customer PO reference related to order number."
+          },
           "colorFinishGood": {
             "type": "string",
             "maxLength": 250,
@@ -54,7 +53,30 @@
           },
           "qty": {
             "type": "integer",
-            "description": "Quantity (integer)."
+            "description": "Quantity."
+          },
+          "itemCode": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Finished good item code."
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
+          },
+          "lineItemnoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
           }
         },
         "required": [
@@ -62,7 +84,9 @@
           "poCust",
           "colorFinishGood",
           "sizeFinishGoodCode",
-          "qty"
+          "qty",
+          "movementType",
+          "lineItemNo"
         ],
         "additionalProperties": false
       }
@@ -73,27 +97,36 @@
     "details"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "payloadExamples": [
     {
       "header": {
-        "transactionNo": "GRFG/001/2025",
-        "transactionDate": "09-08-2025"
+        "transactionNo": "GRFG/2026/0001",
+        "transactionDate": "15-05-2026"
       },
       "details": [
         {
-          "orderNo": "FG-RAK-001",
-          "poCust": "ADIDAS/PO/0001",
+          "orderNo": "ADDON/ORDER/0001/V/2026",
+          "poCust": "CUSTOMER/PO-1",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "M",
-          "qty": 10
+          "qty": 10,
+          "itemCode": "FG-001",
+          "movementType": "IN",
+          "reference": null,
+          "lineItemNo": 1,
+          "lineItemnoRef": null
         },
         {
-          "orderNo": "FG-RAK-002",
-          "poCust": "ADIDAS/PO/0002",
+          "orderNo": "ADDON/ORDER/0001/V/2026",
+          "poCust": "CUSTOMER/PO-2",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "L",
-          "qty": 12
+          "qty": 12,
+          "itemCode": "FG-002",
+          "movementType": "IN",
+          "reference": "PROD/2026/0001",
+          "lineItemNo": 2,
+          "lineItemnoRef": 1
         }
       ]
     }

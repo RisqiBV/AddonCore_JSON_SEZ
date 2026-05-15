@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Good Dispatch General (Header–Detail) Schema",
-  "description": "One object represents a single general dispatch: header + detail lines.",
+  "title": "Good Dispatch General Request Schema",
+  "description": "JSON contract for Good Dispatch General data. One object represents a single general dispatch transaction with header and detail lines.",
   "type": "object",
   "properties": {
     "header": {
       "type": "object",
-      "description": "Dispatch header section.",
+      "description": "Good Dispatch General header section.",
       "properties": {
         "transactionNo": {
           "type": "string",
@@ -15,41 +15,41 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Dispatch date (DD-MM-YYYY)."
+          "description": "Dispatch transaction date. Expected format: DD-MM-YYYY."
         },
         "dispatchTo": {
           "type": "string",
           "maxLength": 50,
-          "description": "Dispatch destination (defaults to 'Production')."
+          "description": "Dispatch destination. Default value is Production."
         },
         "deliveryNoteNo": {
           "type": ["string", "null"],
           "maxLength": 50,
-          "description": "Delivery note number (optional)."
+          "description": "Delivery note number."
         },
         "bcCode": {
           "type": ["string", "null"],
           "maxLength": 10,
-          "description": "BC (customs) code (optional)."
+          "description": "BC customs document code."
         },
         "bcNo": {
           "type": ["string", "null"],
           "maxLength": 10,
-          "description": "BC document number (optional)."
+          "description": "BC customs document number."
         },
         "bcDate": {
           "type": ["string", "null"],
-          "description": "BC document date (optional, e.g., DD-MM-YYYY)."
+          "description": "BC customs document date. Expected format: DD-MM-YYYY."
         },
         "deliverTo": {
           "type": ["string", "null"],
           "maxLength": 200,
-          "description": "Receiver name/address (optional)."
+          "description": "Receiver name or destination address."
         },
         "vehicleId": {
           "type": ["string", "null"],
           "maxLength": 50,
-          "description": "Vehicle plate/ID (optional)."
+          "description": "Vehicle plate number or vehicle ID."
         }
       },
       "required": [
@@ -59,17 +59,16 @@
       ],
       "additionalProperties": false
     },
-
     "details": {
       "type": "array",
-      "description": "Detail item lines for this dispatch.",
+      "description": "Good Dispatch General detail lines.",
       "minItems": 1,
       "items": {
         "type": "object",
         "properties": {
           "qty": {
             "type": "number",
-            "description": "Quantity (decimal(18,4))."
+            "description": "Quantity. Database type: decimal(18,4)."
           },
           "itemCode": {
             "type": "string",
@@ -79,21 +78,41 @@
           "unitCode": {
             "type": "string",
             "maxLength": 10,
-            "description": "Unit of measure."
+            "description": "Unit of measure code."
           },
           "nw": {
             "type": ["number", "null"],
-            "description": "Net weight (optional)."
+            "description": "Net weight."
           },
           "gw": {
             "type": ["number", "null"],
-            "description": "Gross weight (optional)."
+            "description": "Gross weight."
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
+          },
+          "lineItemnoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
           }
         },
         "required": [
           "qty",
           "itemCode",
-          "unitCode"
+          "unitCode",
+          "movementType",
+          "lineItemNo"
         ],
         "additionalProperties": false
       }
@@ -104,12 +123,11 @@
     "details"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "payloadExamples": [
     {
       "header": {
-        "transactionNo": "2025081000123",
-        "transactionDate": "09-08-2025",
+        "transactionNo": "GDG/2026/0001",
+        "transactionDate": "15-05-2026",
         "dispatchTo": "Production",
         "deliveryNoteNo": null,
         "bcCode": null,
@@ -121,32 +139,51 @@
       "details": [
         {
           "qty": 5,
-          "itemCode": "MSN-001",
-          "unitCode": "KGM",
+          "itemCode": "MCH1",
+          "unitCode": "PCE",
           "nw": null,
-          "gw": null
+          "gw": null,
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNo": 1,
+          "lineItemnoRef": null
+        },
+        {
+          "qty": 10,
+          "itemCode": "MCH2",
+          "unitCode": "PCE",
+          "nw": 20,
+          "gw": 22,
+          "movementType": "OUT",
+          "reference": "REQ/2026/0001",
+          "lineItemNo": 2,
+          "lineItemnoRef": 1
         }
       ]
     },
     {
       "header": {
-        "transactionNo": "2025081000124",
-        "transactionDate": "09-08-2025",
+        "transactionNo": "GDG/2026/0002",
+        "transactionDate": "15-05-2026",
         "dispatchTo": "Production",
-        "deliveryNoteNo": "SJ/002/2025",
+        "deliveryNoteNo": "SJ/2026/0002",
         "bcCode": "632",
         "bcNo": "000013",
-        "bcDate": "09-08-2025",
-        "deliverTo": "PT Indah Kemas",
-        "vehicleId": "B 3451 BTS"
+        "bcDate": "15-05-2026",
+        "deliverTo": "PT Addon Finance Indonesia",
+        "vehicleId": "B 1234 ADD"
       },
       "details": [
         {
-          "qty": 10000,
+          "qty": 100,
           "itemCode": "SPR-001",
-          "unitCode": "CM",
-          "nw": 2,
-          "gw": 2.2
+          "unitCode": "KGM",
+          "nw": 50,
+          "gw": 52,
+          "movementType": "OUT",
+          "reference": "GDG-REF-001",
+          "lineItemNo": 1,
+          "lineItemnoRef": null
         }
       ]
     }

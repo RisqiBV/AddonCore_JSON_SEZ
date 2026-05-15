@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Routing Production (Header–Detail) Schema",
-  "description": "One object represents a single routing transaction: header + detail lines.",
+  "title": "Routing Production Request Schema",
+  "description": "JSON contract for Routing Production data. One object represents a single routing transaction with header and detail lines.",
   "type": "object",
   "properties": {
     "header": {
       "type": "object",
-      "description": "Routing header section.",
+      "description": "Routing Production header section.",
       "properties": {
         "transactionNo": {
           "type": "string",
@@ -15,12 +15,12 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Transaction date (e.g., DD-MM-YYYY)."
+          "description": "Transaction date. Expected format: DD-MM-YYYY."
         },
         "process": {
           "type": "string",
           "maxLength": 50,
-          "description": "Production process name (e.g., Cutting, Assembling)."
+          "description": "Production process name, for example Cutting or Assembling."
         }
       },
       "required": [
@@ -30,10 +30,9 @@
       ],
       "additionalProperties": false
     },
-
     "details": {
       "type": "array",
-      "description": "Detail lines for this routing transaction.",
+      "description": "Routing Production detail lines.",
       "minItems": 1,
       "items": {
         "type": "object",
@@ -46,7 +45,7 @@
           "poCust": {
             "type": "string",
             "maxLength": 50,
-            "description": "Customer PO reference related to Order Number."
+            "description": "Customer PO reference related to order number."
           },
           "colorFinishGood": {
             "type": "string",
@@ -60,7 +59,35 @@
           },
           "qty": {
             "type": "integer",
-            "description": "Quantity (integer)."
+            "description": "Quantity."
+          },
+          "batchNo": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Batch number."
+          },
+          "itemCode": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Item code."
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
+          },
+          "lineItemnoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
           }
         },
         "required": [
@@ -68,7 +95,9 @@
           "poCust",
           "colorFinishGood",
           "sizeFinishGoodCode",
-          "qty"
+          "qty",
+          "movementType",
+          "lineItemNo"
         ],
         "additionalProperties": false
       }
@@ -79,37 +108,61 @@
     "details"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "payloadExamples": [
     {
       "header": {
-        "transactionNo": "GRWIP/001/2025",
-        "transactionDate": "09-08-2025",
+        "transactionNo": "GRWIP/2026/0001",
+        "transactionDate": "15-05-2026",
         "process": "Cutting"
       },
       "details": [
         {
-          "orderNo": "FG-RAK-001",
-          "poCust": "ADIDAS/PO/0001",
+          "orderNo": "ADDON/ORDER/0001/V/2026",
+          "poCust": "CUSTOMER/PO-1",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "M",
-          "qty": 10
+          "qty": 10,
+          "batchNo": "BATCH001",
+          "itemCode": "FG-001",
+          "movementType": "IN",
+          "reference": null,
+          "lineItemNo": 1,
+          "lineItemnoRef": null
+        },
+        {
+          "orderNo": "ADDON/ORDER/0001/V/2026",
+          "poCust": "CUSTOMER/PO-2",
+          "colorFinishGood": "Black",
+          "sizeFinishGoodCode": "L",
+          "qty": 12,
+          "batchNo": null,
+          "itemCode": "FG-002",
+          "movementType": "IN",
+          "reference": "CUT/2026/0001",
+          "lineItemNo": 2,
+          "lineItemnoRef": 1
         }
       ]
     },
     {
       "header": {
-        "transactionNo": "GRWIP/002/2025",
-        "transactionDate": "09-08-2025",
+        "transactionNo": "GRWIP/2026/0002",
+        "transactionDate": "15-05-2026",
         "process": "Assembling"
       },
       "details": [
         {
-          "orderNo": "FG-RAK-002",
-          "poCust": "ADIDAS/PO/0002",
-          "colorFinishGood": "Black",
-          "sizeFinishGoodCode": "L",
-          "qty": 12
+          "orderNo": "ADDON/ORDER/0002/V/2026",
+          "poCust": "CUSTOMER/PO-3",
+          "colorFinishGood": "White",
+          "sizeFinishGoodCode": "XL",
+          "qty": 20,
+          "batchNo": "BATCH002",
+          "itemCode": null,
+          "movementType": "IN",
+          "reference": "ASM/2026/0001",
+          "lineItemNo": 1,
+          "lineItemnoRef": null
         }
       ]
     }

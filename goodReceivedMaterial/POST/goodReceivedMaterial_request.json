@@ -100,6 +100,10 @@
           "lineItemNo": {
             "type": "number",
             "description": "lineItemNo from Purchase Order on SAP"
+          },
+          "batchNo": {
+            "type": "number",
+            "description": "lineItemNo from Purchase Order on SAP"
           }
         },
         "required": [
@@ -144,7 +148,8 @@
           "internalUnitCode": "KGM",
           "unitPrice": 10,
           "rate": 16258,
-          "lineItemNo": 100
+          "lineItemNo": 100,
+          "batchNo": "0000001000"
         },
         {
           "fc": "PO",
@@ -156,7 +161,8 @@
           "internalUnitCode": "CM",
           "unitPrice": 3,
           "rate": 16258,
-          "lineItemNo": 101
+          "lineItemNo": 101,
+          "batchNo": "0000001000"
         }
       ]
     },
@@ -180,7 +186,8 @@
           "internalUnitCode": "PCE",
           "unitPrice": 1000,
           "rate": 16412,
-          "lineItemNo": 102
+          "lineItemNo": 102,
+          "batchNo": "0000001000"
         }
       ]
     }
