@@ -1,42 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Bill of Material DELETE Contract",
-  "description": "API contract for deleting Bill of Material data by uuid. This endpoint does not require a request body.",
-  "type": "object",
-  "endpoint": {
-    "url": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid={uuid}",
-    "method": "DELETE",
-    "contentType": "application/json"
-  },
-  "headers": {
-    "x-addon-key": "{key_anda}",
-    "x-addon-unique-key": "{unique_key_anda}"
-  },
-  "queryParams": {
-    "type": "object",
-    "properties": {
-      "uuid": {
-        "type": "string",
-        "format": "uuid",
-        "description": "Required. UUID of the BOM header to be deleted."
-      }
-    },
-    "required": [
-      "uuid"
-    ],
-    "additionalProperties": false
-  },
+  "method": "DELETE",
+  "url": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid={uuid}",
   "requestBody": null,
-  "examples": [
-    {
-      "description": "Delete Bill of Material by uuid",
-      "method": "DELETE",
-      "url": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid=18a91909-68c8-46d6-acc2-188d20d0d095",
-      "headers": {
-        "x-addon-key": "{your_key}",
-        "x-addon-unique-key": "{your_addon_unique_key}"
-      },
-      "body": null
-    }
-  ]
+  "description": "Delete Bill of Material data by uuid query parameter.",
+  "example": "https://kek.addonbeacukaireport.com/api/core-a/bill-of-material/?uuid=18a91909-68c8-46d6-acc2-188d20d0d095"
 }
