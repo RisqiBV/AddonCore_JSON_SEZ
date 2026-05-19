@@ -112,9 +112,14 @@
             "type": "number",
             "description": "Line item number."
           },
-          "lineItemnoRef": {
+          "lineItemNoRef": {
             "type": ["number", "null"],
             "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit or credit indicator."
           }
         },
         "required": [
@@ -123,7 +128,8 @@
           "qty",
           "unitCode",
           "movementType",
-          "lineItemNo"
+          "lineItemNo",
+          "debitCredit"
         ],
         "additionalProperties": false
       }
@@ -159,7 +165,8 @@
           "movementType": "OUT",
           "reference": null,
           "lineItemNo": 1,
-          "lineItemnoRef": null
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "orderNo": "ADDON/ORDER/0001/V/2026",
@@ -172,7 +179,8 @@
           "movementType": "OUT",
           "reference": "MR/2026/0001",
           "lineItemNo": 2,
-          "lineItemnoRef": 1
+          "lineItemNoRef": 1,
+          "debitCredit": "CREDIT"
         }
       ]
     },
@@ -200,7 +208,8 @@
           "movementType": "RETURN",
           "reference": "RET/2026/0001",
           "lineItemNo": 1,
-          "lineItemnoRef": null
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         }
       ]
     }

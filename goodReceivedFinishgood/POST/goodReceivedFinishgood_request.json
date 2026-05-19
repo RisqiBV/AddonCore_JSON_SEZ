@@ -74,9 +74,14 @@
             "type": "number",
             "description": "Line item number."
           },
-          "lineItemnoRef": {
+          "lineItemNoRef": {
             "type": ["number", "null"],
             "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit or credit indicator."
           }
         },
         "required": [
@@ -86,7 +91,8 @@
           "sizeFinishGoodCode",
           "qty",
           "movementType",
-          "lineItemNo"
+          "lineItemNo",
+          "debitCredit"
         ],
         "additionalProperties": false
       }
@@ -114,7 +120,8 @@
           "movementType": "IN",
           "reference": null,
           "lineItemNo": 1,
-          "lineItemnoRef": null
+          "lineItemNoRef": null,
+          "debitCredit": "DEBIT"
         },
         {
           "orderNo": "ADDON/ORDER/0001/V/2026",
@@ -126,7 +133,8 @@
           "movementType": "IN",
           "reference": "PROD/2026/0001",
           "lineItemNo": 2,
-          "lineItemnoRef": 1
+          "lineItemNoRef": 1,
+          "debitCredit": "DEBIT"
         }
       ]
     }

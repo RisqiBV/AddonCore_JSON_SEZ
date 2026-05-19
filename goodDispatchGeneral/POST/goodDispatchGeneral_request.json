@@ -102,9 +102,14 @@
             "type": "number",
             "description": "Line item number."
           },
-          "lineItemnoRef": {
+          "lineItemNoRef": {
             "type": ["number", "null"],
             "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit or credit indicator."
           }
         },
         "required": [
@@ -112,7 +117,8 @@
           "itemCode",
           "unitCode",
           "movementType",
-          "lineItemNo"
+          "lineItemNo",
+          "debitCredit"
         ],
         "additionalProperties": false
       }
@@ -146,7 +152,8 @@
           "movementType": "OUT",
           "reference": null,
           "lineItemNo": 1,
-          "lineItemnoRef": null
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "qty": 10,
@@ -157,7 +164,8 @@
           "movementType": "OUT",
           "reference": "REQ/2026/0001",
           "lineItemNo": 2,
-          "lineItemnoRef": 1
+          "lineItemNoRef": 1,
+          "debitCredit": "CREDIT"
         }
       ]
     },
@@ -183,7 +191,8 @@
           "movementType": "OUT",
           "reference": "GDG-REF-001",
           "lineItemNo": 1,
-          "lineItemnoRef": null
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         }
       ]
     }
