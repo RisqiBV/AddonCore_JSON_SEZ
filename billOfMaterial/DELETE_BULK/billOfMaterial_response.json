@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bulk Delete BOM Response Schema",
+  "description": "Request and response schema for Bulk Delete Bill of Material API",
+  "oneOf": [
+    {
+      "title": "Request",
+      "description": "Request to delete BOM records",
+      "type": "object",
+      "properties": {
+        "uuids": {
+          "type": "array",
+          "description": "List of BOM detail UUIDs to delete",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "uuids"
+      ],
+      "additionalProperties": false,
+      "example": {
+        "uuids": [
+          "712097db-a917-4e12-8a72-9baaa8563bc7",
+          "6bad93a8-2a9b-463f-9ba1-b0acc5ad7d66",
+          "2d833895-6abc-64cd-c80d-cf5f170c31c6"
+        ]
+      }
+    },
+    {
+      "title": "Response",
+      "description": "Response returned after Bulk Delete BOM operation",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success", "error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "deleted_count": {
+          "type": ["number", "null"],
+          "description": "Number of BOM records deleted (present only on success)"
+        },
+        "data": {
+          "type": ["object", "null"],
+          "properties": {
+            "uuids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "description": "List of UUIDs that were deleted"
+            }
+          },
+          "required": ["uuids"],
+          "additionalProperties": false
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific or general error details (present only on error)",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "required": ["status", "message"],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "status": "success",
+          "message": "Bulk delete BOM success",
+          "deleted_count": 3,
+          "data": {
+            "uuids": [
+              "712097db-a917-4e12-8a72-9baaa8563bc7",
+              "6bad93a8-2a9b-463f-9ba1-b0acc5ad7d66",
+              "2d833895-6abc-64cd-c80d-cf5f170c31c6"
+            ]
+          },
+          "errors": null
+        },
+        {
+          "status": "error",
+          "message": "Validation failed",
+          "deleted_count": null,
+          "data": null,
+          "errors": {
+            "uuids": [
+              "The uuids field must contain at least 1 item."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bulk Delete BOM Request Schema",
+  "description": "Request schema for bulk deleting Bill of Material records",
+  "type": "object",
+  "properties": {
+    "uuids": {
+      "type": "array",
+      "description": "List of BOM detail UUIDs to delete",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["uuids"],
+  "additionalProperties": false,
+  "example": {
+    "uuids": [
+      "712097db-a917-4e12-8a72-9baaa8563bc7",
+      "6bad93a8-2a9b-463f-9ba1-b0acc5ad7d66",
+      "2d833895-6abc-64cd-c80d-cf5f170c31c6"
+    ]
+  }
+}
