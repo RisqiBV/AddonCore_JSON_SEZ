@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Received Scrap Response Schema",
+  "description": "JSON response contract for Good Received Scrap API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Good Received Scrap data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved Good Received Scrap data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Good Received Scrap header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Unique identifier for the GR Scrap header."
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "GR Scrap transaction number."
+                  },
+                  "transactionDate": {
+                    "type": "string",
+                    "description": "Transaction date in format DD-MM-YYYY."
+                  },
+                  "department": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "Department responsible for the scrap."
+                  }
+                },
+                "required": ["uuidHeader", "transactionNo", "transactionDate", "department"],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Details of each scrap item.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for the GR Scrap detail."
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Reference to the GR Scrap header."
+                    },
+                    "scrapCode": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "description": "Scrap item code."
+                    },
+                    "description": {
+                      "type": "string",
+                      "maxLength": 100,
+                      "description": "Scrap description."
+                    },
+                    "qty": {
+                      "type": ["number", "string"],
+                      "description": "Quantity of scrap."
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Unit code for quantity."
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25,
+                      "description": "Related order number."
+                    },
+                    "itemCode": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "description": "Item code of the material."
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Type of stock movement (IN/OUT)."
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50,
+                      "description": "Optional reference related to the transaction."
+                    },
+                    "lineItemNo": {
+                      "type": "number",
+                      "description": "Line number of the detail."
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "null"],
+                      "description": "Reference line number, if applicable."
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Indicates DEBIT or CREDIT for the transaction."
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "scrapCode",
+                    "description",
+                    "qty",
+                    "unitCode",
+                    "orderNo",
+                    "itemCode",
+                    "movementType",
+                    "lineItemNo",
+                    "debitCredit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["header", "details"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Response returned when validation fails or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed field-specific errors, if any.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ]
+}

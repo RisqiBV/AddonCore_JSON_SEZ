@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Dispatch Finishgood Response Schema",
+  "description": "JSON response contract for Good Dispatch Finishgood API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Returned when Good Dispatch Finishgood data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved GR-FG data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "GR-FG header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "transactionDate": {
+                    "type": "string"
+                  },
+                  "dispatchTo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "deliveryNoteNo": {
+                    "type": ["string", "null"],
+                    "maxLength": 50
+                  },
+                  "bcCode": {
+                    "type": ["string", "null"],
+                    "maxLength": 10
+                  },
+                  "bcNo": {
+                    "type": ["string", "null"],
+                    "maxLength": 10
+                  },
+                  "bcDate": {
+                    "type": ["string", "null"]
+                  },
+                  "deliverTo": {
+                    "type": ["string", "null"],
+                    "maxLength": 200
+                  },
+                  "vehicleId": {
+                    "type": ["string", "null"],
+                    "maxLength": 50
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "transactionNo",
+                  "transactionDate",
+                  "dispatchTo"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "GR-FG detail data.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25
+                    },
+                    "colorFinishGood": {
+                      "type": ["string", "null"],
+                      "maxLength": 250
+                    },
+                    "sizeFinishGoodCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "qty": {
+                      "type": ["number", "string"]
+                    },
+                    "nw": {
+                      "type": ["number", "null"]
+                    },
+                    "gw": {
+                      "type": ["number", "null"]
+                    },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "orderNo",
+                    "colorFinishGood",
+                    "sizeFinishGoodCode",
+                    "qty"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Returned when validation or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific error details.",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Routing Production Response Schema",
+  "description": "JSON response contract for Routing Production API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Returned when Routing Production data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved Routing Production transactions.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Routing Production header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "transactionDate": {
+                    "type": "string",
+                    "description": "Format: DD-MM-YYYY"
+                  },
+                  "process": {
+                    "type": "string",
+                    "maxLength": 50
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "transactionNo",
+                  "transactionDate",
+                  "process"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Routing Production detail lines.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25
+                    },
+                    "poCust": {
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    "colorFinishGood": {
+                      "type": ["string", "null"],
+                      "maxLength": 250
+                    },
+                    "sizeFinishGoodCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "qty": {
+                      "type": ["number", "string"]
+                    },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "itemCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50,
+                      "description": "Optional reference related to the transaction."
+                    },
+                    "lineItemNo": {
+                      "type": "number"
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "null"]
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "orderNo",
+                    "poCust",
+                    "colorFinishGood",
+                    "sizeFinishGoodCode",
+                    "qty",
+                    "movementType",
+                    "lineItemNo",
+                    "debitCredit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Returned when validation or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific error details.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

@@ -130,9 +130,9 @@
   "payload examples": [
     {
       "header": {
-        "transactionNo": "BBM/001/2025",
-        "transactionDate": "09-08-2025",
-        "poNo": "PO/KWL/001/2025",
+        "transactionNo": "BBM/001/2026",
+        "transactionDate": "09-08-2026",
+        "poNo": "PO/KWL/001/2026",
         "bcCode": "611",
         "bcNo": "000012",
         "bcDate": "09-08-2025"
@@ -168,9 +168,9 @@
     },
     {
       "header": {
-        "transactionNo": "BBM/002/2025",
-        "transactionDate": "09-08-2025",
-        "poNo": "PO/KWL/002/2025",
+        "transactionNo": "BBM/002/2026",
+        "transactionDate": "09-08-2026",
+        "poNo": "PO/KWL/002/2026",
         "bcCode": "611",
         "bcNo": "000013",
         "bcDate": "09-08-2025"

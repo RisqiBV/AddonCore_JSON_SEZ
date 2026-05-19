@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Dispatch General Response Schema",
+  "description": "JSON response contract for Good Dispatch General API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Good Dispatch General data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Array of saved Good Dispatch General transactions.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Good Dispatch General header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "transactionDate": {
+                    "type": "string",
+                    "description": "Format: DD-MM-YYYY"
+                  },
+                  "dispatchTo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "deliveryNoteNo": {
+                    "type": ["string", "null"],
+                    "maxLength": 50
+                  },
+                  "bcCode": {
+                    "type": ["string", "null"],
+                    "maxLength": 10
+                  },
+                  "bcNo": {
+                    "type": ["string", "null"],
+                    "maxLength": 50
+                  },
+                  "bcDate": {
+                    "type": ["string", "null"],
+                    "description": "Format: DD-MM-YYYY"
+                  },
+                  "deliverTo": {
+                    "type": ["string", "null"],
+                    "maxLength": 100
+                  },
+                  "vehicleId": {
+                    "type": ["string", "null"],
+                    "maxLength": 20
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "transactionNo",
+                  "transactionDate",
+                  "dispatchTo"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Array of transaction details.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "qty": {
+                      "type": ["number", "string"]
+                    },
+                    "itemCode": {
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "nw": {
+                      "type": ["number", "null"],
+                      "description": "Net Weight"
+                    },
+                    "gw": {
+                      "type": ["number", "null"],
+                      "description": "Gross Weight"
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "enum": ["IN", "OUT"]
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50,
+                      "description": "Optional reference related to the transaction."
+                    },
+                    "lineItemNo": {
+                      "type": "number",
+                      "description": "Line number of the detail."
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "null"],
+                      "description": "Reference line number, if applicable."
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "enum": ["DEBIT", "CREDIT"]
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "qty",
+                    "itemCode",
+                    "unitCode",
+                    "movementType",
+                    "lineItemNo",
+                    "debitCredit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Response returned when validation fails or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed field-specific errors, if any.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}
