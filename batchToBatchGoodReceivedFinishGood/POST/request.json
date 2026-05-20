@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch To Batch Good Received Finishgood Request Schema",
+  "description": "Request schema for batch to batch Good Received Finishgood API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of batch-to-batch transactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Transaction header",
+            "properties": {
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Transaction number"
+              },
+              "transactionDate": {
+                "type": "string",
+                "format": "date",
+                "description": "Transaction date"
+              }
+            },
+            "required": ["transactionNo", "transactionDate"],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Transaction detail lines",
+            "items": {
+              "type": "object",
+              "properties": {
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50,
+                  "description": "Material item code"
+                },
+                "sourceBatch": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Source batch code"
+                },
+                "updatedBatch": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Updated batch code"
+                },
+                "qty": {
+                  "type": ["number", "string"],
+                  "description": "Quantity to move from source to updated batch"
+                }
+              },
+              "required": ["itemCode", "sourceBatch", "updatedBatch", "qty"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["header", "details"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["data"],
+  "additionalProperties": false,
+  "example": {
+    "data": [
+      {
+        "header": {
+          "transactionNo": "BTB-GRFG-100",
+          "transactionDate": "20-05-2026"
+        },
+        "details": [
+          {
+            "itemCode": "FG001",
+            "sourceBatch": "BATCH-A",
+            "updatedBatch": "BATCH-B",
+            "qty": 10
+          },
+          {
+            "itemCode": "FG002",
+            "sourceBatch": "BATCH-A",
+            "updatedBatch": "BATCH-C",
+            "qty": 25.5
+          }
+        ]
+      }
+    ]
+  }
+}

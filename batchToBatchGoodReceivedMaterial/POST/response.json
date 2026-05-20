@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch To Batch Good Received Material Response Schema",
+  "description": "Response schema for batch to batch Good Received Material API",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "error"],
+      "description": "Response status"
+    },
+    "message": {
+      "type": "string",
+      "description": "Response message"
+    },
+    "data": {
+      "type": ["array", "null"],
+      "description": "Array of processed batch-to-batch transactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Transaction header",
+            "properties": {
+              "uuidHeader": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50
+              },
+              "transactionDate": {
+                "type": "string",
+                "description": "Transaction date in DD-MM-YYYY format"
+              }
+            },
+            "required": [
+              "uuidHeader",
+              "transactionNo",
+              "transactionDate"
+            ],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Transaction details",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "uuidHeader": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "sourceBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "updatedBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "qty": {
+                  "type": ["number", "string"],
+                  "description": "Quantity moved from source to updated batch"
+                }
+              },
+              "required": [
+                "uuid",
+                "uuidHeader",
+                "itemCode",
+                "sourceBatch",
+                "updatedBatch",
+                "qty"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "errors": {
+      "type": ["object", "null"],
+      "description": "Field-specific or general error details",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  },
+  "required": [
+    "status",
+    "message"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "status": "success",
+      "message": "Data Batch To Batch Good Received Material successfully saved",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "1fe48ed2-b640-4101-99c6-b6dbdb92f637",
+            "transactionNo": "GRM-0021/VI/2026",
+            "transactionDate": "21-05-2026"
+          },
+          "details": [
+            {
+              "uuid": "4104cd07-2060-435c-a7b8-001bc400b971",
+              "uuidHeader": "1fe48ed2-b640-4101-99c6-b6dbdb92f637",
+              "itemCode": "RM-001",
+              "sourceBatch": "B001",
+              "updatedBatch": "UB001",
+              "qty": "100.00"
+            },
+            {
+              "uuid": "e09654b2-2f49-4a6c-b7f5-8774b428cf44",
+              "uuidHeader": "1fe48ed2-b640-4101-99c6-b6dbdb92f637",
+              "itemCode": "RM-002",
+              "sourceBatch": "B002",
+              "updatedBatch": "UB002",
+              "qty": "50.00"
+            }
+          ]
+        }
+      ],
+      "errors": null
+    },
+    {
+      "status": "error",
+      "message": "Validation failed",
+      "data": null,
+      "errors": {
+        "details.0.qty": [
+          "Quantity must be greater than 0"
+        ],
+        "header.transactionNo": [
+          "Transaction number is required"
+        ]
+      }
+    }
+  ]
+}

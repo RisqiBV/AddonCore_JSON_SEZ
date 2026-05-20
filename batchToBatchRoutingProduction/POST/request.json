@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch To Batch Routing Production Request Schema",
+  "description": "Request schema for batch to batch Routing Production API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of batch-to-batch routing production transactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Transaction header",
+            "properties": {
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Transaction number"
+              },
+              "transactionDate": {
+                "type": "string",
+                "description": "Transaction date in DD-MM-YYYY format"
+              }
+            },
+            "required": [
+              "transactionNo",
+              "transactionDate"
+            ],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Transaction detail lines",
+            "items": {
+              "type": "object",
+              "properties": {
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "sourceBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "updatedBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "qty": {
+                  "type": ["number", "string"]
+                }
+              },
+              "required": [
+                "itemCode",
+                "sourceBatch",
+                "updatedBatch",
+                "qty"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "example": {
+    "data": [
+      {
+        "header": {
+          "transactionNo": "RPROD-0085/V/2026",
+          "transactionDate": "21-05-2026"
+        },
+        "details": [
+          {
+            "itemCode": "RM-001",
+            "sourceBatch": "B001",
+            "updatedBatch": "UB001",
+            "qty": 120
+          },
+          {
+            "itemCode": "RM-003",
+            "sourceBatch": "B003",
+            "updatedBatch": "UB003",
+            "qty": 80
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch To Batch Routing Production Response Schema",
+  "description": "Response schema for batch to batch Routing Production API",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "error"],
+      "description": "Response status"
+    },
+    "message": {
+      "type": "string",
+      "description": "Response message"
+    },
+    "data": {
+      "type": ["array", "null"],
+      "description": "Array of processed routing production transactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Transaction header",
+            "properties": {
+              "uuidHeader": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50
+              },
+              "transactionDate": {
+                "type": "string",
+                "description": "Transaction date in DD-MM-YYYY format"
+              }
+            },
+            "required": [
+              "uuidHeader",
+              "transactionNo",
+              "transactionDate"
+            ],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Transaction details",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uuid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "uuidHeader": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "sourceBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "updatedBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "qty": {
+                  "type": ["number", "string"],
+                  "description": "Quantity moved from source to updated batch"
+                }
+              },
+              "required": [
+                "uuid",
+                "uuidHeader",
+                "itemCode",
+                "sourceBatch",
+                "updatedBatch",
+                "qty"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "errors": {
+      "type": ["object", "null"],
+      "description": "Field-specific or general error details",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  },
+  "required": [
+    "status",
+    "message"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "status": "success",
+      "message": "Data Batch To Batch Routing Production successfully saved",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "7ea62aac-cec6-454d-ab97-b86a2ef6accf",
+            "transactionNo": "RPROD-0085/V/2026",
+            "transactionDate": "21-05-2026"
+          },
+          "details": [
+            {
+              "uuid": "5e3a4b5b-eb24-4f61-a95d-28da9c2c7a3e",
+              "uuidHeader": "7ea62aac-cec6-454d-ab97-b86a2ef6accf",
+              "itemCode": "RM-001",
+              "sourceBatch": "B001",
+              "updatedBatch": "UB001",
+              "qty": "120.00"
+            },
+            {
+              "uuid": "24f15966-8e1c-4ec6-9669-e3bb699126b6",
+              "uuidHeader": "7ea62aac-cec6-454d-ab97-b86a2ef6accf",
+              "itemCode": "RM-003",
+              "sourceBatch": "B003",
+              "updatedBatch": "UB003",
+              "qty": "80.00"
+            }
+          ]
+        }
+      ],
+      "errors": null
+    },
+    {
+      "status": "error",
+      "message": "Validation failed",
+      "data": null,
+      "errors": {
+        "details.0.qty": [
+          "Quantity must be greater than 0"
+        ],
+        "header.transactionNo": [
+          "Transaction number is required"
+        ]
+      }
+    }
+  ]
+}

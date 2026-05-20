@@ -5,4 +5,5 @@ Version;Date;ChangeLog;Status_Version
 1.0.3;08/04/2025;Adding 'LineItemNo' for BOM, PurchaseOrderMaterial,PurchaseOrderGeneral,GoodReceivedMaterial,GoodReceivedGeneral;Inactive
 1.1.0;28/04/2026;Minor version update: reorganized JSON contracts into module-based and HTTP method-based folders. Added structure for PUT/DELETE contracts while keeping existing POST payload contracts.;Inactive
 1.2.0;10/05/2026;Adding Response for JSON Schema;Inactive
-1.2.1;20/05/2026;Adding Cancelation for GoodReceivedMaterial, GoodDispatchMaterial, GoodDispatchGeneral, GoodReceivedFinishGood, GoodDispatchFinishGood, routingProduction, and GoodReceivedScrap
+1.2.1;20/05/2026;Adding Cancelation for GoodReceivedMaterial, GoodDispatchMaterial, GoodDispatchGeneral, GoodReceivedFinishGood, GoodDispatchFinishGood, routingProduction, and GoodReceivedScrap;Inactive
+1.2.2;20/05/2026;Adding template Batch to Batch;Active

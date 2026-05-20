@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch To Batch Good Received Material Request Schema",
+  "description": "Request schema for batch to batch Good Received Material API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of batch-to-batch transactions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Transaction header",
+            "properties": {
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Transaction number"
+              },
+              "transactionDate": {
+                "type": "string",
+                "description": "Transaction date in DD-MM-YYYY format"
+              }
+            },
+            "required": [
+              "transactionNo",
+              "transactionDate"
+            ],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Transaction detail lines",
+            "items": {
+              "type": "object",
+              "properties": {
+                "itemCode": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "sourceBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "updatedBatch": {
+                  "type": "string",
+                  "maxLength": 10
+                },
+                "qty": {
+                  "type": ["number", "string"]
+                }
+              },
+              "required": [
+                "itemCode",
+                "sourceBatch",
+                "updatedBatch",
+                "qty"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "example": {
+    "data": [
+      {
+        "header": {
+          "transactionNo": "GRM-0021/VI/2026",
+          "transactionDate": "21-05-2026"
+        },
+        "details": [
+          {
+            "itemCode": "RM-001",
+            "sourceBatch": "B001",
+            "updatedBatch": "UB001",
+            "qty": 100
+          },
+          {
+            "itemCode": "RM-002",
+            "sourceBatch": "B002",
+            "updatedBatch": "UB002",
+            "qty": 50
+          }
+        ]
+      }
+    ]
+  }
+}
