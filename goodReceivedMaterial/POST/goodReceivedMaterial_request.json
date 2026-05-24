@@ -102,8 +102,9 @@
             "description": "lineItemNo from Purchase Order on SAP"
           },
           "batchNo": {
-            "type": "number",
-            "description": "lineItemNo from Purchase Order on SAP"
+            "type": "string",
+            "maxLength": 10,
+            "description": "SAP/ERP reff batch No"
           }
         },
         "required": [
