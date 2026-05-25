@@ -43,7 +43,10 @@
       "description": "lineItemNo on SAP"
     }
   },
-  "required": ["orderNO", "materialCode", "colorFinishGood", "sizeFinishGoodCode", "orderQty", "consumption", "unitCode"],
+  "required": [
+      "orderNO", "materialCode",
+      "colorFinishGood", "sizeFinishGoodCode", "orderQty", 
+      "consumption", "unitCode","lineItemNo"],
   "additionalProperties": false,
  
   "payload examples": [
@@ -54,7 +57,8 @@
       "sizeFinishGoodCode": "XL",
       "orderQty": 100,
       "consumption": 0.2,
-      "unitCode": "KGM"
+      "unitCode": "KGM",
+      "lineItemNo": 10
       }
   ]
 }
