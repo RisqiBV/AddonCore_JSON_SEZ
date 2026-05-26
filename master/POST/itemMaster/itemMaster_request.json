@@ -27,7 +27,17 @@
       "type": "string",
       "maxLength": 50,
       "description": "Internal classification or category."
-    }
+    },
+     "materialGroupType": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "materialGroupType"
+    },
+    "baseUom": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Internal base UOM."
+    }   
   },
   "required": ["itemCode", "itemName", "categoryCodeBC", "categoryInternal"],
   "additionalProperties": false,
@@ -38,14 +48,18 @@
       "itemName": "Raw Material",
       "categoryCodeBC": 1,
       "hsCode": "98979695",
-      "categoryInternal": "Raw Material"
+      "categoryInternal": "Raw Material",
+      "materialGroupType" : "Raw Material",
+      "baseUom" : "KG"
     },
     {
       "itemCode": "0002.0002.0002.RM",
       "itemName": "Raw Material 02",
       "categoryCodeBC": 1,
       "hsCode": "11223344",
-      "categoryInternal": "Raw Material"
+      "categoryInternal": "Raw Material",
+      "materialGroupType" : "Raw Material",
+      "baseUom" : "KG"
     }
   ]
 }

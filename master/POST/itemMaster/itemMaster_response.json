@@ -49,8 +49,18 @@
               },
               "categoryInternal": {
                 "type": "string",
-                "maxLength": 100,
+                "maxLength": 50,
                 "description": "Internal item category."
+              },
+              "materialGroupType": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "materialGroupType"
+              },
+              "baseUom": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Internal Base UOM."
               }
             },
             "required": [

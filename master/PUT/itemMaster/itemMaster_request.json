@@ -39,6 +39,16 @@
             "type": "string",
             "maxLength": 50,
             "description": "Internal classification or category. Updateable."
+          },
+          "materialGroupType": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "materialGroupType"
+          },
+          "baseUom": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Internal base UOM."
           }
         },
         "required": [
@@ -66,7 +76,9 @@
               "itemName": "Raw Material - Revision",
               "categoryCodeBC": 1,
               "hsCode": "98979695",
-              "categoryInternal": "Raw Material"
+              "categoryInternal": "Raw Material",
+              "materialGroupType": "Raw Material",
+              "baseUom" : "KG"
           },
           {
               "uuid": "eb81efe2-4a1a-4768-8204-150f9509940e",
@@ -74,7 +86,9 @@
               "itemName": "Raw Material 02",
               "categoryCodeBC": 2,
               "hsCode": "11223344",
-              "categoryInternal": "Raw Material"
+              "categoryInternal": "Raw Material",
+              "materialGroupType": "Raw Material",
+              "baseUom" : "KG"
           }
       ]
     }

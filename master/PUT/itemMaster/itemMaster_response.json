@@ -49,8 +49,18 @@
               },
               "categoryInternal": {
                 "type": "string",
-                "maxLength": 100,
+                "maxLength": 50,
                 "description": "Internal item category."
+              },
+              "materialGroupType": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "material Group type."
+              },
+              "baseUom": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "Internal base UOM."
               },
               "updatedAt": {
                 "type": "string",
@@ -114,6 +124,8 @@
           "categoryCodeBC": 1,
           "hsCode": "98979695",
           "categoryInternal": "Raw Material",
+          "materialGroupType": "Raw Material",
+          "baseUom" : "KG",
           "updatedAt": "2026-05-10 12:54:49.863"
         },
         {
@@ -123,6 +135,8 @@
           "categoryCodeBC": 2,
           "hsCode": "11223344",
           "categoryInternal": "Raw Material",
+          "materialGroupType": "Raw Material",
+          "baseUom" : "KG",
           "updatedAt": "2026-05-10 12:54:50.057"
         }
       ]
