@@ -156,7 +156,6 @@
                 "details": [
                     {
                         "uuid": "82607835-77e6-4fd7-8b5c-7f4536db0c0c",
-                        "uuidHeader": "d715a5b9-e59a-4372-9c97-e9f7dacd4f2c",
                         "additionalRemarks": "Edit Remarks1",
                         "itemCode": "MCH1",
                         "vendorQty": "1.00",
@@ -167,7 +166,6 @@
                     },
                     {
                         "uuid": "718aa6e4-6c14-4824-ae76-2e7fd450673b",
-                        "uuidHeader": "d715a5b9-e59a-4372-9c97-e9f7dacd4f2c",
                         "additionalRemarks": "Edit Remarks2",
                         "itemCode": "MCH2",
                         "vendorQty": "1.00",

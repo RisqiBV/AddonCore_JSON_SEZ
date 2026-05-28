@@ -132,6 +132,7 @@
       "data": [
         {
           "header": {
+            "uuidHeader": "d664006c-b21a-45ba-9e6d-e91c27c986b4",
             "orderNO": "ADDON/ORDER/0001/V/2026",
             "article": "ERP",
             "brandCode": "ERP",
@@ -142,7 +143,8 @@
             "unitCode": "PCE"
           },
           "details": [
-            {
+            {   
+                "uuid": "485c2c71-f09e-431e-bb51-b3593c20a998",
                 "poCust": "CUSTOMER/PO-1",
                 "colorFinishGood": "-",
                 "sizeFinishGoodCode": "ALL SIZE",

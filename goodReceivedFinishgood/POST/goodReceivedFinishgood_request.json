@@ -82,6 +82,11 @@
             "type": "string",
             "maxLength": 10,
             "description": "Debit or credit indicator."
+          },
+            "batchNo": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Batch number."
           }
         },
         "required": [
@@ -116,6 +121,7 @@
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "M",
           "qty": 10,
+          "batchNo": "BATCH001",
           "itemCode": "FG-001",
           "movementType": "IN",
           "reference": null,
@@ -129,6 +135,7 @@
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "L",
           "qty": 12,
+          "batchNo": "",
           "itemCode": "FG-002",
           "movementType": "IN",
           "reference": "PROD/2026/0001",

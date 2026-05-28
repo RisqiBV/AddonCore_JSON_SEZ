@@ -107,11 +107,6 @@
                       "format": "uuid",
                       "description": "Unique identifier of the Sales Order detail."
                     },
-                    "uuidHeader": {
-                      "type": "string",
-                      "format": "uuid",
-                      "description": "Unique identifier of the related Sales Order header."
-                    },
                     "poCust": {
                       "type": "string",
                       "maxLength": 50,
@@ -138,7 +133,6 @@
                   },
                   "required": [
                     "uuid",
-                    "uuidHeader",
                     "poCust",
                     "colorFinishGood",
                     "sizeFinishGoodCode",

@@ -93,11 +93,6 @@
                       "format": "uuid",
                       "description": "Unique identifier of the Purchase Order General detail."
                     },
-                    "uuidHeader": {
-                      "type": "string",
-                      "format": "uuid",
-                      "description": "Unique identifier of the related Purchase Order General header."
-                    },
                     "additionalRemarks": {
                       "type": ["string", "null"],
                       "description": "Additional remarks."
@@ -136,7 +131,6 @@
                   },
                   "required": [
                     "uuid",
-                    "uuidHeader",
                     "additionalRemarks",
                     "itemCode",
                     "vendorQty",
