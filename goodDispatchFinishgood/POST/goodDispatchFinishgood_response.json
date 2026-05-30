@@ -110,6 +110,10 @@
                     "batchNo": {
                       "type": ["string", "null"],
                       "maxLength": 10
+                    },
+                    "itemCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
                     }
                   },
                   "required": [

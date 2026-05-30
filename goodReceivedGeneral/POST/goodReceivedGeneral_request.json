@@ -95,6 +95,30 @@
           "lineItemNo": {
             "type": "number",
             "description": "lineItemNo from Purchase Order on SAP"
+          },
+          "batchNo": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "SAP/ERP reff batch No"
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit or credit indicator."
           }
         },
         "required": [
@@ -137,7 +161,12 @@
           "internalUnitCode": "KGM",
           "unitPrice": 10,
           "rate": 16258,
-          "lineItemNo": 100
+          "lineItemNo": 100,
+          "batchNo": "0000001000",
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "fc": "PO",
@@ -148,7 +177,40 @@
           "internalUnitCode": "CM",
           "unitPrice": 3,
           "rate": 16258,
-          "lineItemNo": 101
+          "lineItemNo": 101,
+          "batchNo": "0000001000",
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "BBM/002/2026",
+        "transactionDate": "09-08-2026",
+        "poNo": "PO/KWL/002/2026",
+        "bcCode": "611",
+        "bcNo": "000013",
+        "bcDate": "09-08-2025"
+      },
+      "details": [
+        {
+          "fc": "PO",
+          "itemCode": "SPR-001",
+          "vendorQty": 150,
+          "vendorUnitCode": "YRD",
+          "internalQty": 13716,
+          "internalUnitCode": "CM",
+          "unitPrice": 3,
+          "rate": 16258,
+          "lineItemNo": 103,
+          "batchNo": "0000001000",
+          "movementType": "OUT",
+          "reference": "SAP/GR/001",
+          "lineItemNoRef": 10,
+          "debitCredit": "CREDIT"
         }
       ]
     }

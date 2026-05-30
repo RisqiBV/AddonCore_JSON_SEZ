@@ -52,7 +52,7 @@
             "description": "Finished good size code."
           },
           "qty": {
-            "type": "integer",
+            "type": "number",
             "description": "Quantity."
           },
             "batchNo": {
