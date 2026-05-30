@@ -5,7 +5,7 @@
 | Sales Order Field    | Required Template | Reference Field    |
 | -------------------- | ----------------- | ------------------ |
 | `brandCode`          | `brandMaster`     | `brandCode`        |
-| `internalUnitCode`   | `unitMaster`      | `internalUnitCode` |
+| `unitCode`           | `unitMaster`      | `internalUnitCode` |
 | `sizeFinishGoodCode` | `sizeMaster`      | `sizeCode`         |
 
 ## Submit Order
