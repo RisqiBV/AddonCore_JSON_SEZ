@@ -2,11 +2,11 @@
 
 ## Required References
 
-| Sales Order Field  | Required Template | Reference Field    |
-| ------------------ | ----------------- | ------------------ |
-| `brandCode`        | `brandMaster`     | `brandCode`        |
-| `internalUnitCode` | `unitMaster`      | `internalUnitCode` |
-| `sizeCode`         | `sizeMaster`      | `sizeCode`         |
+| Sales Order Field    | Required Template | Reference Field    |
+| -------------------- | ----------------- | ------------------ |
+| `brandCode`          | `brandMaster`     | `brandCode`        |
+| `internalUnitCode`   | `unitMaster`      | `internalUnitCode` |
+| `sizeFinishGoodCode` | `sizeMaster`      | `sizeCode`         |
 
 ## Submit Order
 
