@@ -52,7 +52,7 @@
             "description": "Finished good size code."
           },
           "qty": {
-            "type": "integer",
+            "type": "number",
             "description": "Quantity."
           },
             "batchNo": {
@@ -134,7 +134,7 @@
           "poCust": "CUSTOMER/PO-2",
           "colorFinishGood": "Black",
           "sizeFinishGoodCode": "L",
-          "qty": 12,
+          "qty": 12.1256,
           "batchNo": "",
           "itemCode": "FG-002",
           "movementType": "IN",
