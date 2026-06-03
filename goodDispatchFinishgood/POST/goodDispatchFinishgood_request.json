@@ -97,6 +97,11 @@
             "type": ["string", "null"],
             "maxLength": 10,
             "description": "Batch number."
+          },
+          "itemCode": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Finished good item code."
           }
         },
         "required": [
@@ -135,7 +140,8 @@
           "qty": 5,
           "nw": 2,
           "gw": 2.2,
-          "batchNo": "BATCH001"
+          "batchNo": "BATCH001",
+          "itemCode": "FG-001"
         },
         {
           "orderNo": "ADDON/ORDER/0001/V/2026",
@@ -144,7 +150,8 @@
           "qty": 10,
           "nw": null,
           "gw": null,
-          "batchNo": null
+          "batchNo": null,
+          "itemCode": "FG-001"
         }
       ]
     },
@@ -168,7 +175,8 @@
           "qty": 2000,
           "nw": null,
           "gw": null,
-          "batchNo": "BATCH002"
+          "batchNo": "BATCH002",
+          "itemCode": "FG-002"
         }
       ]
     }
