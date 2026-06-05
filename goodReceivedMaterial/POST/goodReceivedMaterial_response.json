@@ -137,6 +137,25 @@
                       "type": ["string", "null"],
                       "maxLength": 10,
                       "description": "Batch number."
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Movement type."
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50,
+                      "description": "Reference number or reference information."
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "null"],
+                      "description": "Reference line item number."
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Debit or credit indicator."
                     }
                   },
                   "required": [

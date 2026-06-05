@@ -105,6 +105,25 @@
             "type": "string",
             "maxLength": 10,
             "description": "SAP/ERP reff batch No"
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit or credit indicator."
           }
         },
         "required": [
@@ -150,7 +169,11 @@
           "unitPrice": 10,
           "rate": 16258,
           "lineItemNo": 100,
-          "batchNo": "0000001000"
+          "batchNo": "0000001000",
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "fc": "PO",
@@ -163,7 +186,11 @@
           "unitPrice": 3,
           "rate": 16258,
           "lineItemNo": 101,
-          "batchNo": "0000001000"
+          "batchNo": "0000001001",
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         }
       ]
     },
@@ -188,7 +215,11 @@
           "unitPrice": 1000,
           "rate": 16412,
           "lineItemNo": 102,
-          "batchNo": "0000001000"
+          "batchNo": "0000001000",
+          "movementType": "RETURN",
+          "reference": "RET/2026/0001",
+          "lineItemNoRef": 10,
+          "debitCredit": "CREDIT"
         }
       ]
     }

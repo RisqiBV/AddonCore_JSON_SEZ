@@ -1,0 +1,7 @@
+{
+  "method": "DELETE",
+  "url": "https://kek.addonbeacukaireport.com/api/core-a/purchase-order-general/?uuid={uuid}",
+  "requestBody": null,
+  "description": "Delete Purchase Order data by uuid query parameter.",
+  "example": "https://kek.addonbeacukaireport.com/api/core-a/purchase-order-general/?uuid=18a91909-68c8-46d6-acc2-188d20d0d095"
+}

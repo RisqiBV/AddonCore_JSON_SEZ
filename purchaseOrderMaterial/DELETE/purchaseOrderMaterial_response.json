@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Delete Purchase Order Material Response Schema",
+  "description": "JSON response contract for deleting Purchase Order Material data.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Response returned when Purchase Order Material data is successfully deleted.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "Success message."
+        },
+        "data": {
+          "type": "object",
+          "description": "Deleted Purchase Order Material reference data.",
+          "properties": {
+            "uuid": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Unique identifier of deleted Purchase Order Material data."
+            },
+            "deletedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Date and time when the data was deleted."
+            }
+          },
+          "required": ["uuid", "deletedAt"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["status", "message", "data"],
+      "additionalProperties": false
+    },
+    {
+      "title": "General Error Response",
+      "description": "Response returned when validation, not found, or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"],
+          "description": "Response status."
+        },
+        "message": {
+          "type": "string",
+          "description": "General error message."
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Detailed error information. The object key represents the field name or error category.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["status", "message", "errors"],
+      "additionalProperties": false
+    }
+  ],
+  "responseExamples": {
+    "success": {
+      "status": "success",
+      "message": "Purchase Order Material data successfully deleted",
+      "data": {
+        "uuid": "18a91909-68c8-46d6-acc2-188d20d0d095",
+        "deletedAt": "2026-05-10T02:44:14.018020Z"
+      }
+    },
+    "validationError": {
+      "status": "error",
+      "message": "Validation failed",
+      "errors": {
+        "uuid": [
+          "The uuid field is required.",
+          "The uuid must be a valid UUID."
+        ]
+      }
+    },
+    "notFoundError": {
+      "status": "error",
+      "message": "Purchase Order Material data not found",
+      "errors": {
+        "uuid": [
+          "Purchase Order Material data with the specified uuid was not found."
+        ]
+      }
+    },
+    "serverError": {
+      "status": "error",
+      "message": "Internal server error",
+      "errors": null
+    }
+  }
+}
