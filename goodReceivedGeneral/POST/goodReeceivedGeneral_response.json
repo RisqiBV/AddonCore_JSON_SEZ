@@ -126,7 +126,7 @@
                     },
                     "lineItemNo": {
                       "type": "number",
-                      "description": "Line item number."
+                      "description": "Line item number GR."
                     },
                     "batchNo": {
                       "type": ["string", "null"],
@@ -151,6 +151,10 @@
                       "type": "string",
                       "maxLength": 10,
                       "description": "Debit or credit indicator."
+                    },
+                    "lineItemNoPo": {
+                      "type": "number",
+                      "description": "Line item number PO."
                     }
                   },
                   "required": [
@@ -163,7 +167,11 @@
                     "internalQty",
                     "internalUnitCode",
                     "unitPrice",
-                    "rate"
+                    "rate",
+                    "lineItemNo",
+                    "movementType",
+                    "debitCredit",
+                    "lineItemNoPo"
                   ],
                   "additionalProperties": false
                 }

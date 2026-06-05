@@ -99,7 +99,7 @@
           },
           "lineItemNo": {
             "type": "number",
-            "description": "lineItemNo from Purchase Order on SAP"
+            "description": "lineItemNo from GR on SAP"
           },
           "batchNo": {
             "type": "string",
@@ -124,6 +124,10 @@
             "type": "string",
             "maxLength": 10,
             "description": "Debit or credit indicator."
+          },
+          "lineItemNoPo": {
+            "type": ["number", "null"],
+            "description": "Reference PO line item number."
           }
         },
         "required": [
@@ -135,7 +139,10 @@
           "internalQty",
           "internalUnitCode",
           "unitPrice",
-          "rate"
+          "rate",
+          "movementType",
+          "debitCredit",
+          "lineItemNoPo"
         ],
         "additionalProperties": false
       }
@@ -173,7 +180,8 @@
           "movementType": "OUT",
           "reference": null,
           "lineItemNoRef": null,
-          "debitCredit": "CREDIT"
+          "debitCredit": "CREDIT",
+          "lineItemNoPo": 100          
         },
         {
           "fc": "PO",
@@ -190,7 +198,8 @@
           "movementType": "OUT",
           "reference": null,
           "lineItemNoRef": null,
-          "debitCredit": "CREDIT"
+          "debitCredit": "CREDIT",
+          "lineItemNoPo": 100   
         }
       ]
     },
@@ -219,7 +228,8 @@
           "movementType": "RETURN",
           "reference": "RET/2026/0001",
           "lineItemNoRef": 10,
-          "debitCredit": "CREDIT"
+          "debitCredit": "CREDIT",
+          "lineItemNoPo": 100   
         }
       ]
     }

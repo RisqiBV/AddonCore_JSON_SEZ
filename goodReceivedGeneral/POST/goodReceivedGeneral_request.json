@@ -133,7 +133,11 @@
           "internalQty",
           "internalUnitCode",
           "unitPrice",
-          "rate"
+          "rate",
+          "lineItemNo",
+          "movementType",
+          "debitCredit",
+          "lineItemNoPo"
         ],
         "additionalProperties": false
       }
