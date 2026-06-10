@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Purchase Order General PUT Schema",
-  "description": "JSON contract for updating Purchase Order General data by uuidHeader. This endpoint supports header update, existing detail update by uuid, and new detail insertion when uuid is not provided.",
+  "description": "JSON contract for updating Purchase Order General data by uuidHeader. This endpoint supports header update, existing detail update by uuid, new detail insertion when uuid is not provided, and detail delete/active flag using deleteStatus.",
   "type": "object",
   "properties": {
     "data": {
@@ -62,7 +62,7 @@
           },
           "details": {
             "type": "array",
-            "description": "Detail item lines. If uuid is provided, the detail will be updated. If uuid is not provided or empty, the detail will be added as a new item.",
+            "description": "Detail item lines. If uuid is provided, the detail will be updated. If uuid is not provided or empty, the detail will be added as a new item. deleteStatus is required to indicate whether the detail should be deleted/disabled.",
             "minItems": 1,
             "items": {
               "type": "object",
@@ -79,7 +79,7 @@
                 "itemCode": {
                   "type": "string",
                   "maxLength": 50,
-                  "description": "Material item code. Updateable."
+                  "description": "General item code. Updateable."
                 },
                 "vendorQty": {
                   "type": "number",
@@ -102,6 +102,10 @@
                 "lineItemNo": {
                   "type": "number",
                   "description": "Line item number on SAP. Updateable."
+                },
+                "deleteStatus": {
+                  "type": "boolean",
+                  "description": "Delete status flag. false means active/not deleted, true means deleted/marked for deletion."
                 }
               },
               "required": [
@@ -111,7 +115,8 @@
                 "vendorUnitCode",
                 "unitPrice",
                 "currency",
-                "lineItemNo"
+                "lineItemNo",
+                "deleteStatus"
               ],
               "additionalProperties": false
             }
@@ -134,56 +139,47 @@
       "data": [
         {
           "header": {
-            "uuidHeader": "d9610df4-b9e5-4bd5-96cc-2f6d6c6b4508",
-            "supplierCode": "MSN-0015",
-            "poDate": "10-08-2026",
-            "poNo": "PO/KWL/004/2026",
-            "etdActual": "10-08-2026",
-            "eta": "10/09/2026",
+            "uuidHeader": "d715a5b9-e59a-4372-9c97-e9f7dacd4f2c",
+            "supplierCode": "ADDON",
+            "poDate": "09-05-2026",
+            "poNo": "PO/ADDON/I/IV",
+            "etdActual": "19-05-2026",
+            "eta": "18-05-2026",
             "fc": "PO"
           },
           "details": [
-                {
-                "header": {
-                    "uuidHeader": "d715a5b9-e59a-4372-9c97-e9f7dacd4f2c",
-                    "supplierCode": "ADDON",
-                    "poDate": "09-05-2026",
-                    "poNo": "PO/ADDON/I/IV",
-                    "etdActual": "19-05-2026",
-                    "eta": "18-05-2026",
-                    "fc": "PO"
-                },
-                "details": [
-                    {
-                        "uuid": "82607835-77e6-4fd7-8b5c-7f4536db0c0c",
-                        "additionalRemarks": "Edit Remarks1",
-                        "itemCode": "MCH1",
-                        "vendorQty": "1.00",
-                        "vendorUnitCode": "PCE",
-                        "unitPrice": "12500000.00000",
-                        "currency": "IDR",
-                        "lineItemNo": 10
-                    },
-                    {
-                        "uuid": "718aa6e4-6c14-4824-ae76-2e7fd450673b",
-                        "additionalRemarks": "Edit Remarks2",
-                        "itemCode": "MCH2",
-                        "vendorQty": "1.00",
-                        "vendorUnitCode": "PCE",
-                        "unitPrice": "12500000.00000",
-                        "currency": "IDR",
-                        "lineItemNo": 11
-                    },
-                    {
-                        "additionalRemarks": "Adding Material",
-                        "itemCode": "MCH3",
-                        "vendorQty": "1.00",
-                        "vendorUnitCode": "PCE",
-                        "unitPrice": "900000.00000",
-                        "currency": "IDR",
-                        "lineItemNo": 12
-                    }
-                ]
+            {
+              "uuid": "82607835-77e6-4fd7-8b5c-7f4536db0c0c",
+              "additionalRemarks": "Edit Remarks1",
+              "itemCode": "MCH1",
+              "vendorQty": 1.00,
+              "vendorUnitCode": "PCE",
+              "unitPrice": 12500000.00000,
+              "currency": "IDR",
+              "lineItemNo": 10,
+              "deleteStatus": false
+            },
+            {
+              "uuid": "718aa6e4-6c14-4824-ae76-2e7fd450673b",
+              "additionalRemarks": "Edit Remarks2",
+              "itemCode": "MCH2",
+              "vendorQty": 1.00,
+              "vendorUnitCode": "PCE",
+              "unitPrice": 12500000.00000,
+              "currency": "IDR",
+              "lineItemNo": 11,
+              "deleteStatus": true
+            },
+            {
+              "uuid": null,
+              "additionalRemarks": "Adding Material",
+              "itemCode": "MCH3",
+              "vendorQty": 1.00,
+              "vendorUnitCode": "PCE",
+              "unitPrice": 900000.00000,
+              "currency": "IDR",
+              "lineItemNo": 12,
+              "deleteStatus": false
             }
           ]
         }

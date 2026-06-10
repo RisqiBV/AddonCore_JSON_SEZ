@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Update Purchase Order General Response Schema",
-  "description": "JSON response contract for updating Purchase Order General data. This response may include updated detail rows and newly inserted detail rows from the upsert process.",
+  "description": "JSON response contract for updating Purchase Order General data. This response may include updated detail rows, newly inserted detail rows, and deleted/marked detail rows from the upsert process.",
   "oneOf": [
     {
       "title": "Success Response",
@@ -84,7 +84,7 @@
               },
               "details": {
                 "type": "array",
-                "description": "Updated and inserted Purchase Order General detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request.",
+                "description": "Updated, inserted, and deleted/marked Purchase Order General detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request. deleteStatus indicates whether the detail row is active or deleted.",
                 "items": {
                   "type": "object",
                   "properties": {
@@ -92,6 +92,11 @@
                       "type": "string",
                       "format": "uuid",
                       "description": "Unique identifier of the Purchase Order General detail."
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier of the related Purchase Order General header."
                     },
                     "additionalRemarks": {
                       "type": ["string", "null"],
@@ -124,13 +129,18 @@
                       "type": ["number", "string", "null"],
                       "description": "Line item number from SAP."
                     },
+                    "deleteStatus": {
+                      "type": "boolean",
+                      "description": "Delete status flag. false means active/not deleted, true means deleted/marked for deletion."
+                    },
                     "updatedAt": {
                       "type": "string",
-                      "description": "Date and time when the detail data was updated or inserted."
+                      "description": "Date and time when the detail data was updated, inserted, or marked as deleted."
                     }
                   },
                   "required": [
                     "uuid",
+                    "uuidHeader",
                     "additionalRemarks",
                     "itemCode",
                     "vendorQty",
@@ -138,6 +148,7 @@
                     "unitPrice",
                     "currency",
                     "lineItemNo",
+                    "deleteStatus",
                     "updatedAt"
                   ],
                   "additionalProperties": false
@@ -212,10 +223,11 @@
               "additionalRemarks": "Edit Remarks1",
               "itemCode": "MCH1",
               "vendorQty": "1.00",
-              "vendorUnitCode": "PCE       ",
+              "vendorUnitCode": "PCE",
               "unitPrice": "12500000.00000",
               "currency": "IDR",
               "lineItemNo": "10",
+              "deleteStatus": false,
               "updatedAt": "2026-05-12 06:31:08.127"
             },
             {
@@ -224,10 +236,11 @@
               "additionalRemarks": "Edit Remarks2",
               "itemCode": "MCH2",
               "vendorQty": "1.00",
-              "vendorUnitCode": "PCE       ",
+              "vendorUnitCode": "PCE",
               "unitPrice": "12500000.00000",
               "currency": "IDR",
               "lineItemNo": "11",
+              "deleteStatus": true,
               "updatedAt": "2026-05-12 06:31:08.127"
             },
             {
@@ -236,10 +249,11 @@
               "additionalRemarks": "Adding Material",
               "itemCode": "MCH3",
               "vendorQty": "1.00",
-              "vendorUnitCode": "PCE       ",
+              "vendorUnitCode": "PCE",
               "unitPrice": "900000.00000",
               "currency": "IDR",
               "lineItemNo": "12",
+              "deleteStatus": false,
               "updatedAt": "2026-05-12 06:31:08.127"
             }
           ]
@@ -272,6 +286,10 @@
         ],
         "data.0.details.0.unitPrice": [
           "The data.0.details.0.unitPrice must be a number."
+        ],
+        "data.0.details.0.deleteStatus": [
+          "The data.0.details.0.deleteStatus field is required.",
+          "The data.0.details.0.deleteStatus field must be true or false."
         ]
       }
     },
