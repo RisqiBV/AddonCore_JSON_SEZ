@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Update Purchase Order Material Response Schema",
-  "description": "JSON response contract for updating Purchase Order Material data. This response may include updated detail rows and newly inserted detail rows from the upsert process.",
+  "description": "JSON response contract for updating Purchase Order Material data. This response may include updated detail rows, newly inserted detail rows, and deleted/marked detail rows from the upsert process.",
   "oneOf": [
     {
       "title": "Success Response",
@@ -83,7 +83,7 @@
               },
               "details": {
                 "type": "array",
-                "description": "Updated and inserted Purchase Order Material detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request.",
+                "description": "Updated, inserted, and deleted/marked Purchase Order Material detail data. Existing detail rows are updated when uuid is provided in the request. New detail rows are inserted when uuid is not provided in the request. deleteStatus indicates whether the detail row is active or deleted.",
                 "items": {
                   "type": "object",
                   "properties": {
@@ -133,9 +133,13 @@
                       "type": ["number", "string", "null"],
                       "description": "Line item number from SAP."
                     },
+                    "deleteStatus": {
+                      "type": "boolean",
+                      "description": "Delete status flag. false means active/not deleted, true means deleted/marked for deletion."
+                    },
                     "updatedAt": {
                       "type": "string",
-                      "description": "Date and time when the detail data was updated or inserted."
+                      "description": "Date and time when the detail data was updated, inserted, or marked as deleted."
                     }
                   },
                   "required": [
@@ -149,6 +153,7 @@
                     "unitPrice",
                     "currency",
                     "lineItemNo",
+                    "deleteStatus",
                     "updatedAt"
                   ],
                   "additionalProperties": false
@@ -207,41 +212,43 @@
       "data": [
         {
           "header": {
-            "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
-            "supplierCode": "ADDON",
-            "poDate": "05-05-2026",
-            "poNo": "PO/ADDON/I/IV",
-            "etdActual": "25-05-2026",
-            "eta": "20-05-2026",
+            "uuidHeader": "f402fc5e-9189-442f-8330-379122ab464a",
+            "supplierCode": "SUP005",
+            "poDate": "10-08-2026",
+            "poNo": "XXPO/KWL/004/2026",
+            "etdActual": "10-08-2026",
+            "eta": "10/09/2026",
             "fc": "PO",
-            "updatedAt": "2026-05-12 06:21:10.630"
+            "updatedAt": "2026-08-10 10:21:10.630"
           },
           "details": [
             {
-              "uuid": "0ee777cb-358a-471b-b677-7b3f3a864668",
-              "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
-              "additionalRemarks": "Edit Remarks",
+              "uuid": "d44ed63e-02a6-4989-8543-c6cced55023a",
+              "uuidHeader": "f402fc5e-9189-442f-8330-379122ab464a",
+              "additionalRemarks": "test",
               "orderNo": "ADDON/ORDER/0001/V/2026",
-              "itemCode": "Rawmaterial001",
-              "vendorQty": "20.00",
-              "vendorUnitCode": "KGM       ",
-              "unitPrice": "1.00000",
+              "itemCode": "RM-001",
+              "vendorQty": 126.4,
+              "vendorUnitCode": "KG",
+              "unitPrice": 110,
               "currency": "USD",
-              "lineItemNo": "1",
-              "updatedAt": "2026-05-12 06:21:10.630"
+              "lineItemNo": 100,
+              "deleteStatus": false,
+              "updatedAt": "2026-08-10 10:21:10.630"
             },
             {
-              "uuid": "e7d44048-ed49-48d6-ad33-5a9b7b5c124e",
-              "uuidHeader": "7ed1ac4c-064d-4ebb-80f2-08ede9a90c73",
-              "additionalRemarks": "Addint Item",
+              "uuid": "294b2d8f-0aed-455f-94d7-1f15a213d175",
+              "uuidHeader": "f402fc5e-9189-442f-8330-379122ab464a",
+              "additionalRemarks": "test",
               "orderNo": "ADDON/ORDER/0001/V/2026",
-              "itemCode": "Rawmaterial002",
-              "vendorQty": "10.00",
-              "vendorUnitCode": "KGM       ",
-              "unitPrice": "6.00000",
+              "itemCode": "RM-001",
+              "vendorQty": 127.4,
+              "vendorUnitCode": "KG",
+              "unitPrice": 120,
               "currency": "USD",
-              "lineItemNo": "1",
-              "updatedAt": "2026-05-12 06:21:10.630"
+              "lineItemNo": 101,
+              "deleteStatus": true,
+              "updatedAt": "2026-08-10 10:21:10.630"
             }
           ]
         }
@@ -273,6 +280,10 @@
         ],
         "data.0.details.0.unitPrice": [
           "The data.0.details.0.unitPrice must be a number."
+        ],
+        "data.0.details.0.deleteStatus": [
+          "The data.0.details.0.deleteStatus field is required.",
+          "The data.0.details.0.deleteStatus field must be true or false."
         ]
       }
     },
