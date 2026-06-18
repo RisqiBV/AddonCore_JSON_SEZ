@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GET KEK Transaksi Pemasukan Response Schema",
+  "description": "Response schema for GET data pemasukan from Portal KEK Addon Beacukai Report.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "error"],
+      "description": "Response status."
+    },
+    "message": {
+      "type": "string",
+      "description": "Response message from API."
+    },
+    "data_type": {
+      "type": "string",
+      "enum": ["pemasukan"],
+      "description": "Transaction data type returned by endpoint."
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total data returned."
+    },
+    "data": {
+      "type": "array",
+      "description": "List of pemasukan transaction data.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uuidheader": {
+            "type": ["string", "null"],
+            "maxLength": 100,
+            "description": "UUID header transaction. Value can be null if not available."
+          },
+          "idtransaksi": {
+            "type": ["string", "null"],
+            "maxLength": 100,
+            "description": "Transaction ID. Value can be null if transaction has not been sent or has no response ID."
+          },
+          "nomordokkegiatan": {
+            "type": ["string", "null"],
+            "maxLength": 100,
+            "description": "Nomor dokumen kegiatan pemasukan."
+          },
+          "created_at": {
+            "type": ["string", "null"],
+            "description": "Created timestamp from API/database."
+          }
+        },
+        "required": [
+          "uuidheader",
+          "idtransaksi",
+          "nomordokkegiatan",
+          "created_at"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "status",
+    "message",
+    "data_type",
+    "total",
+    "data"
+  ],
+  "additionalProperties": false,
+
+  "response examples": [
+    {
+      "description": "Success response from Postman.",
+      "response": {
+        "status": "success",
+        "message": "Transaction data retrieved successfully",
+        "data_type": "pemasukan",
+        "total": 1,
+        "data": [
+          {
+            "uuidheader": null,
+            "idtransaksi": null,
+            "nomordokkegiatan": "AFI-GR.01-2026",
+            "created_at": "2026-06-15T06:34:55.000000Z"
+          }
+        ]
+      }
+    }
+  ]
+}

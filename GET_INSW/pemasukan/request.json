@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GET KEK Transaksi Pemasukan Request Schema",
+  "description": "Request schema for GET data pemasukan from Portal KEK Addon Beacukai Report. This endpoint uses headers and optional query parameters. No JSON body is required.",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": ["GET"],
+      "description": "HTTP method."
+    },
+    "endpoint": {
+      "type": "string",
+      "enum": [
+        "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan"
+      ],
+      "description": "GET endpoint URL for KEK transaksi pemasukan."
+    },
+    "headers": {
+      "type": "object",
+      "description": "Required authentication headers.",
+      "properties": {
+        "x-addon-key": {
+          "type": "string",
+          "description": "Addon API key."
+        },
+        "x-addon-unique-key": {
+          "type": "string",
+          "description": "Addon unique key for company/client."
+        }
+      },
+      "required": [
+        "x-addon-key",
+        "x-addon-unique-key"
+      ],
+      "additionalProperties": false
+    },
+    "queryParams": {
+      "type": "object",
+      "description": "Optional query parameters for filtering pemasukan data. All returned fields can be used as filter parameters.",
+      "properties": {
+        "uuidheader": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Filter by UUID header transaction."
+        },
+        "idtransaksi": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Filter by transaction ID."
+        },
+        "nomordokkegiatan": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Filter by nomor dokumen kegiatan. Example: AFI-GR.01-2026."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Filter by created timestamp. Example: 2026-06-15T06:34:55.000000Z."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "method",
+    "endpoint",
+    "headers"
+  ],
+  "additionalProperties": false,
+
+  "request examples": [
+    {
+      "description": "GET all data pemasukan.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {}
+    },
+    {
+      "description": "GET data pemasukan by nomor dokumen kegiatan.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "nomordokkegiatan": "AFI-GR.01-2026"
+      }
+    },
+    {
+      "description": "GET data pemasukan by created_at.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "created_at": "2026-06-15T06:34:55.000000Z"
+      }
+    }
+  ]
+}
