@@ -46,14 +46,21 @@
           },
           "created_at": {
             "type": ["string", "null"],
-            "description": "Created timestamp from API/database."
+            "format": "date-time",
+            "description": "Created timestamp from API/database. Value can be null if not available. Example: 2026-06-15T06:34:55.000000Z."
+          },
+          "sent_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Sent timestamp when transaction data was sent to the related system/API. Value can be null if the transaction has not been sent. Example: 2026-06-15T06:34:55.000000Z."
           }
         },
         "required": [
           "uuidheader",
           "idtransaksi",
           "nomordokkegiatan",
-          "created_at"
+          "created_at",
+          "sent_at"
         ],
         "additionalProperties": false
       }
@@ -70,7 +77,25 @@
 
   "response examples": [
     {
-      "description": "Success response from Postman.",
+      "description": "Success response with sent_at value.",
+      "response": {
+        "status": "success",
+        "message": "Transaction data retrieved successfully",
+        "data_type": "pemasukan",
+        "total": 1,
+        "data": [
+          {
+            "uuidheader": "fbd25d88-8fa3-42ae-a9cb-83426d0d8a4e",
+            "idtransaksi": "TRX-KEK-202606150001",
+            "nomordokkegiatan": "AFI-GR.01-2026",
+            "created_at": "2026-06-15T06:34:55.000000Z",
+            "sent_at": "2026-06-15T07:10:22.000000Z"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Success response with null sent_at when transaction has not been sent.",
       "response": {
         "status": "success",
         "message": "Transaction data retrieved successfully",
@@ -81,9 +106,30 @@
             "uuidheader": null,
             "idtransaksi": null,
             "nomordokkegiatan": "AFI-GR.01-2026",
-            "created_at": "2026-06-15T06:34:55.000000Z"
+            "created_at": "2026-06-15T06:34:55.000000Z",
+            "sent_at": null
           }
         ]
+      }
+    },
+    {
+      "description": "Success response with empty data.",
+      "response": {
+        "status": "success",
+        "message": "Transaction data retrieved successfully",
+        "data_type": "pemasukan",
+        "total": 0,
+        "data": []
+      }
+    },
+    {
+      "description": "Error response example.",
+      "response": {
+        "status": "error",
+        "message": "Unauthorized request",
+        "data_type": "pemasukan",
+        "total": 0,
+        "data": []
       }
     }
   ]

@@ -56,7 +56,23 @@
         },
         "created_at": {
           "type": "string",
-          "description": "Filter by created timestamp. Example: 2026-06-15T06:34:55.000000Z."
+          "format": "date-time",
+          "description": "Filter by exact created timestamp. Example: 2026-06-15T06:34:55.000000Z."
+        },
+        "sent_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Filter by exact sent timestamp. Example: 2026-06-15T06:34:55.000000Z."
+        },
+        "sent_at_from": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Filter by sent timestamp start range. Returns data where sent_at is greater than or equal to this value. Example: 2026-06-01T00:00:00.000000Z."
+        },
+        "sent_at_to": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Filter by sent timestamp end range. Returns data where sent_at is less than or equal to this value. Example: 2026-06-30T23:59:59.000000Z."
         }
       },
       "additionalProperties": false
@@ -102,6 +118,55 @@
       },
       "queryParams": {
         "created_at": "2026-06-15T06:34:55.000000Z"
+      }
+    },
+    {
+      "description": "GET data pemasukan by exact sent_at.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "sent_at": "2026-06-15T06:34:55.000000Z"
+      }
+    },
+    {
+      "description": "GET data pemasukan by sent_at range.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "sent_at_from": "2026-06-01T00:00:00.000000Z",
+        "sent_at_to": "2026-06-30T23:59:59.000000Z"
+      }
+    },
+    {
+      "description": "GET data pemasukan sent after or equal to sent_at_from.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "sent_at_from": "2026-06-01T00:00:00.000000Z"
+      }
+    },
+    {
+      "description": "GET data pemasukan sent before or equal to sent_at_to.",
+      "method": "GET",
+      "endpoint": "https://kek.addonbeacukaireport.com/api/get/kek-transaksi/pemasukan",
+      "headers": {
+        "x-addon-key": "<ADDON_KEY>",
+        "x-addon-unique-key": "<ADDON_UNIQUE_KEY>"
+      },
+      "queryParams": {
+        "sent_at_to": "2026-06-30T23:59:59.000000Z"
       }
     }
   ]
