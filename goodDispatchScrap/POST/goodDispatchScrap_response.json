@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Good Dispatch Scrap Response Schema",
+  "description": "JSON response contract for Good Dispatch Scrap API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Returned when Good Dispatch Scrap data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved Good Dispatch Scrap data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Good Dispatch Scrap header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "transactionDate": {
+                    "type": "string"
+                  },
+                  "deliveryNoteNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "deliverTo": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "vehicleId": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "bcCode": {
+                    "type": "string",
+                    "maxLength": 10
+                  },
+                  "bcNo": {
+                    "type": "string",
+                    "maxLength": 10
+                  },
+                  "bcDate": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "transactionNo",
+                  "transactionDate",
+                  "deliveryNoteNo",
+                  "deliverTo",
+                  "vehicleId",
+                  "bcCode",
+                  "bcNo",
+                  "bcDate"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Good Dispatch Scrap detail data.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "scrapCode": {
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    "qty": {
+                      "type": ["number", "string"]
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "nw": {
+                      "type": ["number", "string"]
+                    },
+                    "gw": {
+                      "type": ["number", "string"]
+                    },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
+                    },
+                    "lineItemNo": {
+                      "type": ["number", "string"]
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "string", "null"]
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "scrapCode",
+                    "qty",
+                    "unitCode",
+                    "nw",
+                    "gw",
+                    "movementType",
+                    "lineItemNo",
+                    "debitCredit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Returned when validation or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific error details.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "payloadExamples": [
+    {
+      "status": "success",
+      "message": "Data Good Dispatch Scrap successfully saved",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+            "transactionNo": "0009/IX/2025",
+            "transactionDate": "09-08-2025",
+            "deliveryNoteNo": "SJ/004/2025",
+            "deliverTo": "CV. Mentari Pagi",
+            "vehicleId": "B 3451 BTS",
+            "bcCode": "632",
+            "bcNo": "000013",
+            "bcDate": "09-08-2025"
+          },
+          "details": [
+            {
+              "uuid": "22e5ee88-9139-4410-b7ad-05a41a7afad3",
+              "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+              "scrapCode": "SCRP-01",
+              "qty": 2,
+              "unitCode": "KGM",
+              "nw": 2,
+              "gw": 2.1,
+              "batchNo": "BATCH001",
+              "movementType": "OUT",
+              "reference": "REF-SCRAP-001",
+              "lineItemNo": 1,
+              "lineItemNoRef": null,
+              "debitCredit": "CREDIT"
+            },
+            {
+              "uuid": "ba34cdac-24fb-41bf-bea3-18e89be29c54",
+              "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+              "scrapCode": "SCRP-01",
+              "qty": 1,
+              "unitCode": "KGM",
+              "nw": 1,
+              "gw": 1.05,
+              "batchNo": null,
+              "movementType": "OUT",
+              "reference": "REF-SCRAP-001",
+              "lineItemNo": 2,
+              "lineItemNoRef": null,
+              "debitCredit": "CREDIT"
+            }
+          ]
+        },
+        {
+          "header": {
+            "uuidHeader": "592b6b2f-aa7f-47ce-88b6-fcef26ed5c4d",
+            "transactionNo": "0010/IX/2025",
+            "transactionDate": "10-08-2025",
+            "deliveryNoteNo": "SJ/005/2025",
+            "deliverTo": "CV. Mentari Pagi",
+            "vehicleId": "B 8899 ADD",
+            "bcCode": "632",
+            "bcNo": "000014",
+            "bcDate": "10-08-2025"
+          },
+          "details": [
+            {
+              "uuid": "3aeec036-c1c7-475a-9595-bafcdab20d54",
+              "uuidHeader": "592b6b2f-aa7f-47ce-88b6-fcef26ed5c4d",
+              "scrapCode": "SCRP-02",
+              "qty": 5,
+              "unitCode": "KGM",
+              "nw": 5,
+              "gw": 5.25,
+              "batchNo": "BATCH002",
+              "movementType": "IN",
+              "reference": "ADJ-SCRAP-001",
+              "lineItemNo": 1,
+              "lineItemNoRef": null,
+              "debitCredit": "DEBIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "error",
+      "message": "Validation failed.",
+      "errors": {
+        "header.transactionNo": [
+          "The transactionNo field is required."
+        ],
+        "details.0.scrapCode": [
+          "The scrapCode field is required."
+        ],
+        "details.0.lineItemNo": [
+          "The lineItemNo field is required."
+        ],
+        "details.0.debitCredit": [
+          "The debitCredit field is required."
+        ]
+      }
+    }
+  ]
+}

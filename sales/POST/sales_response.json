@@ -1,0 +1,273 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sales Response Schema",
+  "description": "JSON response contract for Sales API",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Returned when Sales data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved Sales data.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Sales header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "invoiceNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "invoiceDate": {
+                    "type": "string"
+                  },
+                  "vesselDate": {
+                    "type": "string"
+                  },
+                  "customerCode": {
+                    "type": "string",
+                    "maxLength": 10
+                  },
+                  "deliveryNoteNo": {
+                    "type": "string",
+                    "maxLength": 200
+                  },
+                  "category": {
+                    "type": "string",
+                    "maxLength": 20
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "invoiceNo",
+                  "invoiceDate",
+                  "vesselDate",
+                  "customerCode",
+                  "deliveryNoteNo",
+                  "category"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Sales detail data.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25
+                    },
+                    "colorFinishGood": {
+                      "type": "string",
+                      "maxLength": 250
+                    },
+                    "sizeFinishGoodCode": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "qty": {
+                      "type": ["number", "string"]
+                    },
+                    "price": {
+                      "type": ["number", "string"]
+                    },
+                    "priceFob": {
+                      "type": ["number", "string"]
+                    },
+                    "rate": {
+                      "type": ["number", "string"]
+                    },
+                    "currency": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "lineItemNo": {
+                      "type": ["number", "string"]
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "orderNo",
+                    "colorFinishGood",
+                    "sizeFinishGoodCode",
+                    "qty",
+                    "price",
+                    "priceFob",
+                    "rate",
+                    "currency",
+                    "lineItemNo"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Returned when validation or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific error details.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "payloadExamples": [
+    {
+      "status": "success",
+      "message": "Data Sales successfully saved",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+            "invoiceNo": "INV/001/2025",
+            "invoiceDate": "12-08-2025",
+            "vesselDate": "12-08-2025",
+            "customerCode": "CUST001",
+            "deliveryNoteNo": "SJ/003/2025",
+            "category": "Local"
+          },
+          "details": [
+            {
+              "uuid": "22e5ee88-9139-4410-b7ad-05a41a7afad3",
+              "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+              "orderNo": "FG-RAK-001",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "M",
+              "qty": 10,
+              "price": 1000000,
+              "priceFob": 1000000,
+              "rate": 16230,
+              "currency": "IDR",
+              "batchNo": "BATCH001",
+              "lineItemNo": 1
+            },
+            {
+              "uuid": "ba34cdac-24fb-41bf-bea3-18e89be29c54",
+              "uuidHeader": "f91d3768-aa10-435a-a531-6fc5c796d1cf",
+              "orderNo": "FG-RAK-001",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "L",
+              "qty": 12,
+              "price": 750000,
+              "priceFob": 750000,
+              "rate": 16230,
+              "currency": "USD",
+              "batchNo": null,
+              "lineItemNo": 2
+            }
+          ]
+        },
+        {
+          "header": {
+            "uuidHeader": "592b6b2f-aa7f-47ce-88b6-fcef26ed5c4d",
+            "invoiceNo": "INV/002/2025",
+            "invoiceDate": "13-08-2025",
+            "vesselDate": "13-08-2025",
+            "customerCode": "CUST002",
+            "deliveryNoteNo": "SJ/004/2025",
+            "category": "Export"
+          },
+          "details": [
+            {
+              "uuid": "3aeec036-c1c7-475a-9595-bafcdab20d54",
+              "uuidHeader": "592b6b2f-aa7f-47ce-88b6-fcef26ed5c4d",
+              "orderNo": "FG-EXP-001",
+              "colorFinishGood": "White",
+              "sizeFinishGoodCode": "XL",
+              "qty": 25,
+              "price": 15.5,
+              "priceFob": 15.5,
+              "rate": 16230,
+              "currency": "USD",
+              "batchNo": "BATCH002",
+              "lineItemNo": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "error",
+      "message": "Validation failed.",
+      "errors": {
+        "header.invoiceNo": [
+          "The invoiceNo field is required."
+        ],
+        "header.customerCode": [
+          "The customerCode field is required."
+        ],
+        "details.0.orderNo": [
+          "The orderNo field is required."
+        ],
+        "details.0.lineItemNo": [
+          "The lineItemNo field is required."
+        ]
+      }
+    }
+  ]
+}

@@ -15,7 +15,7 @@
         },
         "transactionDate": {
           "type": "string",
-          "description": "Dispatch date (e.g., DD-MMM-YYYY)."
+          "description": "Dispatch date. Expected format: DD-MM-YYYY."
         },
         "deliveryNoteNo": {
           "type": "string",
@@ -35,7 +35,7 @@
         "bcCode": {
           "type": "string",
           "maxLength": 10,
-          "description": "BC (customs) code."
+          "description": "BC customs code."
         },
         "bcNo": {
           "type": "string",
@@ -44,7 +44,7 @@
         },
         "bcDate": {
           "type": "string",
-          "description": "BC document date (e.g., DD-MM-YYYY)."
+          "description": "BC document date. Expected format: DD-MM-YYYY."
         }
       },
       "required": [
@@ -59,7 +59,6 @@
       ],
       "additionalProperties": false
     },
-
     "details": {
       "type": "array",
       "description": "Scrap detail lines for this dispatch.",
@@ -74,7 +73,7 @@
           },
           "qty": {
             "type": "number",
-            "description": "Quantity (float)."
+            "description": "Quantity."
           },
           "unitCode": {
             "type": "string",
@@ -88,6 +87,34 @@
           "gw": {
             "type": "number",
             "description": "Gross weight in KGM."
+          },
+          "batchNo": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Batch number."
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
+          },
+          "lineItemNoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
           }
         },
         "required": [
@@ -95,7 +122,10 @@
           "qty",
           "unitCode",
           "nw",
-          "gw"
+          "gw",
+          "movementType",
+          "lineItemNo",
+          "debitCredit"
         ],
         "additionalProperties": false
       }
@@ -106,8 +136,7 @@
     "details"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "payloadExamples": [
     {
       "header": {
         "transactionNo": "0009/IX/2025",
@@ -125,14 +154,53 @@
           "qty": 2,
           "unitCode": "KGM",
           "nw": 2,
-          "gw": 2.1
+          "gw": 2.1,
+          "batchNo": "BATCH001",
+          "movementType": "OUT",
+          "reference": "REF-SCRAP-001",
+          "lineItemNo": 1,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "scrapCode": "SCRP-01",
           "qty": 1,
           "unitCode": "KGM",
           "nw": 1,
-          "gw": 1.05
+          "gw": 1.05,
+          "batchNo": null,
+          "movementType": "OUT",
+          "reference": "REF-SCRAP-001",
+          "lineItemNo": 2,
+          "lineItemNoRef": null,
+          "debitCredit": "CREDIT"
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "0010/IX/2025",
+        "transactionDate": "10-08-2025",
+        "deliveryNoteNo": "SJ/005/2025",
+        "deliverTo": "CV. Mentari Pagi",
+        "vehicleId": "B 8899 ADD",
+        "bcCode": "632",
+        "bcNo": "000014",
+        "bcDate": "10-08-2025"
+      },
+      "details": [
+        {
+          "scrapCode": "SCRP-02",
+          "qty": 5,
+          "unitCode": "KGM",
+          "nw": 5,
+          "gw": 5.25,
+          "batchNo": "BATCH002",
+          "movementType": "IN",
+          "reference": "ADJ-SCRAP-001",
+          "lineItemNo": 1,
+          "lineItemNoRef": null,
+          "debitCredit": "DEBIT"
         }
       ]
     }

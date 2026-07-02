@@ -15,11 +15,11 @@
         },
         "invoiceDate": {
           "type": "string",
-          "description": "Invoice date (DD-MM-YYYY)."
+          "description": "Invoice date. Expected format: DD-MM-YYYY."
         },
         "vesselDate": {
           "type": "string",
-          "description": "Vessel/Shipment date (DD-MM-YYYY)."
+          "description": "Vessel/Shipment date. Expected format: DD-MM-YYYY."
         },
         "customerCode": {
           "type": "string",
@@ -34,7 +34,7 @@
         "category": {
           "type": "string",
           "maxLength": 20,
-          "description": "Export / Local / Return."
+          "description": "Sales category. Example: Export, Local, or Return."
         }
       },
       "required": [
@@ -47,7 +47,6 @@
       ],
       "additionalProperties": false
     },
-
     "details": {
       "type": "array",
       "description": "Invoice detail lines.",
@@ -58,17 +57,17 @@
           "orderNo": {
             "type": "string",
             "maxLength": 25,
-            "description": "Related order number (optional)."
+            "description": "Related order number."
           },
           "colorFinishGood": {
-            "type": ["string", "null"],
+            "type": "string",
             "maxLength": 250,
-            "description": "Finished good color (optional)."
+            "description": "Finished good color."
           },
           "sizeFinishGoodCode": {
-            "type": ["string", "null"],
+            "type": "string",
             "maxLength": 10,
-            "description": "Finished good size code (optional)."
+            "description": "Finished good size code."
           },
           "qty": {
             "type": "number",
@@ -89,7 +88,16 @@
           "currency": {
             "type": "string",
             "maxLength": 10,
-            "description": "Currency code (e.g., USD, IDR)."
+            "description": "Currency code. Example: USD or IDR."
+          },
+          "batchNo": {
+            "type": ["string", "null"],
+            "maxLength": 10,
+            "description": "Batch number."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
           }
         },
         "required": [
@@ -100,7 +108,8 @@
           "price",
           "priceFob",
           "rate",
-          "currency"
+          "currency",
+          "lineItemNo"
         ],
         "additionalProperties": false
       }
@@ -111,16 +120,15 @@
     "details"
   ],
   "additionalProperties": false,
-  
-  "payload examples": [
+  "payloadExamples": [
     {
       "header": {
         "invoiceNo": "INV/001/2025",
         "invoiceDate": "12-08-2025",
         "vesselDate": "12-08-2025",
-        "customerCode": "CUST-ARMY01",
+        "customerCode": "CUST001",
         "deliveryNoteNo": "SJ/003/2025",
-        "category": "Lokal"
+        "category": "Local"
       },
       "details": [
         {
@@ -131,7 +139,9 @@
           "price": 1000000,
           "priceFob": 1000000,
           "rate": 16230,
-          "currency": "IDR"
+          "currency": "IDR",
+          "batchNo": "BATCH001",
+          "lineItemNo": 1
         },
         {
           "orderNo": "FG-RAK-001",
@@ -141,7 +151,33 @@
           "price": 750000,
           "priceFob": 750000,
           "rate": 16230,
-          "currency": "USD"
+          "currency": "USD",
+          "batchNo": null,
+          "lineItemNo": 2
+        }
+      ]
+    },
+    {
+      "header": {
+        "invoiceNo": "INV/002/2025",
+        "invoiceDate": "13-08-2025",
+        "vesselDate": "13-08-2025",
+        "customerCode": "CUST002",
+        "deliveryNoteNo": "SJ/004/2025",
+        "category": "Export"
+      },
+      "details": [
+        {
+          "orderNo": "FG-EXP-001",
+          "colorFinishGood": "White",
+          "sizeFinishGoodCode": "XL",
+          "qty": 25,
+          "price": 15.5,
+          "priceFob": 15.5,
+          "rate": 16230,
+          "currency": "USD",
+          "batchNo": "BATCH002",
+          "lineItemNo": 1
         }
       ]
     }

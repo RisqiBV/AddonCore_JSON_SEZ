@@ -17,13 +17,13 @@
         },
         "data": {
           "type": "array",
-          "description": "Saved GR-FG data.",
+          "description": "Saved GD-FG data.",
           "items": {
             "type": "object",
             "properties": {
               "header": {
                 "type": "object",
-                "description": "GR-FG header data.",
+                "description": "GD-FG header data.",
                 "properties": {
                   "uuidHeader": {
                     "type": "string",
@@ -74,7 +74,7 @@
               },
               "details": {
                 "type": "array",
-                "description": "GR-FG detail data.",
+                "description": "GD-FG detail data.",
                 "items": {
                   "type": "object",
                   "properties": {
@@ -114,6 +114,25 @@
                     "itemCode": {
                       "type": ["string", "null"],
                       "maxLength": 50
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
+                    },
+                    "lineItemNo": {
+                      "type": ["number", "string"]
+                    },
+                    "lineItemnoRef": {
+                      "type": ["number", "string", "null"]
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
                     }
                   },
                   "required": [
@@ -122,7 +141,10 @@
                     "orderNo",
                     "colorFinishGood",
                     "sizeFinishGoodCode",
-                    "qty"
+                    "qty",
+                    "movementType",
+                    "lineItemNo",
+                    "debitCredit"
                   ],
                   "additionalProperties": false
                 }
@@ -160,7 +182,9 @@
           "description": "Field-specific error details.",
           "additionalProperties": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -170,6 +194,118 @@
         "errors"
       ],
       "additionalProperties": false
+    }
+  ],
+  "payloadExamples": [
+    {
+      "status": "success",
+      "message": "Good Dispatch Finishgood data saved successfully.",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "8fcb3f0e-3c4f-4b62-96a1-3a2e4f0f9a01",
+            "transactionNo": "GDFG/2026/0001",
+            "transactionDate": "15-05-2026",
+            "dispatchTo": "Customer",
+            "deliveryNoteNo": "SJ/2026/0001",
+            "bcCode": "632",
+            "bcNo": "000013",
+            "bcDate": "15-05-2026",
+            "deliverTo": "PT Addon Finance Indonesia",
+            "vehicleId": "B 1234 ADD"
+          },
+          "details": [
+            {
+              "uuid": "3b56a12e-ef7d-4f62-a0b0-2cbac3f90511",
+              "uuidHeader": "8fcb3f0e-3c4f-4b62-96a1-3a2e4f0f9a01",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "M",
+              "qty": 5,
+              "nw": 2,
+              "gw": 2.2,
+              "batchNo": "BATCH001",
+              "itemCode": "FG-001",
+              "movementType": "OUT",
+              "reference": "REF-0001",
+              "lineItemNo": 1,
+              "lineItemnoRef": null,
+              "debitCredit": "CREDIT"
+            },
+            {
+              "uuid": "4f8e2351-85f4-4e3e-ae5f-5c5a43cb9012",
+              "uuidHeader": "8fcb3f0e-3c4f-4b62-96a1-3a2e4f0f9a01",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "L",
+              "qty": 10,
+              "nw": null,
+              "gw": null,
+              "batchNo": null,
+              "itemCode": "FG-001",
+              "movementType": "OUT",
+              "reference": "REF-0001",
+              "lineItemNo": 2,
+              "lineItemnoRef": null,
+              "debitCredit": "CREDIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "success",
+      "message": "Good Dispatch Finishgood data saved successfully.",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "91f90f69-773e-4112-8ec6-c3df3f6d91a3",
+            "transactionNo": "GDFG/2026/0003",
+            "transactionDate": "16-05-2026",
+            "dispatchTo": "Adjustment",
+            "deliveryNoteNo": null,
+            "bcCode": null,
+            "bcNo": null,
+            "bcDate": null,
+            "deliverTo": null,
+            "vehicleId": null
+          },
+          "details": [
+            {
+              "uuid": "0d91cfde-6fd4-4e9a-879d-015b21d7a3e1",
+              "uuidHeader": "91f90f69-773e-4112-8ec6-c3df3f6d91a3",
+              "orderNo": "ADDON/ORDER/0003/V/2026",
+              "colorFinishGood": "Navy",
+              "sizeFinishGoodCode": "XL",
+              "qty": 50,
+              "nw": null,
+              "gw": null,
+              "batchNo": null,
+              "itemCode": "FG-003",
+              "movementType": "IN",
+              "reference": "ADJ-0001",
+              "lineItemNo": 1,
+              "lineItemnoRef": null,
+              "debitCredit": "DEBIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "error",
+      "message": "Validation failed.",
+      "errors": {
+        "details.0.movementType": [
+          "The movementType field is required."
+        ],
+        "details.0.lineItemNo": [
+          "The lineItemNo field is required."
+        ],
+        "details.0.debitCredit": [
+          "The debitCredit field is required."
+        ]
+      }
     }
   ]
 }

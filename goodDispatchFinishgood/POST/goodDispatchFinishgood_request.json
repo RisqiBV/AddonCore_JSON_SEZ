@@ -102,13 +102,39 @@
             "type": ["string", "null"],
             "maxLength": 50,
             "description": "Finished good item code."
+          },
+          "movementType": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Movement type."
+          },
+          "reference": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Reference number or reference information."
+          },
+          "lineItemNo": {
+            "type": "number",
+            "description": "Line item number."
+          },
+          "lineItemnoRef": {
+            "type": ["number", "null"],
+            "description": "Reference line item number."
+          },
+          "debitCredit": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
           }
         },
         "required": [
           "orderNo",
           "colorFinishGood",
           "sizeFinishGoodCode",
-          "qty"
+          "qty",
+          "movementType",
+          "lineItemNo",
+          "debitCredit"
         ],
         "additionalProperties": false
       }
@@ -141,7 +167,12 @@
           "nw": 2,
           "gw": 2.2,
           "batchNo": "BATCH001",
-          "itemCode": "FG-001"
+          "itemCode": "FG-001",
+          "movementType": "OUT",
+          "reference": "REF-0001",
+          "lineItemNo": 1,
+          "lineItemnoRef": null,
+          "debitCredit": "CREDIT"
         },
         {
           "orderNo": "ADDON/ORDER/0001/V/2026",
@@ -151,7 +182,12 @@
           "nw": null,
           "gw": null,
           "batchNo": null,
-          "itemCode": "FG-001"
+          "itemCode": "FG-001",
+          "movementType": "OUT",
+          "reference": "REF-0001",
+          "lineItemNo": 2,
+          "lineItemnoRef": null,
+          "debitCredit": "CREDIT"
         }
       ]
     },
@@ -176,7 +212,42 @@
           "nw": null,
           "gw": null,
           "batchNo": "BATCH002",
-          "itemCode": "FG-002"
+          "itemCode": "FG-002",
+          "movementType": "OUT",
+          "reference": null,
+          "lineItemNo": 1,
+          "lineItemnoRef": null,
+          "debitCredit": "CREDIT"
+        }
+      ]
+    },
+    {
+      "header": {
+        "transactionNo": "GDFG/2026/0003",
+        "transactionDate": "16-05-2026",
+        "dispatchTo": "Adjustment",
+        "deliveryNoteNo": null,
+        "bcCode": null,
+        "bcNo": null,
+        "bcDate": null,
+        "deliverTo": null,
+        "vehicleId": null
+      },
+      "details": [
+        {
+          "orderNo": "ADDON/ORDER/0003/V/2026",
+          "colorFinishGood": "Navy",
+          "sizeFinishGoodCode": "XL",
+          "qty": 50,
+          "nw": null,
+          "gw": null,
+          "batchNo": null,
+          "itemCode": "FG-003",
+          "movementType": "IN",
+          "reference": "ADJ-0001",
+          "lineItemNo": 1,
+          "lineItemnoRef": null,
+          "debitCredit": "DEBIT"
         }
       ]
     }
