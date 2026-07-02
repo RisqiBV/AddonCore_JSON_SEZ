@@ -71,6 +71,10 @@
                     "type": "string",
                     "maxLength": 10,
                     "description": "Unit of the finished good."
+                  },
+                  "soDate": {
+                    "type": ["string", "null"],
+                    "description": "Sales Order date. Format: DD-MM-YYYY."
                   }
                 },
                 "required": [
@@ -189,7 +193,8 @@
             "productGroup": "ERP",
             "orderType": "FOB",
             "sku": "ERP IT INVENTORY",
-            "unitCode": "PCE"
+            "unitCode": "PCE",
+            "soDate": "11-07-2026"
           },
           "details": [
             {
