@@ -58,6 +58,10 @@
                 "type": "string",
                 "maxLength": 10,
                 "description": "Unit of the finished good. Updateable."
+              },
+              "soDate": {
+                "type": ["string", "null"],
+                "description": "Sales Order Date. Updateable. Can be null. Expected format: DD-MM-YYYY."
               }
             },
             "required": [
@@ -140,7 +144,8 @@
             "productGroup": "ERP",
             "orderType": "FOB",
             "sku": "ERP IT INVENTORY",
-            "unitCode": "PCE"
+            "unitCode": "PCE",
+            "soDate": "11-07-2026"
           },
           "details": [
             {   

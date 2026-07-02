@@ -77,6 +77,10 @@
                     "maxLength": 10,
                     "description": "Unit of the finished good."
                   },
+                  "soDate": {
+                    "type": ["string", "null"],
+                    "description": "Sales Order date. Format: DD-MM-YYYY."
+                  },
                   "updatedAt": {
                     "type": "string",
                     "description": "Date and time when the header data was updated."
@@ -204,6 +208,7 @@
             "orderType": "FOB",
             "sku": "ERP IT INVENTORY",
             "unitCode": "PCE       ",
+            "soDate" :"11-07-2026",
             "updatedAt": "2026-05-10 15:56:59.307"
           },
           "details": [
