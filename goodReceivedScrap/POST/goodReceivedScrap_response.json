@@ -95,6 +95,11 @@
                       "maxLength": 50,
                       "description": "Item code of the material."
                     },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10,
+                      "description": "Batch number."
+                    },
                     "movementType": {
                       "type": "string",
                       "maxLength": 10,
