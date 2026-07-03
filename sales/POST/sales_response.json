@@ -109,8 +109,10 @@
                       "type": ["string", "null"],
                       "maxLength": 10
                     },
-                    "lineItemNo": {
-                      "type": ["number", "string"]
+                    "itemCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 50,
+                      "description": "Finished good item code."
                     }
                   },
                   "required": [
@@ -123,8 +125,7 @@
                     "price",
                     "priceFob",
                     "rate",
-                    "currency",
-                    "lineItemNo"
+                    "currency"
                   ],
                   "additionalProperties": false
                 }
@@ -204,7 +205,7 @@
               "rate": 16230,
               "currency": "IDR",
               "batchNo": "BATCH001",
-              "lineItemNo": 1
+              "itemCode": "FG-1"
             },
             {
               "uuid": "ba34cdac-24fb-41bf-bea3-18e89be29c54",
@@ -218,7 +219,7 @@
               "rate": 16230,
               "currency": "USD",
               "batchNo": null,
-              "lineItemNo": 2
+              "itemCode": "FG-2"
             }
           ]
         },
@@ -245,7 +246,7 @@
               "rate": 16230,
               "currency": "USD",
               "batchNo": "BATCH002",
-              "lineItemNo": 1
+              "itemCode": "FG-2"
             }
           ]
         }
@@ -264,8 +265,8 @@
         "details.0.orderNo": [
           "The orderNo field is required."
         ],
-        "details.0.lineItemNo": [
-          "The lineItemNo field is required."
+        "details.0.qty": [
+          "The qty field is required."
         ]
       }
     }

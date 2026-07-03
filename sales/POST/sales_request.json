@@ -95,9 +95,10 @@
             "maxLength": 10,
             "description": "Batch number."
           },
-          "lineItemNo": {
-            "type": "number",
-            "description": "Line item number."
+          "itemCode": {
+            "type": ["string", "null"],
+            "maxLength": 50,
+            "description": "Finished good item code."
           }
         },
         "required": [
@@ -108,8 +109,7 @@
           "price",
           "priceFob",
           "rate",
-          "currency",
-          "lineItemNo"
+          "currency"
         ],
         "additionalProperties": false
       }
@@ -141,7 +141,7 @@
           "rate": 16230,
           "currency": "IDR",
           "batchNo": "BATCH001",
-          "lineItemNo": 1
+          "itemCode": "FG-1"
         },
         {
           "orderNo": "FG-RAK-001",
@@ -153,7 +153,7 @@
           "rate": 16230,
           "currency": "USD",
           "batchNo": null,
-          "lineItemNo": 2
+          "itemCode": "FG-2"
         }
       ]
     },
@@ -177,7 +177,7 @@
           "rate": 16230,
           "currency": "USD",
           "batchNo": "BATCH002",
-          "lineItemNo": 1
+          "itemCode": "FG-2"
         }
       ]
     }
