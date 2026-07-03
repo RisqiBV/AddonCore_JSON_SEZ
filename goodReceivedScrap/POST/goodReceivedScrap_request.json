@@ -130,6 +130,7 @@
           "unitCode": "KGM",
           "orderNo": "ADDON/ORDER/0001/V/2026",
           "itemCode": "Rawmaterial001",
+          "batchNo" : "0001",
           "movementType": "IN",
           "reference": null,
           "lineItemNo": 1,
