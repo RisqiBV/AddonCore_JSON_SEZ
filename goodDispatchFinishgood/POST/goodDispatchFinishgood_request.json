@@ -171,7 +171,7 @@
           "movementType": "OUT",
           "reference": "REF-0001",
           "lineItemNo": 1,
-          "lineItemnoRef": null,
+          "lineItemNoRef": null,
           "debitCredit": "CREDIT"
         },
         {
@@ -186,7 +186,7 @@
           "movementType": "OUT",
           "reference": "REF-0001",
           "lineItemNo": 2,
-          "lineItemnoRef": null,
+          "lineItemNoRef": null,
           "debitCredit": "CREDIT"
         }
       ]
@@ -216,7 +216,7 @@
           "movementType": "OUT",
           "reference": null,
           "lineItemNo": 1,
-          "lineItemnoRef": null,
+          "lineItemNoRef": null,
           "debitCredit": "CREDIT"
         }
       ]
@@ -246,7 +246,7 @@
           "movementType": "IN",
           "reference": "ADJ-0001",
           "lineItemNo": 1,
-          "lineItemnoRef": null,
+          "lineItemNoRef": null,
           "debitCredit": "DEBIT"
         }
       ]

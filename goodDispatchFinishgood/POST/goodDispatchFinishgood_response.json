@@ -126,7 +126,7 @@
                     "lineItemNo": {
                       "type": ["number", "string"]
                     },
-                    "lineItemnoRef": {
+                    "lineItemNoRef": {
                       "type": ["number", "string", "null"]
                     },
                     "debitCredit": {
@@ -229,7 +229,7 @@
               "movementType": "OUT",
               "reference": "REF-0001",
               "lineItemNo": 1,
-              "lineItemnoRef": null,
+              "lineItemNoRef": null,
               "debitCredit": "CREDIT"
             },
             {
@@ -246,7 +246,7 @@
               "movementType": "OUT",
               "reference": "REF-0001",
               "lineItemNo": 2,
-              "lineItemnoRef": null,
+              "lineItemNoRef": null,
               "debitCredit": "CREDIT"
             }
           ]
@@ -285,7 +285,7 @@
               "movementType": "IN",
               "reference": "ADJ-0001",
               "lineItemNo": 1,
-              "lineItemnoRef": null,
+              "lineItemNoRef": null,
               "debitCredit": "DEBIT"
             }
           ]
