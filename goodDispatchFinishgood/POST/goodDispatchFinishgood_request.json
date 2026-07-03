@@ -117,7 +117,7 @@
             "type": "number",
             "description": "Line item number."
           },
-          "lineItemnoRef": {
+          "lineItemNoRef": {
             "type": ["number", "null"],
             "description": "Reference line item number."
           },
