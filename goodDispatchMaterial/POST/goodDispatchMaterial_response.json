@@ -46,6 +46,11 @@
                     "maxLength": 50,
                     "description": "Dispatch destination."
                   },
+                  "remark": {
+                    "type": "string",
+                    "maxLength": 200,
+                    "description": "Additional Remark."
+                  },
                   "deliveryNoteNo": {
                     "type": ["string", "null"],
                     "maxLength": 50,
@@ -233,6 +238,7 @@
             "transactionNo": "GDM/2026/0001",
             "transactionDate": "15-05-2026",
             "dispatchTo": "Production",
+            "remark" : "Sample",
             "deliveryNoteNo": null,
             "bcCode": null,
             "bcNo": null,
@@ -281,6 +287,7 @@
             "transactionNo": "GDM/2026/0002",
             "transactionDate": "15-05-2026",
             "dispatchTo": "Supplier",
+            "remark":" ",
             "deliveryNoteNo": "SJ/2026/0002",
             "bcCode": "261",
             "bcNo": "000013",
