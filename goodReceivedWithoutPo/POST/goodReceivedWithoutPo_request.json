@@ -1,0 +1,204 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Good Received Without PO Schema",
+    "description": "Schema for Good Received transactions without a Purchase Order reference.",
+    "type": "object",
+    "properties": {
+        "data": {
+            "type": "array",
+            "description": "List of Good Received Material transactions.",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "header": {
+                        "type": "object",
+                        "description": "Header information for the Good Received transaction.",
+                        "properties": {
+                            "transactionNo": {
+                                "type": "string",
+                                "maxLength": 50,
+                                "minLength": 1,
+                                "description": "Unique Good Received Material transaction number."
+                            },
+                            "transactionDate": {
+                                "type": "string",
+                                "pattern": "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}$",
+                                "description": "Transaction date in DD-MM-YYYY format."
+                            },
+                            "bcCode": {
+                                "type": "string",
+                                "maxLength": 10,
+                                "minLength": 1,
+                                "description": "Customs document code."
+                            },
+                            "bcNo": {
+                                "type": "string",
+                                "maxLength": 50,
+                                "minLength": 1,
+                                "description": "Customs document number."
+                            },
+                            "bcDate": {
+                                "type": "string",
+                                "pattern": "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\\d{4}$",
+                                "description": "Customs document date in DD-MM-YYYY format."
+                            }
+                        },
+                        "required": [
+                            "transactionNo",
+                            "transactionDate",
+                            "bcCode",
+                            "bcNo",
+                            "bcDate"
+                        ],
+                        "additionalProperties": false
+                    },
+                    "details": {
+                        "type": "array",
+                        "description": "List of material detail lines for the Good Received transaction.",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "itemCode": {
+                                    "type": "string",
+                                    "maxLength": 50,
+                                    "minLength": 1,
+                                    "description": "Material or item code."
+                                },
+                                "qty": {
+                                    "type": "number",
+                                    "exclusiveMinimum": 0,
+                                    "multipleOf": 0.0001,
+                                    "description": "Received quantity with a maximum precision of four decimal places."
+                                },
+                                "unitCode": {
+                                    "type": "string",
+                                    "maxLength": 10,
+                                    "minLength": 1,
+                                    "description": "Unit of measurement code."
+                                },
+                                "unitPrice": {
+                                    "type": "number",
+                                    "minimum": 0,
+                                    "description": "Price per unit of material."
+                                },
+                                "batchNo": {
+                                    "type": [
+                                        "string",
+                                        "integer"
+                                    ],
+                                    "description": "Batch number from SAP or another ERP system."
+                                },
+                                "lineItemNo": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "description": "Line item number in the Good Received transaction."
+                                },
+                                "fc": {
+                                    "type": "string",
+                                    "maxLength": 15,
+                                    "enum": [
+                                        "PO",
+                                        "FOC"
+                                    ],
+                                    "description": "Receipt category: Purchase Order or Free of Charge."
+                                },
+                                "currency": {
+                                    "type": "string",
+                                    "minLength": 3,
+                                    "maxLength": 3,
+                                    "pattern": "^[A-Z]{3}$",
+                                    "description": "Three-character currency code, such as USD or IDR."
+                                },
+                                "movementType": {
+                                    "type": "string",
+                                    "maxLength": 10,
+                                    "minLength": 1,
+                                    "description": "Material movement type, such as IN or RETURN."
+                                },
+                                "reference": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "maxLength": 50,
+                                    "description": "Reference transaction number or other reference information."
+                                },
+                                "lineItemNoRef": {
+                                    "type": [
+                                        "integer",
+                                        "null"
+                                    ],
+                                    "minimum": 1,
+                                    "description": "Line item number of the referenced transaction."
+                                },
+                                "debitCredit": {
+                                    "type": "string",
+                                    "maxLength": 10,
+                                    "minLength": 1,
+                                    "description": "Debit or credit indicator."
+                                }
+                            },
+                            "required": [
+                                "itemCode",
+                                "qty",
+                                "unitCode",
+                                "unitPrice",
+                                "batchNo",
+                                "lineItemNo",
+                                "fc",
+                                "currency",
+                                "movementType",
+                                "reference",
+                                "lineItemNoRef",
+                                "debitCredit"
+                            ],
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "required": [
+                    "header",
+                    "details"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": [
+        "data"
+    ],
+    "additionalProperties": false,
+    "examples": [
+        {
+            "data": [
+                {
+                    "header": {
+                        "transactionNo": "GR.000001",
+                        "transactionDate": "09-08-2026",
+                        "bcCode": "0407613",
+                        "bcNo": "000012",
+                        "bcDate": "09-08-2026"
+                    },
+                    "details": [
+                        {
+                            "itemCode": "RM001",
+                            "qty": 10.0000,
+                            "unitCode": "KG",
+                            "unitPrice": 10,
+                            "batchNo": 1000,
+                            "lineItemNo": 100,
+                            "fc": "PO",
+                            "currency": "USD",
+                            "movementType": "IN",
+                            "reference": null,
+                            "lineItemNoRef": null,
+                            "debitCredit": "-"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
