@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Settlement Asset Schema",
+  "description": "JSON request contract for submitting Settlement Asset transactions and their Good Received purchase references.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "List of Settlement Asset transactions.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "transactionNo": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "description": "Unique Settlement Asset transaction number."
+          },
+          "transactionDate": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+            "description": "Settlement Asset transaction date in YYYY-MM-DD format."
+          },
+          "assets": {
+            "type": "array",
+            "description": "List of asset detail lines included in the Settlement Asset transaction.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "itemCodeAsset": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 50,
+                  "description": "Asset item code."
+                },
+                "assetQty": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Total quantity of the asset."
+                },
+                "unitCode": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 10,
+                  "description": "Unit of measurement code used for the asset."
+                },
+                "lineItemNoAsset": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Unique asset line item number within the Settlement Asset transaction."
+                },
+                "purchaseReferences": {
+                  "type": "array",
+                  "description": "List of Good Received purchase references allocated to the asset.",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "grpoRef": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 50,
+                        "description": "Good Received transaction number used as the purchase reference."
+                      },
+                      "lineItemNoGR": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "Line item number of the referenced Good Received transaction."
+                      },
+                      "referenceQty": {
+                        "type": "number",
+                        "exclusiveMinimum": 0,
+                        "description": "Quantity allocated from the referenced Good Received line."
+                      }
+                    },
+                    "required": [
+                      "grpoRef",
+                      "lineItemNoGR",
+                      "referenceQty"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "itemCodeAsset",
+                "assetQty",
+                "unitCode",
+                "lineItemNoAsset",
+                "purchaseReferences"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "transactionNo",
+          "transactionDate",
+          "assets"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "data": [
+        {
+          "transactionNo": "ASSET/00001",
+          "transactionDate": "2026-08-05",
+          "assets": [
+            {
+              "itemCodeAsset": "ASSET0001",
+              "assetQty": 2,
+              "unitCode": "KG",
+              "lineItemNoAsset": 10,
+              "purchaseReferences": [
+                {
+                  "grpoRef": "GR/GENERAL/002",
+                  "lineItemNoGR": 10,
+                  "referenceQty": 1
+                },
+                {
+                  "grpoRef": "GR/GENERAL/002",
+                  "lineItemNoGR": 20,
+                  "referenceQty": 1
+                }
+              ]
+            },
+            {
+              "itemCodeAsset": "ASSET0001",
+              "assetQty": 2,
+              "unitCode": "KG",
+              "lineItemNoAsset": 20,
+              "purchaseReferences": [
+                {
+                  "grpoRef": "GR/GENERAL/002",
+                  "lineItemNoGR": 10,
+                  "referenceQty": 1
+                },
+                {
+                  "grpoRef": "GR/GENERAL/002",
+                  "lineItemNoGR": 20,
+                  "referenceQty": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "transactionNo": "ASSET/00002",
+          "transactionDate": "2026-08-05",
+          "assets": [
+            {
+              "itemCodeAsset": "ASSET0001",
+              "assetQty": 1,
+              "unitCode": "KG",
+              "lineItemNoAsset": 10,
+              "purchaseReferences": [
+                {
+                  "grpoRef": "GR/GENERAL/002",
+                  "lineItemNoGR": 10,
+                  "referenceQty": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
