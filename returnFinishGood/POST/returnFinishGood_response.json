@@ -1,0 +1,264 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Return Finishgood Response Schema",
+  "description": "JSON response contract for Return Finishgood API.",
+  "oneOf": [
+    {
+      "title": "Success Response",
+      "description": "Returned when Return Finishgood data is successfully saved.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["success"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "description": "Saved Return Finishgood transactions.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "object",
+                "description": "Return Finishgood header data.",
+                "properties": {
+                  "uuidHeader": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "transactionNo": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "transactionDate": {
+                    "type": "string",
+                    "description": "Return transaction date and time. Expected format: YYYY-MM-DDTHH:mm:ss."
+                  },
+                  "returnFrom": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "bcCode": {
+                    "type": ["string", "null"],
+                    "maxLength": 10
+                  },
+                  "bcNo": {
+                    "type": ["string", "null"],
+                    "maxLength": 10
+                  },
+                  "bcDate": {
+                    "type": ["string", "null"],
+                    "description": "BC customs document date. Expected format: YYYY-MM-DD."
+                  }
+                },
+                "required": [
+                  "uuidHeader",
+                  "transactionNo",
+                  "transactionDate",
+                  "returnFrom"
+                ],
+                "additionalProperties": false
+              },
+              "details": {
+                "type": "array",
+                "description": "Return Finishgood detail data.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uuidHeader": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "batchNo": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "itemCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
+                    },
+                    "orderNo": {
+                      "type": "string",
+                      "maxLength": 25
+                    },
+                    "colorFinishGood": {
+                      "type": ["string", "null"],
+                      "maxLength": 250
+                    },
+                    "sizeFinishGoodCode": {
+                      "type": ["string", "null"],
+                      "maxLength": 10
+                    },
+                    "qty": {
+                      "type": ["number", "string"],
+                      "description": "Returned quantity."
+                    },
+                    "giReference": {
+                      "type": "string",
+                      "maxLength": 50,
+                      "description": "Related Goods Issue transaction number."
+                    },
+                    "lineItemNoGiReference": {
+                      "type": ["number", "string"],
+                      "description": "Line item number in the referenced Goods Issue transaction."
+                    },
+                    "lineItemNo": {
+                      "type": ["number", "string"],
+                      "description": "Return transaction line item number."
+                    },
+                    "movementType": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Movement type. Example: IN."
+                    },
+                    "reference": {
+                      "type": ["string", "null"],
+                      "maxLength": 50
+                    },
+                    "lineItemNoRef": {
+                      "type": ["number", "string", "null"]
+                    },
+                    "debitCredit": {
+                      "type": "string",
+                      "maxLength": 10,
+                      "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
+                    }
+                  },
+                  "required": [
+                    "uuid",
+                    "uuidHeader",
+                    "orderNo",
+                    "colorFinishGood",
+                    "sizeFinishGoodCode",
+                    "qty",
+                    "giReference",
+                    "lineItemNoGiReference",
+                    "lineItemNo",
+                    "movementType",
+                    "debitCredit"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "header",
+              "details"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "data"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "title": "Error Response",
+      "description": "Returned when validation or server error occurs.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["error"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "type": ["object", "null"],
+          "description": "Field-specific error details.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "status",
+        "message",
+        "errors"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "payloadExamples": [
+    {
+      "status": "success",
+      "message": "Return Finishgood data saved successfully.",
+      "data": [
+        {
+          "header": {
+            "uuidHeader": "8fcb3f0e-3c4f-4b62-96a1-3a2e4f0f9a01",
+            "transactionNo": "RFG/VI/2026/08082010",
+            "transactionDate": "2026-05-15T10:30:00",
+            "returnFrom": "CUST001",
+            "bcCode": "261",
+            "bcNo": "BC261001",
+            "bcDate": "2026-05-15"
+          },
+          "details": [
+            {
+              "uuid": "3b56a12e-ef7d-4f62-a0b0-2cbac3f90511",
+              "uuidHeader": "8fcb3f0e-3c4f-4b62-96a1-3a2e4f0f9a01",
+              "batchNo": "10",
+              "itemCode": "FG-001",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "M",
+              "qty": 10.1256,
+              "giReference": "GI/2026/0001",
+              "lineItemNoGiReference": 10,
+              "lineItemNo": 1,
+              "movementType": "IN",
+              "reference": null,
+              "lineItemNoRef": null,
+              "debitCredit": "DEBIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "error",
+      "message": "Validation failed.",
+      "errors": {
+        "data.0.header.returnFrom": [
+          "The returnFrom field is required."
+        ],
+        "data.0.details.0.giReference": [
+          "The giReference field is required."
+        ],
+        "data.0.details.0.lineItemNoGiReference": [
+          "The lineItemNoGiReference field is required."
+        ]
+      }
+    },
+    {
+      "status": "error",
+      "message": "Validation failed.",
+      "errors": {
+        "data.0.header.transactionNo": [
+          "The transactionNo has already been taken."
+        ]
+      }
+    },
+    {
+      "status": "error",
+      "message": "An error occurred while saving Return Finishgood data.",
+      "errors": null
+    }
+  ]
+}

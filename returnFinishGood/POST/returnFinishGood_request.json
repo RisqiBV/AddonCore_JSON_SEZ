@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Return Finished Goods Request Schema",
+  "description": "JSON contract for Return Finished Goods data. Each object in the data array represents a single finished-goods return transaction with header and detail lines.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Return Finished Goods transactions.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "object",
+            "description": "Return Finished Goods header section.",
+            "properties": {
+              "transactionNo": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Primary return transaction number."
+              },
+              "transactionDate": {
+                "type": "string",
+                "description": "Return transaction date and time. Expected format: YYYY-MM-DDTHH:mm:ss."
+              },
+              "returnFrom": {
+                "type": "string",
+                "maxLength": 50,
+                "description": "Code of the customer or party returning the finished goods."
+              },
+              "bcCode": {
+                "type": ["string", "null"],
+                "maxLength": 10,
+                "description": "BC customs document code."
+              },
+              "bcNo": {
+                "type": ["string", "null"],
+                "maxLength": 10,
+                "description": "BC customs document number."
+              },
+              "bcDate": {
+                "type": ["string", "null"],
+                "description": "BC customs document date. Expected format: YYYY-MM-DD."
+              }
+            },
+            "required": [
+              "transactionNo",
+              "transactionDate",
+              "returnFrom"
+            ],
+            "additionalProperties": false
+          },
+          "details": {
+            "type": "array",
+            "description": "Return Finished Goods detail lines.",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "batchNo": {
+                  "type": ["string", "null"],
+                  "maxLength": 10,
+                  "description": "Batch number."
+                },
+                "itemCode": {
+                  "type": ["string", "null"],
+                  "maxLength": 50,
+                  "description": "Finished good item code."
+                },
+                "orderNo": {
+                  "type": "string",
+                  "maxLength": 25,
+                  "description": "Related order number."
+                },
+                "colorFinishGood": {
+                  "type": "string",
+                  "maxLength": 250,
+                  "description": "Finished good color."
+                },
+                "sizeFinishGoodCode": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Finished good size code."
+                },
+                "qty": {
+                  "type": "number",
+                  "description": "Returned quantity. Decimal values are supported."
+                },
+                "giReference": {
+                  "type": "string",
+                  "maxLength": 50,
+                  "description": "Related Goods Issue transaction number."
+                },
+                "lineItemNoGiReference": {
+                  "type": "number",
+                  "description": "Line item number in the referenced Goods Issue transaction."
+                },
+                "lineItemNo": {
+                  "type": "number",
+                  "description": "Return transaction line item number."
+                },
+                "movementType": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Movement type. Example: IN."
+                },
+                "reference": {
+                  "type": ["string", "null"],
+                  "maxLength": 50,
+                  "description": "Reference number or reference information mandatory for cancelation"
+                },
+                "lineItemNoRef": {
+                  "type": ["number", "null"],
+                  "description": "Reference line item number. mandatory for cancelation"
+                },
+                "debitCredit": {
+                  "type": "string",
+                  "maxLength": 10,
+                  "description": "Debit/Credit indicator. Example: DEBIT or CREDIT."
+                }
+              },
+              "required": [
+                "orderNo",
+                "colorFinishGood",
+                "sizeFinishGoodCode",
+                "qty",
+                "giReference",
+                "lineItemNoGiReference",
+                "lineItemNo",
+                "movementType",
+                "debitCredit"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "header",
+          "details"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "data"
+  ],
+  "additionalProperties": false,
+  "payloadExamples": [
+    {
+      "data": [
+        {
+          "header": {
+            "transactionNo": "RFG/VI/2026/08082010",
+            "transactionDate": "2026-05-15T10:30:00",
+            "returnFrom": "CUST001",
+            "bcCode": "261",
+            "bcNo": "BC261001",
+            "bcDate": "2026-05-15"
+          },
+          "details": [
+            {
+              "batchNo": "10",
+              "itemCode": "FG-001",
+              "orderNo": "ADDON/ORDER/0001/V/2026",
+              "colorFinishGood": "Black",
+              "sizeFinishGoodCode": "M",
+              "qty": 10.1256,
+              "giReference": "GI/2026/0001",
+              "lineItemNoGiReference": 10,
+              "lineItemNo": 1,
+              "movementType": "IN",
+              "reference": null,
+              "lineItemNoRef": null,
+              "debitCredit": "DEBIT"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
