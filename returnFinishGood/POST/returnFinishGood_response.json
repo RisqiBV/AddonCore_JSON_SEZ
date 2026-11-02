@@ -35,7 +35,7 @@
                   },
                   "transactionDate": {
                     "type": "string",
-                    "description": "Return transaction date and time. Expected format: YYYY-MM-DDTHH:mm:ss."
+                    "description": "Transaction date (DD-MM-YYYY)."
                   },
                   "returnFrom": {
                     "type": "string",
